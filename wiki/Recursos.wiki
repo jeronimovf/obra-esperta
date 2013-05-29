@@ -1,0 +1,39 @@
+#labels Featured,Phase-Design
+= Árvore de versionamento =
+
+Definir a linha principal de desenvolvimento do Obra Esperta.
+
+== Versão 1.0 ==
+Essa versão tem o foco nos processos internos, cujos usuários são os colaboradores e gestores da unidade.
+#Cadastro de clientes
+#Cadastro de colaboradores
+#Cadastro de campanhas de marketing
+#Cadastro de solicitações
+#Contas a pagar
+#Contas a receber
+
+== Versão 2.0 ==
+Essa versão começa a integrar serviços para o cliente que serão disponibilizados no portal da unidade
+#Lançamento de solicitações estruturadas online
+#Encaminhamento de solicitações online
+#Pagamento online
+
+== Versão 3.0 ==
+Essa versão integra os processos da unidade com serviços de suporte oferecidos por terceiros
+#Integração com o cadastro de CEP's dos correios
+#Integração com o Google Agenda
+#Integração com o Google Maps
+
+== Versão 4.0 ==
+Essa versão integra os serviços disponíveis na plataforma Android
+#Pagamento mobile
+#Pré-orçamento mobile
+#Rastreamento mobile
+
+== Versão 5.0 ==
+Essa versão expande os serviços internos existentes
+#Comissionamento
+#Folha de pagamento
+#Controle de frequencia
+#DRE
+
