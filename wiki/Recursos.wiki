@@ -19,9 +19,12 @@ As versões maiores serão disponibilizadas a cada 6 meses.
 
 
 == Versão 1.0 ==
-*Data prevista alfa:*  
+*Data prevista alfa:* 
+ 
 *Data prevista beta:*
+
 *Data prevista release:*
+
 Essa versão tem o foco nos processos internos, cujos usuários são os colaboradores e gestores da unidade.
   # Cadastro de clientes
   # Cadastro de colaboradores
