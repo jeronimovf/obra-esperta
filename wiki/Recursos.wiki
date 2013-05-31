@@ -1,4 +1,13 @@
 #labels Featured,Phase-Design
+= Plataforma de desenvolvimento =
+O sistema será desenvolvido em Java, em sua JDK 1.7 e na JEE 6.0, utilizando servidor Glassfish 3, banco de dados Posgres e deverá ser todo Web multinavegador compatível com HTML 5.0.
+
+O ambiente de desenvolvimento é o Netbeans 7.3.
+
+O SDK para Android será utilizado para as aplicações de coleta de dados e de suporte a operações.
+
+O dispositivo de referência para Android tem tela de tamanho mínimo de 4", 512RAM, câmera com flash com no mínimo 5MB, GPS com aGPS, geotag, acesso 3G, 4GB memória interna e roda versão 4.1+.
+
 = Árvore de versionamento =
 
 Definir a linha principal de desenvolvimento do Obra Esperta.
