@@ -1,13 +1,39 @@
 #labels Featured,Phase-Design
 = Plataforma de desenvolvimento =
-O sistema será desenvolvido em Java, em sua JDK 1.7 e na JEE 6.0, utilizando servidor Glassfish 3, banco de dados Posgres e deverá ser todo Web multinavegador compatível com HTML 5.0.
+O sistema será desenvolvido em Java, em sua JDK 1.8 e na JEE 7.0, utilizando servidor Glassfish 4.1, banco de dados Posgres e deverá ser todo Web multinavegador compatível com HTML 5.0.
 
-O ambiente de desenvolvimento é o Netbeans 7.3.
+O ambiente de desenvolvimento é o Netbeans 8.0.2.
 
 == Plataforma móvel de referência ==
 O SDK para Android será utilizado para as aplicações de coleta de dados e de suporte a operações.
 
 O dispositivo de referência para Android tem tela de tamanho mínimo de 4", 512RAM, câmera com flash com no mínimo 5MB, GPS com aGPS, geotag, acesso 3G, 4GB memória interna e roda versão 4.1+.
+
+= Banco de dados =
+O banco de dados será criado automaticamente na instalação da aplicação, devendo para isso ser indicado o servidor Posgres e as credenciais de superusuário.
+
+O script executado deverá criar o banco de dados, popular as tabelas e criar os usuários predefinidos.
+
+O banco de dados será criado com o nome *obraesperta*.
+
+Será criado o usuário *obraespertasu*, cuja senha inicial é homônima, *obraespertasu*, que será proprietário do banco de dados.
+
+O script de instalação deverá permitir em versões futuras a personalização das senhas no momento da instalação.
+
+= Aplicação =
+# todas as entidades devem ser temporais
+  # nenhum registro deverá ser editado/deletado.  Cada edição deverá gerar um novo registro que se tornará ativo, desativando seu antecessor.
+  # para fluxos, um lançamento errado/indevido deverá ser corrigido por meio de lançamento retificador adequado.
+# o ERP deverá, em versões futuras, suportar diferentes provedores de banco de dados além do Postgre, sendo prioritários, nessa ordem, o MySQL e o Oracle.
+# o ERP deverá, em versões futuras, suportar diferentes servidores de aplicação além do Glassfish, sendo prioritário o jBoss.
+# o ERP deverá possuir todo o seu código documentado em JAVADOC.
+# o ERP deverá implementar geração de log por meio da biblioteca log4J.
+# o ERP deverá implementar casos de teste por meio da biblioteca JUnit.
+# o ERP implementará sua segurança por meio da biblioteca Apache Shiro.
+
+= Funcionais =
+# O ERP deverá adotar as boas práticas de acessibilidade, sendo validado pelo www.dasilva.org.br.
+# O ERP deverá adotar as boas práticas de design de interfaces (consulte o título Interface no tópico Guidelines)
 
 = Árvore de versionamento =
 
@@ -32,6 +58,12 @@ As versões maiores serão disponibilizadas a cada 6 meses.
 *Data prevista alfa:* 
 *Data prevista beta:* 
 *Data prevista release:* 
+
+=== Arquitetura ===
+==== Banco de dados ====
+O servidor de banco de dados dessa versão será o Postgres 9.3.
+==== Servidor de aplicação ====
+O servidor de aplicação dessa versão será o Glassfish 4.1.
 
 Essa versão tem o foco nos processos internos, cujos usuários são os colaboradores e gestores da unidade.
   # Cadastro de clientes
