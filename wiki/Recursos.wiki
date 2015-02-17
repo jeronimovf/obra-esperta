@@ -30,6 +30,12 @@ O script de instalação deverá permitir em versões futuras a personalização
 # o ERP deverá implementar geração de log por meio da biblioteca log4J.
 # o ERP deverá implementar casos de teste por meio da biblioteca JUnit.
 # o ERP implementará sua segurança por meio da biblioteca Apache Shiro.
+  # o ERP deverá, em versões futuras, suportar a autenticação integrada com LDAP, certificado digital, Google e Facebook.
+# o ERP deverá suportar internacionalização em todo o seu escopo.
+# o ERP deverá, em versões futuras, suportar o armazenamento na nuvem.
+# os relatórios e consultas deverão ser exportáveis para formatos intercambiáveis abertos: Oasis, PDF e CSV.
+# o ERP deverá, em versões futuras, suportar a assinatura digital de documentos quando for necessário.
+# o ERP deverá, em versões futuras, suportar a escrituração fiscal e emissão de documentos fiscais eletrônicos (eNF), conforme definidos pelos órgãos competentes (nas esferas federal, estadual e municipal).
 
 = Funcionais =
 # O ERP deverá adotar as boas práticas de acessibilidade, sendo validado pelo www.dasilva.org.br.
@@ -66,6 +72,15 @@ Essa versão tem o foco nos processos internos, cujos usuários são os colabora
   # Contas a pagar
   # Contas a receber
 === Arquitetura ===
+==== Caleum Stella ====
+A biblioteca Caleum Stella será utilizada para prover validação de CPF, CNPJ, IE, geração de boletos bancários e escrita de números por extenso.
+==== Primefaces ====
+A biblioteca Primefaces será utilizada para prover componentes e infraestrutura JSF para aplicação provendo componentes ricos que melhoram a experiência do usuário.
+==== Knu ====
+A biblioteca Knu será utilizada para buscar dados das bases da SRF referentes a pessoas físicas e jurídicas, além de buscar endereços por meio do CEP utilizando-se de webservice dos Correios.
+Todos os cadastros deverão ser otimizados buscando-se as informações das bases confiáveis existentes com o intuito de otimizar a entrada e mantê-la consistente.
+==== Apache Shiro ====
+A biblioteca Apache Shiro será utilizada para prover a segurança do ERP e nesta versão utilizará a integração com LDAP para fins de autenticação.
 ==== Banco de dados ====
 O servidor de banco de dados dessa versão será o Postgres 9.3.
 ==== Servidor de aplicação ====
