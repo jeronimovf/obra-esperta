@@ -1,0 +1,61 @@
+#Orientações sobre diversos aspectos do projeto, algumas consistem em recomendações e outras restrições.
+
+= Introdução =
+
+Add your content here.
+
+
+= Details =
+
+Add your content here.  Format your content with:
+  * Text in *bold* or _italic_
+  * Headings, paragraphs, and lists
+  * Automatic links to other wiki pages
+= Tema =
+== Cores == 
+As cores são definidas conforme o tema escolhido, devendo serem definidas conforme as aplicações abaixo listadas:
+|| tagDaCor ||	Aplicação ||
+|| campoNomeOpcional || ||
+|| campoNomeObrigatorio || ||	
+|| caixaTextoOpcional || ||	
+|| caixaTextoObrigatoria || ||	
+|| caixaCombinacaoOpcional || ||	
+|| caixaCombinacaoObrigatoria || ||	
+|| caixaVerificacaoOpcional || ||	
+|| caixaVerificacaoObrigatorio || ||	
+|| botaoOpcaoOpcional || ||	
+|| botaoOpcaoObrigatorio || ||	
+|| botaoPadrao || ||	
+|| fundoPagina || ||	
+|| retornoValidacaoAoEnviarFormulario || ||	
+|| retornoValidacaoPreenchimentoCampo || ||	
+|| tabelaTitulo1Linha || ||	
+|| tabelaTitulo1Coluna || ||	
+|| tabelaResumo || ||	
+|| tabelaItens || ||	
+	
+
+== Tema padrão ==
+=== Cores ===
+As cores definidas para o tema padrão foram escolhidas com base na identidade visual da marca.  As definições para cada aplicação são:
+
+= Interface = 
+
+= Testes =
+
+= Código = 
+
+= Documentação =
+
+= Versionamento = 
+
+= Ciclo de vida = 
+== Definição de escopo ==
+== Definição de casos de uso e interfaces ==
+== Definição de testes funcionais ==
+== Desenvolvimento e definição de testes de codificação ==
+== Testes alfa ==
+== Testes beta ==
+== Publicação do release ==
+
+= Referências externas =
