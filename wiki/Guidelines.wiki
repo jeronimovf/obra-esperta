@@ -30,6 +30,9 @@ As cores são definidas conforme o tema escolhido, devendo serem definidas confo
 As cores definidas para o tema padrão foram escolhidas com base na identidade visual da marca.  As definições para cada aplicação são:
 
 = Interface = 
+As interfaces, assim como os casos de uso, são prototipados no Pencil, que pode ser executado como um complemento do navegador Firefox ou como aplicação standalone.  O aplicativo pode ser baixado na [http://pencil.evolus.vn/Downloads.html página de download da Evolus].
+As interfaces deverão implementar toda a validação cliente o possível, evitando tráfego desnecessário.  
+A validação ocorrerá a nível de campo e a nível de formulário.
 
 = Testes =
 
