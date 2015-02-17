@@ -21,25 +21,25 @@ Será criado o usuário *obraespertasu*, cuja senha inicial é homônima, *obrae
 O script de instalação deverá permitir em versões futuras a personalização das senhas no momento da instalação.
 
 = Aplicação =
-# todas as entidades devem ser temporais
-  # nenhum registro deverá ser editado/deletado.  Cada edição deverá gerar um novo registro que se tornará ativo, desativando seu antecessor.
-  # para fluxos, um lançamento errado/indevido deverá ser corrigido por meio de lançamento retificador adequado.
-# o ERP deverá, em versões futuras, suportar diferentes provedores de banco de dados além do Postgre, sendo prioritários, nessa ordem, o MySQL e o Oracle.
-# o ERP deverá, em versões futuras, suportar diferentes servidores de aplicação além do Glassfish, sendo prioritário o jBoss.
-# o ERP deverá possuir todo o seu código documentado em JAVADOC.
-# o ERP deverá implementar geração de log por meio da biblioteca log4J.
-# o ERP deverá implementar casos de teste por meio da biblioteca JUnit.
-# o ERP implementará sua segurança por meio da biblioteca Apache Shiro.
+  # todas as entidades devem ser temporais
+    # nenhum registro deverá ser editado/deletado.  Cada edição deverá gerar um novo registro que se tornará ativo, desativando seu antecessor.
+    # para fluxos, um lançamento errado/indevido deverá ser corrigido por meio de lançamento retificador adequado.
+  # o ERP deverá, em versões futuras, suportar diferentes provedores de banco de dados além do Postgre, sendo prioritários, nessa ordem, o MySQL e o Oracle.
+  # o ERP deverá, em versões futuras, suportar diferentes servidores de aplicação além do Glassfish, sendo prioritário o jBoss.
+  # o ERP deverá possuir todo o seu código documentado em JAVADOC.
+  # o ERP deverá implementar geração de log por meio da biblioteca log4J.
+  # o ERP deverá implementar casos de teste por meio da biblioteca JUnit.
+  # o ERP implementará sua segurança por meio da biblioteca Apache Shiro.
   # o ERP deverá, em versões futuras, suportar a autenticação integrada com LDAP, certificado digital, Google e Facebook.
-# o ERP deverá suportar internacionalização em todo o seu escopo.
-# o ERP deverá, em versões futuras, suportar o armazenamento na nuvem.
-# os relatórios e consultas deverão ser exportáveis para formatos intercambiáveis abertos: Oasis, PDF e CSV.
-# o ERP deverá, em versões futuras, suportar a assinatura digital de documentos quando for necessário.
-# o ERP deverá, em versões futuras, suportar a escrituração fiscal e emissão de documentos fiscais eletrônicos (eNF), conforme definidos pelos órgãos competentes (nas esferas federal, estadual e municipal).
+  # o ERP deverá suportar internacionalização em todo o seu escopo.
+  # o ERP deverá, em versões futuras, suportar o armazenamento na nuvem.
+  # os relatórios e consultas deverão ser exportáveis para formatos intercambiáveis abertos: Oasis, PDF e CSV.
+  # o ERP deverá, em versões futuras, suportar a assinatura digital de documentos quando for necessário.
+  # o ERP deverá, em versões futuras, suportar a escrituração fiscal e emissão de documentos fiscais eletrônicos (eNF), conforme definidos pelos órgãos competentes (nas esferas federal, estadual e municipal).
 
 = Funcionais =
-# O ERP deverá adotar as boas práticas de acessibilidade, sendo validado pelo www.dasilva.org.br.
-# O ERP deverá adotar as boas práticas de design de interfaces (consulte o título Interface no tópico Guidelines)
+  # O ERP deverá adotar as boas práticas de acessibilidade, sendo validado pelo www.dasilva.org.br.
+  # O ERP deverá adotar as boas práticas de design de interfaces (consulte o título Interface no tópico Guidelines)
 
 = Árvore de versionamento =
 
