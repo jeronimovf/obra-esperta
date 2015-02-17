@@ -58,13 +58,6 @@ As versões maiores serão disponibilizadas a cada 6 meses.
 *Data prevista alfa:* 
 *Data prevista beta:* 
 *Data prevista release:* 
-
-=== Arquitetura ===
-==== Banco de dados ====
-O servidor de banco de dados dessa versão será o Postgres 9.3.
-==== Servidor de aplicação ====
-O servidor de aplicação dessa versão será o Glassfish 4.1.
-
 Essa versão tem o foco nos processos internos, cujos usuários são os colaboradores e gestores da unidade.
   # Cadastro de clientes
   # Cadastro de colaboradores
@@ -72,6 +65,19 @@ Essa versão tem o foco nos processos internos, cujos usuários são os colabora
   # Cadastro de solicitações
   # Contas a pagar
   # Contas a receber
+=== Arquitetura ===
+==== Banco de dados ====
+O servidor de banco de dados dessa versão será o Postgres 9.3.
+==== Servidor de aplicação ====
+O servidor de aplicação dessa versão será o Glassfish 4.1.
+==== Arquitetura ====
+==== Cliente ====
+Serão suportados os navegadores web Firefox 35+, Opera 26+ e Chrome 39+ nesta versão.  Esses navegadores e versões são os mais aderentes ao HTML 5, conforme consulta ao site [https://html5test.com/results/desktop.html HTML5 Test] em 17/02/2015.
+==== Funcionalidades ====
+===== Imprescindíveis =====
+===== Desejáveis =====
+===== Supérfluas =====
+
 
 == Versão 2.0 ==
 *Data prevista alfa:* 
