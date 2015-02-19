@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="GrandezaEditDlg" widgetVar="GrandezaEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{bundle.EditGrandezaTitle}" closeOnEscape="true">
+
+            <h:form id="GrandezaEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" rendered="#{grandezaController.selected != null}">
+
+                        <h:outputLabel value="#{bundle.EditGrandezaLabel_id}" for="id" />
+                        <h:panelGroup>
+                            <h:outputText id="id" value="#{grandezaController.selected.id}" />
+                            <p:tooltip for="id" value="#{grandezaController.getComponentMessages('id', bundle.EditGrandezaHelpText_id)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.EditGrandezaLabel_nome}" for="nome" />
+                        <h:panelGroup>
+                            <p:inputText id="nome" value="#{grandezaController.selected.nome}" title="#{bundle.EditGrandezaTitle_nome}" required="true" requiredMessage="#{bundle.EditGrandezaRequiredMessage_nome}" size="255" maxlength="255"/>
+                            <p:tooltip for="nome" value="#{grandezaController.getComponentMessages('nome', bundle.EditGrandezaHelpText_nome)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.EditGrandezaLabel_unidadeBasica}" for="unidadeBasica" />
+                        <h:panelGroup>
+                            <p:selectOneMenu id="unidadeBasica" value="#{grandezaController.selected.unidadeBasica}"  converter="unidadeConverter">
+                                <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                                <f:selectItems value="#{unidadeController.items}"
+                                               var="unidadeBasicaItem"
+                                               itemValue="#{unidadeBasicaItem}"
+                                               itemLabel="#{unidadeBasicaItem.id.toString()}"
+                                               />
+
+                            </p:selectOneMenu>
+                            <p:tooltip for="unidadeBasica" value="#{grandezaController.getComponentMessages('unidadeBasica', bundle.EditGrandezaHelpText_unidadeBasica)}"/>
+                        </h:panelGroup>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{grandezaController.save}" value="#{bundle.Save}" update="display,:GrandezaListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,GrandezaEditDialog);">
+                        <p:confirm header="#{bundle.ConfirmationHeader}" message="#{bundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="GrandezaEditDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

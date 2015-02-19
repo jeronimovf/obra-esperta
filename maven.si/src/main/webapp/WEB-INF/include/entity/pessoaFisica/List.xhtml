@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="PessoaFisicaListForm">
+
+        <p:panel header="#{bundle.ListPessoaFisicaTitle}">
+            <p:dataTable id="datalist" value="#{pessoaFisicaController.items}" var="item"
+                         selectionMode="single" selection="#{pessoaFisicaController.selected}"
+                         rowKey="#{item.id}"
+                         paginator="true"
+                         rows="10"
+                         rowsPerPageTemplate="10,20,30"
+                         >
+
+                <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+                <p:column sortBy="#{item.sexo}" filterBy="#{item.sexo}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListPessoaFisicaTitle_sexo}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.sexo}"/>
+                </p:column>
+                <p:column sortBy="#{item.estadoCivil}" filterBy="#{item.estadoCivil}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListPessoaFisicaTitle_estadoCivil}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.estadoCivil}"/>
+                </p:column>
+                <p:column sortBy="#{item.naturalDe}" filterBy="#{item.naturalDe}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListPessoaFisicaTitle_naturalDe}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.naturalDe}"/>
+                </p:column>
+                <p:column sortBy="#{item.cpf}" filterBy="#{item.cpf}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListPessoaFisicaTitle_cpf}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.cpf}"/>
+                </p:column>
+                <p:column sortBy="#{item.dataNascimento}" filterBy="#{item.dataNascimento}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListPessoaFisicaTitle_dataNascimento}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.dataNascimento}">
+                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                    </h:outputText>
+                </p:column>
+                <p:column sortBy="#{item.rgNumero}" filterBy="#{item.rgNumero}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListPessoaFisicaTitle_rgNumero}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.rgNumero}"/>
+                </p:column>
+                <p:column sortBy="#{item.rgOrgaoExpedidor}" filterBy="#{item.rgOrgaoExpedidor}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListPessoaFisicaTitle_rgOrgaoExpedidor}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.rgOrgaoExpedidor}"/>
+                </p:column>
+                <p:column sortBy="#{item.rgUF.sigla}" filterBy="#{item.rgUF.sigla}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListPessoaFisicaTitle_rgUF}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.rgUF.sigla}"/>
+                </p:column>
+                <p:column sortBy="#{item.nome}" filterBy="#{item.nome}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListPessoaFisicaTitle_nome}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.nome}"/>
+                </p:column>
+                <p:column sortBy="#{item.cnhCategoria}" filterBy="#{item.cnhCategoria}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListPessoaFisicaTitle_cnhCategoria}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.cnhCategoria}"/>
+                </p:column>
+                <p:column sortBy="#{item.cnhNumero}" filterBy="#{item.cnhNumero}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListPessoaFisicaTitle_cnhNumero}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.cnhNumero}"/>
+                </p:column>
+                <p:column sortBy="#{item.cnhValidade}" filterBy="#{item.cnhValidade}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListPessoaFisicaTitle_cnhValidade}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.cnhValidade}">
+                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                    </h:outputText>
+                </p:column>
+                <f:facet name="footer">
+                    <div class="footer-section">
+                        <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{pessoaFisicaController.prepareCreate}" update=":PessoaFisicaCreateForm" oncomplete="PessoaFisicaCreateDialog.show()"/>
+                        <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":PessoaFisicaViewForm" oncomplete="PessoaFisicaViewDialog.show()" disabled="#{empty pessoaFisicaController.selected}"/>
+                        <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":PessoaFisicaEditForm" oncomplete="PessoaFisicaEditDialog.show()" disabled="#{empty pessoaFisicaController.selected}"/>
+                        <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{pessoaFisicaController.delete}" update=":growl,datalist" disabled="#{empty pessoaFisicaController.selected}">
+                            <p:confirm header="#{bundle.ConfirmationHeader}" message="#{bundle.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
+                        </p:commandButton>
+                    </div>
+                </f:facet>
+
+            </p:dataTable>
+
+        </p:panel>
+        <ui:include src="/WEB-INF/include/confirmation.xhtml"/>
+    </h:form>
+
+</ui:composition>

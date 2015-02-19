@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ConfiguracaoCreateDlg" widgetVar="ConfiguracaoCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateConfiguracaoTitle}" closeOnEscape="true">
+
+            <h:form id="ConfiguracaoCreateForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2">
+
+
+                        <p:outputLabel value="#{bundle.CreateConfiguracaoLabel_chave}" for="chave" />
+                        <h:panelGroup>
+                            <p:inputText id="chave" value="#{configuracaoController.selected.chave}" title="#{bundle.CreateConfiguracaoTitle_chave}" required="true" requiredMessage="#{bundle.CreateConfiguracaoRequiredMessage_chave}" size="255" maxlength="255"/>
+                            <p:tooltip for="chave" value="#{configuracaoController.getComponentMessages('chave', bundle.CreateConfiguracaoHelpText_chave)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.CreateConfiguracaoLabel_valor}" for="valor" />
+                        <h:panelGroup>
+                            <p:inputText id="valor" value="#{configuracaoController.selected.valor}" title="#{bundle.CreateConfiguracaoTitle_valor}" required="true" requiredMessage="#{bundle.CreateConfiguracaoRequiredMessage_valor}" size="255" maxlength="255"/>
+                            <p:tooltip for="valor" value="#{configuracaoController.getComponentMessages('valor', bundle.CreateConfiguracaoHelpText_valor)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.CreateConfiguracaoLabel_ativoDesde}" for="ativoDesde" />
+                        <h:panelGroup>
+                            <p:calendar id="ativoDesde" pattern="MM/dd/yyyy HH:mm:ss" value="#{configuracaoController.selected.ativoDesde}" title="#{bundle.CreateConfiguracaoTitle_ativoDesde}" required="true" requiredMessage="#{bundle.CreateConfiguracaoRequiredMessage_ativoDesde}" showOn="button"/>
+                            <p:tooltip for="ativoDesde" value="#{configuracaoController.getComponentMessages('ativoDesde', bundle.CreateConfiguracaoHelpText_ativoDesde)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.CreateConfiguracaoLabel_ativoAte}" for="ativoAte" />
+                        <h:panelGroup>
+                            <p:calendar id="ativoAte" pattern="MM/dd/yyyy HH:mm:ss" value="#{configuracaoController.selected.ativoAte}" title="#{bundle.CreateConfiguracaoTitle_ativoAte}"  showOn="button"/>
+                            <p:tooltip for="ativoAte" value="#{configuracaoController.getComponentMessages('ativoAte', bundle.CreateConfiguracaoHelpText_ativoAte)}"/>
+                        </h:panelGroup>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{configuracaoController.saveNew}" value="#{bundle.Save}" update="display,:ConfiguracaoListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,ConfiguracaoCreateDialog);">
+                        <p:confirm header="#{bundle.ConfirmationHeader}" message="#{bundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ConfiguracaoCreateDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

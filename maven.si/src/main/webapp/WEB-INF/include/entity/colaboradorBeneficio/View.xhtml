@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ColaboradorBeneficioViewDlg" widgetVar="ColaboradorBeneficioViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{bundle.ViewColaboradorBeneficioTitle}" closeOnEscape="true">
+
+            <h:form id="ColaboradorBeneficioViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{colaboradorBeneficioController.selected != null}">
+
+                        <h:outputText value="#{bundle.ViewColaboradorBeneficioLabel_id}"/>
+                        <h:outputText value="#{colaboradorBeneficioController.selected.id}" title="#{bundle.ViewColaboradorBeneficioTitle_id}"/>
+
+                        <h:outputText value="#{bundle.ViewColaboradorBeneficioLabel_nome}"/>
+                        <h:outputText value="#{colaboradorBeneficioController.selected.nome}" title="#{bundle.ViewColaboradorBeneficioTitle_nome}"/>
+
+                        <h:outputText value="#{bundle.ViewColaboradorBeneficioLabel_ativoDesde}"/>
+                        <h:outputText value="#{colaboradorBeneficioController.selected.ativoDesde}" title="#{bundle.ViewColaboradorBeneficioTitle_ativoDesde}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+
+                        <h:outputText value="#{bundle.ViewColaboradorBeneficioLabel_ativoAte}"/>
+                        <h:outputText value="#{colaboradorBeneficioController.selected.ativoAte}" title="#{bundle.ViewColaboradorBeneficioTitle_ativoAte}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="ColaboradorBeneficioViewDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

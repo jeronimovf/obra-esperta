@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="SolicitacaoHistoricoListForm">
+
+        <p:panel header="#{bundle.ListSolicitacaoHistoricoTitle}">
+            <p:dataTable id="datalist" value="#{solicitacaoHistoricoController.items}" var="item"
+                         selectionMode="single" selection="#{solicitacaoHistoricoController.selected}"
+                         rowKey="#{item.id}"
+                         paginator="true"
+                         rows="10"
+                         rowsPerPageTemplate="10,20,30"
+                         >
+
+                <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+
+                <p:column sortBy="#{item.id}" filterBy="#{item.id}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListSolicitacaoHistoricoTitle_id}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.id}"/>
+                </p:column>
+                <p:column sortBy="#{item.dataHora}" filterBy="#{item.dataHora}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListSolicitacaoHistoricoTitle_dataHora}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.dataHora}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                </p:column>
+                <p:column sortBy="#{item.observacao}" filterBy="#{item.observacao}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListSolicitacaoHistoricoTitle_observacao}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.observacao}"/>
+                </p:column>
+                <p:column sortBy="#{item.fase.id}" filterBy="#{item.fase.id}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListSolicitacaoHistoricoTitle_fase}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.fase.id}"/>
+                </p:column>
+                <p:column sortBy="#{item.solicitacao.descricao}" filterBy="#{item.solicitacao.descricao}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListSolicitacaoHistoricoTitle_solicitacao}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.solicitacao.descricao}"/>
+                </p:column>
+                <p:column sortBy="#{item.responsavel.id}" filterBy="#{item.responsavel.id}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListSolicitacaoHistoricoTitle_responsavel}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.responsavel.id}"/>
+                </p:column>
+                <f:facet name="footer">
+                    <div class="footer-section">
+                        <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{solicitacaoHistoricoController.prepareCreate}" update=":SolicitacaoHistoricoCreateForm" oncomplete="SolicitacaoHistoricoCreateDialog.show()"/>
+                        <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":SolicitacaoHistoricoViewForm" oncomplete="SolicitacaoHistoricoViewDialog.show()" disabled="#{empty solicitacaoHistoricoController.selected}"/>
+                        <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":SolicitacaoHistoricoEditForm" oncomplete="SolicitacaoHistoricoEditDialog.show()" disabled="#{empty solicitacaoHistoricoController.selected}"/>
+                        <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{solicitacaoHistoricoController.delete}" update=":growl,datalist" disabled="#{empty solicitacaoHistoricoController.selected}">
+                            <p:confirm header="#{bundle.ConfirmationHeader}" message="#{bundle.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
+                        </p:commandButton>
+                    </div>
+                </f:facet>
+
+            </p:dataTable>
+
+        </p:panel>
+        <ui:include src="/WEB-INF/include/confirmation.xhtml"/>
+    </h:form>
+
+</ui:composition>

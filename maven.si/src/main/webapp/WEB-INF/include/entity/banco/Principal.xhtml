@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="BancoListForm">
+       <p:growl id="messages" showDetail="true" />
+        <p:panel header="#{bundle.ListBancoTitle}">
+            <p:dataTable id="bancoList" value="#{bancoController.items}" var="item"
+                         selection="#{bancoController.selected}"
+                         rowKey="#{item.id}"
+                         selectionMode="single"                   
+                         paginator="true"
+                         rows="5"
+                         rowsPerPageTemplate="5,10,15"
+                         sortBy="#{item.codigo}"
+                         editable="true"
+                         editMode="row"
+                         paginatorAlwaysVisible="false"
+                         paginatorPosition="top" binding="#{bancoController.bancoList}">
+                <p:ajax event="rowSelect"   update=":BancoListForm:agenciaList"/>
+                <p:ajax event="rowUnselect" update=":BancoListForm:agenciaList"/>
+
+                <p:column>
+                    <p:rowEditor />                
+                </p:column>        
+                <p:column width="10%" sortBy="#{item.codigo}" filterBy="#{item.codigo}">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{item.codigo}"/>                            
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{item.codigo}" id="itemCodigo" required="true"/>
+                        </f:facet>
+                    </p:cellEditor>                    
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListBancoTitle_codigo}"/>
+                    </f:facet>
+
+                </p:column>
+                <p:column width="45%" sortBy="#{item.nome}" filterBy="#{item.nome}">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{item.nome}"/>                            
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{item.nome}" id="itemNome" required="true"/>
+                        </f:facet>
+                    </p:cellEditor>                       
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListBancoTitle_nome}"/>
+                    </f:facet>
+                </p:column>
+                <p:column width="45%" sortBy="#{item.site}" filterBy="#{item.site}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListBancoTitle_site}"/>
+                    </f:facet>
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{item.site}"/>                            
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{item.site}" id="itemSite"/>
+                        </f:facet>
+                    </p:cellEditor>                        
+                </p:column>     
+            </p:dataTable>
+            <p:panel header="#{bundle.ListBancoAgenciaTitle}">
+            <p:dataTable id="agenciaList" value="#{bancoController.selected.bancoAgenciaCollection}" var="item"
+                         selectionMode="single" selection="#{bancoAgenciaController.selected}"
+                         rowKey="#{item.id}"
+                         paginator="true"
+                         rows="5"
+                         rowsPerPageTemplate="5,10,15"
+                         sortBy="#{item.nome}"
+                         editable="true"
+                         editMode="row"
+                         paginatorAlwaysVisible="false"
+                         paginatorPosition="top"                     >     
+                <p:column>
+                    <p:rowEditor  />                
+                </p:column>                                
+                <p:column width="45%" sortBy="#{item.site}" filterBy="#{item.site}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListBancoAgenciaTitle_nome}"/>
+                    </f:facet>
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{item.nome}"/>                            
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{item.nome}" id="itemNome"/>
+                        </f:facet>
+                    </p:cellEditor>                         
+                </p:column>
+                <p:column width="45%" sortBy="#{item.numero}" filterBy="#{item.numer}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListBancoAgenciaTitle_numero}"/>
+                    </f:facet>
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{item.numero}"/>                            
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{item.numero}" id="itemNumero"/>
+                        </f:facet>
+                    </p:cellEditor>                         
+                </p:column> 
+            </p:dataTable>
+            </p:panel>            
+        </p:panel>       
+
+    </h:form>
+</ui:composition>

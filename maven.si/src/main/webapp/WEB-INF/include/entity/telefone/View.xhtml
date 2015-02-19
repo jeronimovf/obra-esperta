@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TelefoneViewDlg" widgetVar="TelefoneViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{bundle.ViewTelefoneTitle}" closeOnEscape="true">
+
+            <h:form id="TelefoneViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{telefoneController.selected != null}">
+
+                        <h:outputText value="#{bundle.ViewTelefoneLabel_id}"/>
+                        <h:outputText value="#{telefoneController.selected.id}" title="#{bundle.ViewTelefoneTitle_id}"/>
+
+                        <h:outputText value="#{bundle.ViewTelefoneLabel_telefone}"/>
+                        <h:outputText value="#{telefoneController.selected.telefone}" title="#{bundle.ViewTelefoneTitle_telefone}"/>
+
+                        <h:outputText value="#{bundle.ViewTelefoneLabel_nome}"/>
+                        <h:outputText value="#{telefoneController.selected.nome}" title="#{bundle.ViewTelefoneTitle_nome}"/>
+
+                        <h:outputText value="#{bundle.ViewTelefoneLabel_tipo}"/>
+                        <h:outputText value="#{telefoneController.selected.tipo}" title="#{bundle.ViewTelefoneTitle_tipo}"/>
+
+                        <h:outputText value="#{bundle.ViewTelefoneLabel_pessoa}"/>
+                        <h:outputText value="#{telefoneController.selected.pessoa.id}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="TelefoneViewDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

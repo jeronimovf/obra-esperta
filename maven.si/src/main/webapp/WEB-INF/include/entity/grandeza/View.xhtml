@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="GrandezaViewDlg" widgetVar="GrandezaViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{bundle.ViewGrandezaTitle}" closeOnEscape="true">
+
+            <h:form id="GrandezaViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{grandezaController.selected != null}">
+
+                        <h:outputText value="#{bundle.ViewGrandezaLabel_id}"/>
+                        <h:outputText value="#{grandezaController.selected.id}" title="#{bundle.ViewGrandezaTitle_id}"/>
+
+                        <h:outputText value="#{bundle.ViewGrandezaLabel_nome}"/>
+                        <h:outputText value="#{grandezaController.selected.nome}" title="#{bundle.ViewGrandezaTitle_nome}"/>
+
+                        <h:outputText value="#{bundle.ViewGrandezaLabel_unidadeBasica}"/>
+                        <h:outputText value="#{grandezaController.selected.unidadeBasica.id}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="GrandezaViewDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

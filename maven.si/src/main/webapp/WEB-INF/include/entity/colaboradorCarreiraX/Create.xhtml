@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ColaboradorCarreiraXCreateDlg" widgetVar="ColaboradorCarreiraXCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateColaboradorCarreiraXTitle}" closeOnEscape="true">
+
+            <h:form id="ColaboradorCarreiraXCreateForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2">
+
+
+                        <p:outputLabel value="#{bundle.CreateColaboradorCarreiraXLabel_ingressoDesde}" for="ingressoDesde" />
+                        <h:panelGroup>
+                            <p:calendar id="ingressoDesde" pattern="MM/dd/yyyy HH:mm:ss" value="#{colaboradorCarreiraXController.selected.ingressoDesde}" title="#{bundle.CreateColaboradorCarreiraXTitle_ingressoDesde}" required="true" requiredMessage="#{bundle.CreateColaboradorCarreiraXRequiredMessage_ingressoDesde}" showOn="button"/>
+                            <p:tooltip for="ingressoDesde" value="#{colaboradorCarreiraXController.getComponentMessages('ingressoDesde', bundle.CreateColaboradorCarreiraXHelpText_ingressoDesde)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.CreateColaboradorCarreiraXLabel_ingressoAte}" for="ingressoAte" />
+                        <h:panelGroup>
+                            <p:calendar id="ingressoAte" pattern="MM/dd/yyyy HH:mm:ss" value="#{colaboradorCarreiraXController.selected.ingressoAte}" title="#{bundle.CreateColaboradorCarreiraXTitle_ingressoAte}"  showOn="button"/>
+                            <p:tooltip for="ingressoAte" value="#{colaboradorCarreiraXController.getComponentMessages('ingressoAte', bundle.CreateColaboradorCarreiraXHelpText_ingressoAte)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.CreateColaboradorCarreiraXLabel_carreira}" for="carreira" />
+                        <h:panelGroup>
+                            <p:selectOneMenu id="carreira" value="#{colaboradorCarreiraXController.selected.carreira}" required="true" requiredMessage="#{bundle.CreateColaboradorCarreiraXRequiredMessage_carreira}" converter="colaboradorCarreiraConverter">
+                                <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                                <f:selectItems value="#{colaboradorCarreiraController.items}"
+                                               var="carreiraItem"
+                                               itemValue="#{carreiraItem}"
+                                               itemLabel="#{carreiraItem.id.toString()}"
+                                               />
+
+                            </p:selectOneMenu>
+                            <p:tooltip for="carreira" value="#{colaboradorCarreiraXController.getComponentMessages('carreira', bundle.CreateColaboradorCarreiraXHelpText_carreira)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.CreateColaboradorCarreiraXLabel_colaborador}" for="colaborador" />
+                        <h:panelGroup>
+                            <p:selectOneMenu id="colaborador" value="#{colaboradorCarreiraXController.selected.colaborador}" required="true" requiredMessage="#{bundle.CreateColaboradorCarreiraXRequiredMessage_colaborador}" converter="colaboradorConverter">
+                                <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                                <f:selectItems value="#{colaboradorController.items}"
+                                               var="colaboradorItem"
+                                               itemValue="#{colaboradorItem}"
+                                               itemLabel="#{colaboradorItem.id.toString()}"
+                                               />
+
+                            </p:selectOneMenu>
+                            <p:tooltip for="colaborador" value="#{colaboradorCarreiraXController.getComponentMessages('colaborador', bundle.CreateColaboradorCarreiraXHelpText_colaborador)}"/>
+                        </h:panelGroup>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{colaboradorCarreiraXController.saveNew}" value="#{bundle.Save}" update="display,:ColaboradorCarreiraXListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,ColaboradorCarreiraXCreateDialog);">
+                        <p:confirm header="#{bundle.ConfirmationHeader}" message="#{bundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ColaboradorCarreiraXCreateDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

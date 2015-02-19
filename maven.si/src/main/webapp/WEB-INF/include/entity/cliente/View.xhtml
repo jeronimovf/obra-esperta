@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ClienteViewDlg" widgetVar="ClienteViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{bundle.ViewClienteTitle}" closeOnEscape="true">
+
+            <h:form id="ClienteViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{clienteController.selected != null}">
+
+                        <h:outputText value="#{bundle.ViewClienteLabel_id}"/>
+                        <h:outputText value="#{clienteController.selected.id}" title="#{bundle.ViewClienteTitle_id}"/>
+
+                        <h:outputText value="#{bundle.ViewClienteLabel_desde}"/>
+                        <h:outputText value="#{clienteController.selected.desde}" title="#{bundle.ViewClienteTitle_desde}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+
+                        <h:outputText value="#{bundle.ViewClienteLabel_pessoa}"/>
+                        <h:outputText value="#{clienteController.selected.pessoa.id}"/>
+
+                        <h:outputText value="#{bundle.ViewClienteLabel_conheceuPor}"/>
+                        <h:outputText value="#{clienteController.selected.conheceuPor.id}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="ClienteViewDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

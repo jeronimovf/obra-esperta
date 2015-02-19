@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="ColaboradorBeneficioEditDlg" widgetVar="ColaboradorBeneficioEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{bundle.EditColaboradorBeneficioTitle}" closeOnEscape="true">
+
+            <h:form id="ColaboradorBeneficioEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" rendered="#{colaboradorBeneficioController.selected != null}">
+
+                        <h:outputLabel value="#{bundle.EditColaboradorBeneficioLabel_id}" for="id" />
+                        <h:panelGroup>
+                            <h:outputText id="id" value="#{colaboradorBeneficioController.selected.id}" />
+                            <p:tooltip for="id" value="#{colaboradorBeneficioController.getComponentMessages('id', bundle.EditColaboradorBeneficioHelpText_id)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.EditColaboradorBeneficioLabel_nome}" for="nome" />
+                        <h:panelGroup>
+                            <p:inputText id="nome" value="#{colaboradorBeneficioController.selected.nome}" title="#{bundle.EditColaboradorBeneficioTitle_nome}" required="true" requiredMessage="#{bundle.EditColaboradorBeneficioRequiredMessage_nome}" size="255" maxlength="255"/>
+                            <p:tooltip for="nome" value="#{colaboradorBeneficioController.getComponentMessages('nome', bundle.EditColaboradorBeneficioHelpText_nome)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.EditColaboradorBeneficioLabel_ativoDesde}" for="ativoDesde" />
+                        <h:panelGroup>
+                            <p:calendar id="ativoDesde" pattern="MM/dd/yyyy HH:mm:ss" value="#{colaboradorBeneficioController.selected.ativoDesde}" title="#{bundle.EditColaboradorBeneficioTitle_ativoDesde}" required="true" requiredMessage="#{bundle.EditColaboradorBeneficioRequiredMessage_ativoDesde}" showOn="button"/>
+                            <p:tooltip for="ativoDesde" value="#{colaboradorBeneficioController.getComponentMessages('ativoDesde', bundle.EditColaboradorBeneficioHelpText_ativoDesde)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.EditColaboradorBeneficioLabel_ativoAte}" for="ativoAte" />
+                        <h:panelGroup>
+                            <p:calendar id="ativoAte" pattern="MM/dd/yyyy HH:mm:ss" value="#{colaboradorBeneficioController.selected.ativoAte}" title="#{bundle.EditColaboradorBeneficioTitle_ativoAte}"  showOn="button"/>
+                            <p:tooltip for="ativoAte" value="#{colaboradorBeneficioController.getComponentMessages('ativoAte', bundle.EditColaboradorBeneficioHelpText_ativoAte)}"/>
+                        </h:panelGroup>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{colaboradorBeneficioController.save}" value="#{bundle.Save}" update="display,:ColaboradorBeneficioListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,ColaboradorBeneficioEditDialog);">
+                        <p:confirm header="#{bundle.ConfirmationHeader}" message="#{bundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ColaboradorBeneficioEditDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

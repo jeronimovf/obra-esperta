@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:stella="http://stella.caelum.com.br/faces2"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <ui:composition>
+
+        <p:dialog id="ClienteCreateDlg" widgetVar="ClienteCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateClienteTitle}" closeOnEscape="true">
+
+            <h:form id="ClienteCreateForm">
+
+                <h:panelGroup id="display">
+                        <h:outputLabel value="#{bundle.CreateClienteLabelPessoaTipo}" for="pessoaTipo"/>
+                        <h:selectOneRadio id="pessoaTipo" value="#{clienteController.pessoaTipo}" onchange="#{clienteController.cpfOuCnpj=''}">
+                            <p:ajax update="cpfOuCnpj"/>
+                            <f:selectItem itemLabel="#{bundle.CreateClienteRadioPF}" itemValue="PF"/>
+                            <f:selectItem itemLabel="#{bundle.CreateClienteRadioPJ}" itemValue="PJ"/>                            
+                        </h:selectOneRadio> 
+                        <p:panel id="localizador" binding="#{clienteController.localizadorCPF}">
+                            <p:outputLabel for="cpfOuCnpj" value="#{bundle.LabelCpf}"/>
+                            <h:panelGroup>
+                                <p:inputMask id="cpfOuCnpj" mask="#{clienteController.pessoaTipo.equals('PF')?'999.999.999-99':'99.999.999/9999-99'}" value="#{clienteController.cpfOuCnpj}" title="#{bundle.CreatePessoaFisicaTitle_cpf}" size="#{clienteController.pessoaTipo.equals('PF')?'14':'18'}" maxlength="#{clienteController.pessoaTipo.equals('PF')?'14':'18'}">
+                                    <c:choose>
+                                        <c:when test="#{clienteController.pessoaTipo == 'PF'}">
+                                            <stella:validateCPF formatted="true"/>
+                                        </c:when>                                        
+                                        <c:when test="#{clienteController.pessoaTipo == 'PJ'}">
+                                            <stella:validateCNPJ formatted="true"/>
+                                        </c:when>
+                                    </c:choose> 
+                                </p:inputMask>
+                            </h:panelGroup>
+                        </p:panel>
+                        <p:panel id="pessoaLocalizada">
+                            <p:outputLabel value="#{clienteController.pessoa}"/>
+                        </p:panel>
+                    <p:commandButton actionListener="#{clienteController.buscarPessoaPorCnpjOuCpf}" value="#{bundle.Save}" update="display,:ClienteListForm:datalist,:growl"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ClienteCreateDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

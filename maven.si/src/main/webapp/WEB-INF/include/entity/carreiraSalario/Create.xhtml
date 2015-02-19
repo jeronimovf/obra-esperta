@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CarreiraSalarioCreateDlg" widgetVar="CarreiraSalarioCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateCarreiraSalarioTitle}" closeOnEscape="true">
+
+            <h:form id="CarreiraSalarioCreateForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2">
+
+
+                        <p:outputLabel value="#{bundle.CreateCarreiraSalarioLabel_nome}" for="nome" />
+                        <h:panelGroup>
+                            <p:inputText id="nome" value="#{carreiraSalarioController.selected.nome}" title="#{bundle.CreateCarreiraSalarioTitle_nome}"/>
+                            <p:tooltip for="nome" value="#{carreiraSalarioController.getComponentMessages('nome', bundle.CreateCarreiraSalarioHelpText_nome)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.CreateCarreiraSalarioLabel_vigenteDesde}" for="vigenteDesde" />
+                        <h:panelGroup>
+                            <p:calendar id="vigenteDesde" pattern="MM/dd/yyyy" value="#{carreiraSalarioController.selected.vigenteDesde}" title="#{bundle.CreateCarreiraSalarioTitle_vigenteDesde}"  showOn="button"/>
+                            <p:tooltip for="vigenteDesde" value="#{carreiraSalarioController.getComponentMessages('vigenteDesde', bundle.CreateCarreiraSalarioHelpText_vigenteDesde)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.CreateCarreiraSalarioLabel_vigenteAte}" for="vigenteAte" />
+                        <h:panelGroup>
+                            <p:calendar id="vigenteAte" pattern="MM/dd/yyyy" value="#{carreiraSalarioController.selected.vigenteAte}" title="#{bundle.CreateCarreiraSalarioTitle_vigenteAte}"  showOn="button"/>
+                            <p:tooltip for="vigenteAte" value="#{carreiraSalarioController.getComponentMessages('vigenteAte', bundle.CreateCarreiraSalarioHelpText_vigenteAte)}"/>
+                        </h:panelGroup>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{carreiraSalarioController.saveNew}" value="#{bundle.Save}" update="display,:CarreiraSalarioListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,CarreiraSalarioCreateDialog);">
+                        <p:confirm header="#{bundle.ConfirmationHeader}" message="#{bundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="#{bundle.Cancel}" onclick="CarreiraSalarioCreateDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

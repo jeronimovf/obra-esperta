@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PessoaJuridicaViewDlg" widgetVar="PessoaJuridicaViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{bundle.ViewPessoaJuridicaTitle}" closeOnEscape="true">
+
+            <h:form id="PessoaJuridicaViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{pessoaJuridicaController.selected != null}">
+
+                        <h:outputText value="#{bundle.ViewPessoaJuridicaLabel_id}"/>
+                        <h:outputText value="#{pessoaJuridicaController.selected.id}" title="#{bundle.ViewPessoaJuridicaTitle_id}"/>
+
+                        <h:outputText value="#{bundle.ViewPessoaJuridicaLabel_tipo}"/>
+                        <h:outputText value="#{pessoaJuridicaController.selected.tipo}" title="#{bundle.ViewPessoaJuridicaTitle_tipo}"/>
+
+                        <h:outputText value="#{bundle.ViewPessoaJuridicaLabel_cnpj}"/>
+                        <h:outputText value="#{pessoaJuridicaController.selected.cnpj}" title="#{bundle.ViewPessoaJuridicaTitle_cnpj}"/>
+
+                        <h:outputText value="#{bundle.ViewPessoaJuridicaLabel_razaoSocial}"/>
+                        <h:outputText value="#{pessoaJuridicaController.selected.razaoSocial}" title="#{bundle.ViewPessoaJuridicaTitle_razaoSocial}"/>
+
+                        <h:outputText value="#{bundle.ViewPessoaJuridicaLabel_nomeFantasia}"/>
+                        <h:outputText value="#{pessoaJuridicaController.selected.nomeFantasia}" title="#{bundle.ViewPessoaJuridicaTitle_nomeFantasia}"/>
+
+                        <h:outputText value="#{bundle.ViewPessoaJuridicaLabel_inscricaoEstadualNumero}"/>
+                        <h:outputText value="#{pessoaJuridicaController.selected.inscricaoEstadualNumero}" title="#{bundle.ViewPessoaJuridicaTitle_inscricaoEstadualNumero}"/>
+
+                        <h:outputText value="#{bundle.ViewPessoaJuridicaLabel_inscricaoEstadualUF}"/>
+                        <h:outputText value="#{pessoaJuridicaController.selected.inscricaoEstadualUF}" title="#{bundle.ViewPessoaJuridicaTitle_inscricaoEstadualUF}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="PessoaJuridicaViewDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

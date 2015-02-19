@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ColaboradorFuncaoCreateDlg" widgetVar="ColaboradorFuncaoCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateColaboradorFuncaoTitle}" closeOnEscape="true">
+
+            <h:form id="ColaboradorFuncaoCreateForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2">
+
+
+                        <p:outputLabel value="#{bundle.CreateColaboradorFuncaoLabel_nome}" for="nome" />
+                        <h:panelGroup>
+                            <p:inputText id="nome" value="#{colaboradorFuncaoController.selected.nome}" title="#{bundle.CreateColaboradorFuncaoTitle_nome}" required="true" requiredMessage="#{bundle.CreateColaboradorFuncaoRequiredMessage_nome}" size="255" maxlength="255"/>
+                            <p:tooltip for="nome" value="#{colaboradorFuncaoController.getComponentMessages('nome', bundle.CreateColaboradorFuncaoHelpText_nome)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.CreateColaboradorFuncaoLabel_descricao}" for="descricao" />
+                        <h:panelGroup>
+                            <p:inputText id="descricao" value="#{colaboradorFuncaoController.selected.descricao}" title="#{bundle.CreateColaboradorFuncaoTitle_descricao}" size="255" maxlength="255"/>
+                            <p:tooltip for="descricao" value="#{colaboradorFuncaoController.getComponentMessages('descricao', bundle.CreateColaboradorFuncaoHelpText_descricao)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.CreateColaboradorFuncaoLabel_ativaDesde}" for="ativaDesde" />
+                        <h:panelGroup>
+                            <p:calendar id="ativaDesde" pattern="MM/dd/yyyy HH:mm:ss" value="#{colaboradorFuncaoController.selected.ativaDesde}" title="#{bundle.CreateColaboradorFuncaoTitle_ativaDesde}" required="true" requiredMessage="#{bundle.CreateColaboradorFuncaoRequiredMessage_ativaDesde}" showOn="button"/>
+                            <p:tooltip for="ativaDesde" value="#{colaboradorFuncaoController.getComponentMessages('ativaDesde', bundle.CreateColaboradorFuncaoHelpText_ativaDesde)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.CreateColaboradorFuncaoLabel_ativaAte}" for="ativaAte" />
+                        <h:panelGroup>
+                            <p:calendar id="ativaAte" pattern="MM/dd/yyyy HH:mm:ss" value="#{colaboradorFuncaoController.selected.ativaAte}" title="#{bundle.CreateColaboradorFuncaoTitle_ativaAte}"  showOn="button"/>
+                            <p:tooltip for="ativaAte" value="#{colaboradorFuncaoController.getComponentMessages('ativaAte', bundle.CreateColaboradorFuncaoHelpText_ativaAte)}"/>
+                        </h:panelGroup>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{colaboradorFuncaoController.saveNew}" value="#{bundle.Save}" update="display,:ColaboradorFuncaoListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,ColaboradorFuncaoCreateDialog);">
+                        <p:confirm header="#{bundle.ConfirmationHeader}" message="#{bundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ColaboradorFuncaoCreateDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

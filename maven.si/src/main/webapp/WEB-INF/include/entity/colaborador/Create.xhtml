@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ColaboradorCreateDlg" widgetVar="ColaboradorCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateColaboradorTitle}" closeOnEscape="true">
+
+            <h:form id="ColaboradorCreateForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2">
+
+
+                        <p:outputLabel value="#{bundle.CreateColaboradorLabel_tipo}" for="tipo" />
+                        <h:panelGroup>
+                            <p:inputText id="tipo" value="#{colaboradorController.selected.tipo}" title="#{bundle.CreateColaboradorTitle_tipo}"/>
+                            <p:tooltip for="tipo" value="#{colaboradorController.getComponentMessages('tipo', bundle.CreateColaboradorHelpText_tipo)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.CreateColaboradorLabel_sexo}" for="sexo" />
+                        <h:panelGroup>
+                            <p:inputText id="sexo" value="#{colaboradorController.selected.sexo}" title="#{bundle.CreateColaboradorTitle_sexo}"/>
+                            <p:tooltip for="sexo" value="#{colaboradorController.getComponentMessages('sexo', bundle.CreateColaboradorHelpText_sexo)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.CreateColaboradorLabel_estadoCivil}" for="estadoCivil" />
+                        <h:panelGroup>
+                            <p:inputText id="estadoCivil" value="#{colaboradorController.selected.estadoCivil}" title="#{bundle.CreateColaboradorTitle_estadoCivil}"/>
+                            <p:tooltip for="estadoCivil" value="#{colaboradorController.getComponentMessages('estadoCivil', bundle.CreateColaboradorHelpText_estadoCivil)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.CreateColaboradorLabel_naturalDe}" for="naturalDe" />
+                        <h:panelGroup>
+                            <p:selectOneMenu id="naturalDe" value="#{colaboradorController.selected.naturalDe}"  converter="municipioConverter">
+                                <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                                <f:selectItems value="#{municipioController.items}"
+                                               var="naturalDeItem"
+                                               itemValue="#{naturalDeItem}"
+                                               itemLabel="#{naturalDeItem.id.toString()}"
+                                               />
+
+                            </p:selectOneMenu>
+                            <p:tooltip for="naturalDe" value="#{colaboradorController.getComponentMessages('naturalDe', bundle.CreateColaboradorHelpText_naturalDe)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.CreateColaboradorLabel_cpf}" for="cpf" />
+                        <h:panelGroup>
+                            <p:inputText id="cpf" value="#{colaboradorController.selected.cpf}" title="#{bundle.CreateColaboradorTitle_cpf}" size="11" maxlength="11"/>
+                            <p:tooltip for="cpf" value="#{colaboradorController.getComponentMessages('cpf', bundle.CreateColaboradorHelpText_cpf)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.CreateColaboradorLabel_dataNascimento}" for="dataNascimento" />
+                        <h:panelGroup>
+                            <p:calendar id="dataNascimento" pattern="MM/dd/yyyy" value="#{colaboradorController.selected.dataNascimento}" title="#{bundle.CreateColaboradorTitle_dataNascimento}"  showOn="button"/>
+                            <p:tooltip for="dataNascimento" value="#{colaboradorController.getComponentMessages('dataNascimento', bundle.CreateColaboradorHelpText_dataNascimento)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.CreateColaboradorLabel_rgNumero}" for="rgNumero" />
+                        <h:panelGroup>
+                            <p:inputText id="rgNumero" value="#{colaboradorController.selected.rgNumero}" title="#{bundle.CreateColaboradorTitle_rgNumero}" size="255" maxlength="255"/>
+                            <p:tooltip for="rgNumero" value="#{colaboradorController.getComponentMessages('rgNumero', bundle.CreateColaboradorHelpText_rgNumero)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.CreateColaboradorLabel_rgOrgaoExpedidor}" for="rgOrgaoExpedidor" />
+                        <h:panelGroup>
+                            <p:inputText id="rgOrgaoExpedidor" value="#{colaboradorController.selected.rgOrgaoExpedidor}" title="#{bundle.CreateColaboradorTitle_rgOrgaoExpedidor}" size="255" maxlength="255"/>
+                            <p:tooltip for="rgOrgaoExpedidor" value="#{colaboradorController.getComponentMessages('rgOrgaoExpedidor', bundle.CreateColaboradorHelpText_rgOrgaoExpedidor)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.CreateColaboradorLabel_rgUF}" for="rgUF" />
+                        <h:panelGroup>
+                            <p:selectOneMenu id="rgUF" value="#{colaboradorController.selected.rgUF}"  converter="ufConverter">
+                                <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                                <f:selectItems value="#{ufController.items}"
+                                               var="rgUFItem"
+                                               itemValue="#{rgUFItem}"
+                                               itemLabel="#{rgUFItem.id.toString()}"
+                                               />
+
+                            </p:selectOneMenu>
+                            <p:tooltip for="rgUF" value="#{colaboradorController.getComponentMessages('rgUF', bundle.CreateColaboradorHelpText_rgUF)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.CreateColaboradorLabel_nome}" for="nome" />
+                        <h:panelGroup>
+                            <p:inputText id="nome" value="#{colaboradorController.selected.nome}" title="#{bundle.CreateColaboradorTitle_nome}" size="255" maxlength="255"/>
+                            <p:tooltip for="nome" value="#{colaboradorController.getComponentMessages('nome', bundle.CreateColaboradorHelpText_nome)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.CreateColaboradorLabel_cnhCategoria}" for="cnhCategoria" />
+                        <h:panelGroup>
+                            <p:inputText id="cnhCategoria" value="#{colaboradorController.selected.cnhCategoria}" title="#{bundle.CreateColaboradorTitle_cnhCategoria}" size="255" maxlength="255"/>
+                            <p:tooltip for="cnhCategoria" value="#{colaboradorController.getComponentMessages('cnhCategoria', bundle.CreateColaboradorHelpText_cnhCategoria)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.CreateColaboradorLabel_cnhNumero}" for="cnhNumero" />
+                        <h:panelGroup>
+                            <p:inputText id="cnhNumero" value="#{colaboradorController.selected.cnhNumero}" title="#{bundle.CreateColaboradorTitle_cnhNumero}" size="255" maxlength="255"/>
+                            <p:tooltip for="cnhNumero" value="#{colaboradorController.getComponentMessages('cnhNumero', bundle.CreateColaboradorHelpText_cnhNumero)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.CreateColaboradorLabel_cnhValidade}" for="cnhValidade" />
+                        <h:panelGroup>
+                            <p:calendar id="cnhValidade" pattern="MM/dd/yyyy" value="#{colaboradorController.selected.cnhValidade}" title="#{bundle.CreateColaboradorTitle_cnhValidade}"  showOn="button"/>
+                            <p:tooltip for="cnhValidade" value="#{colaboradorController.getComponentMessages('cnhValidade', bundle.CreateColaboradorHelpText_cnhValidade)}"/>
+                        </h:panelGroup>
+
+                        <h:outputLabel value="#{bundle.CreateColaboradorLabel_id}" for="id" />
+                        <h:panelGroup>
+                            <p:inputText id="id" value="#{colaboradorController.selected.id}" title="#{bundle.CreateColaboradorTitle_id}" required="true" requiredMessage="#{bundle.CreateColaboradorRequiredMessage_id}"/>
+                            <p:tooltip for="id" value="#{colaboradorController.getComponentMessages('id', bundle.CreateColaboradorHelpText_id)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.CreateColaboradorLabel_senha}" for="senha" />
+                        <h:panelGroup>
+                            <p:inputText id="senha" value="#{colaboradorController.selected.senha}" title="#{bundle.CreateColaboradorTitle_senha}" required="true" requiredMessage="#{bundle.CreateColaboradorRequiredMessage_senha}" size="255" maxlength="255"/>
+                            <p:tooltip for="senha" value="#{colaboradorController.getComponentMessages('senha', bundle.CreateColaboradorHelpText_senha)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.CreateColaboradorLabel_admissaoData}" for="admissaoData" />
+                        <h:panelGroup>
+                            <p:calendar id="admissaoData" pattern="MM/dd/yyyy HH:mm:ss" value="#{colaboradorController.selected.admissaoData}" title="#{bundle.CreateColaboradorTitle_admissaoData}" required="true" requiredMessage="#{bundle.CreateColaboradorRequiredMessage_admissaoData}" showOn="button"/>
+                            <p:tooltip for="admissaoData" value="#{colaboradorController.getComponentMessages('admissaoData', bundle.CreateColaboradorHelpText_admissaoData)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.CreateColaboradorLabel_pisPasep}" for="pisPasep" />
+                        <h:panelGroup>
+                            <p:inputText id="pisPasep" value="#{colaboradorController.selected.pisPasep}" title="#{bundle.CreateColaboradorTitle_pisPasep}" required="true" requiredMessage="#{bundle.CreateColaboradorRequiredMessage_pisPasep}" size="255" maxlength="255"/>
+                            <p:tooltip for="pisPasep" value="#{colaboradorController.getComponentMessages('pisPasep', bundle.CreateColaboradorHelpText_pisPasep)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.CreateColaboradorLabel_ctpsNumero}" for="ctpsNumero" />
+                        <h:panelGroup>
+                            <p:inputText id="ctpsNumero" value="#{colaboradorController.selected.ctpsNumero}" title="#{bundle.CreateColaboradorTitle_ctpsNumero}" required="true" requiredMessage="#{bundle.CreateColaboradorRequiredMessage_ctpsNumero}" size="255" maxlength="255"/>
+                            <p:tooltip for="ctpsNumero" value="#{colaboradorController.getComponentMessages('ctpsNumero', bundle.CreateColaboradorHelpText_ctpsNumero)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.CreateColaboradorLabel_ctpsSerie}" for="ctpsSerie" />
+                        <h:panelGroup>
+                            <p:inputText id="ctpsSerie" value="#{colaboradorController.selected.ctpsSerie}" title="#{bundle.CreateColaboradorTitle_ctpsSerie}" required="true" requiredMessage="#{bundle.CreateColaboradorRequiredMessage_ctpsSerie}" size="255" maxlength="255"/>
+                            <p:tooltip for="ctpsSerie" value="#{colaboradorController.getComponentMessages('ctpsSerie', bundle.CreateColaboradorHelpText_ctpsSerie)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.CreateColaboradorLabel_ctpsUF}" for="ctpsUF" />
+                        <h:panelGroup>
+                            <p:inputText id="ctpsUF" value="#{colaboradorController.selected.ctpsUF}" title="#{bundle.CreateColaboradorTitle_ctpsUF}"/>
+                            <p:tooltip for="ctpsUF" value="#{colaboradorController.getComponentMessages('ctpsUF', bundle.CreateColaboradorHelpText_ctpsUF)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.CreateColaboradorLabel_tituloEleitorNumero}" for="tituloEleitorNumero" />
+                        <h:panelGroup>
+                            <p:inputText id="tituloEleitorNumero" value="#{colaboradorController.selected.tituloEleitorNumero}" title="#{bundle.CreateColaboradorTitle_tituloEleitorNumero}" required="true" requiredMessage="#{bundle.CreateColaboradorRequiredMessage_tituloEleitorNumero}" size="255" maxlength="255"/>
+                            <p:tooltip for="tituloEleitorNumero" value="#{colaboradorController.getComponentMessages('tituloEleitorNumero', bundle.CreateColaboradorHelpText_tituloEleitorNumero)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.CreateColaboradorLabel_tituloEleitorSerie}" for="tituloEleitorSerie" />
+                        <h:panelGroup>
+                            <p:inputText id="tituloEleitorSerie" value="#{colaboradorController.selected.tituloEleitorSerie}" title="#{bundle.CreateColaboradorTitle_tituloEleitorSerie}" required="true" requiredMessage="#{bundle.CreateColaboradorRequiredMessage_tituloEleitorSerie}" size="255" maxlength="255"/>
+                            <p:tooltip for="tituloEleitorSerie" value="#{colaboradorController.getComponentMessages('tituloEleitorSerie', bundle.CreateColaboradorHelpText_tituloEleitorSerie)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.CreateColaboradorLabel_tituloEleitorUF}" for="tituloEleitorUF" />
+                        <h:panelGroup>
+                            <p:inputText id="tituloEleitorUF" value="#{colaboradorController.selected.tituloEleitorUF}" title="#{bundle.CreateColaboradorTitle_tituloEleitorUF}" required="true" requiredMessage="#{bundle.CreateColaboradorRequiredMessage_tituloEleitorUF}"/>
+                            <p:tooltip for="tituloEleitorUF" value="#{colaboradorController.getComponentMessages('tituloEleitorUF', bundle.CreateColaboradorHelpText_tituloEleitorUF)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.CreateColaboradorLabel_cartaoTransporte}" for="cartaoTransporte" />
+                        <h:panelGroup>
+                            <p:inputText id="cartaoTransporte" value="#{colaboradorController.selected.cartaoTransporte}" title="#{bundle.CreateColaboradorTitle_cartaoTransporte}" size="255" maxlength="255"/>
+                            <p:tooltip for="cartaoTransporte" value="#{colaboradorController.getComponentMessages('cartaoTransporte', bundle.CreateColaboradorHelpText_cartaoTransporte)}"/>
+                        </h:panelGroup>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{colaboradorController.saveNew}" value="#{bundle.Save}" update="display,:ColaboradorListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,ColaboradorCreateDialog);">
+                        <p:confirm header="#{bundle.ConfirmationHeader}" message="#{bundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ColaboradorCreateDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

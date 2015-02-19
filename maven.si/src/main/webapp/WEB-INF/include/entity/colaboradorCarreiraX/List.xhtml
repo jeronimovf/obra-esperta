@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="ColaboradorCarreiraXListForm">
+
+        <p:panel header="#{bundle.ListColaboradorCarreiraXTitle}">
+            <p:dataTable id="datalist" value="#{colaboradorCarreiraXController.items}" var="item"
+                         selectionMode="single" selection="#{colaboradorCarreiraXController.selected}"
+                         rowKey="#{item.id}"
+                         paginator="true"
+                         rows="10"
+                         rowsPerPageTemplate="10,20,30"
+                         >
+
+                <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+
+                <p:column sortBy="#{item.id}" filterBy="#{item.id}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListColaboradorCarreiraXTitle_id}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.id}"/>
+                </p:column>
+                <p:column sortBy="#{item.ingressoDesde}" filterBy="#{item.ingressoDesde}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListColaboradorCarreiraXTitle_ingressoDesde}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.ingressoDesde}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                </p:column>
+                <p:column sortBy="#{item.ingressoAte}" filterBy="#{item.ingressoAte}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListColaboradorCarreiraXTitle_ingressoAte}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.ingressoAte}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                </p:column>
+                <p:column sortBy="#{item.carreira.id}" filterBy="#{item.carreira.id}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListColaboradorCarreiraXTitle_carreira}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.carreira.id}"/>
+                </p:column>
+                <p:column sortBy="#{item.colaborador.id}" filterBy="#{item.colaborador.id}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListColaboradorCarreiraXTitle_colaborador}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.colaborador.id}"/>
+                </p:column>
+                <f:facet name="footer">
+                    <div class="footer-section">
+                        <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{colaboradorCarreiraXController.prepareCreate}" update=":ColaboradorCarreiraXCreateForm" oncomplete="ColaboradorCarreiraXCreateDialog.show()"/>
+                        <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":ColaboradorCarreiraXViewForm" oncomplete="ColaboradorCarreiraXViewDialog.show()" disabled="#{empty colaboradorCarreiraXController.selected}"/>
+                        <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":ColaboradorCarreiraXEditForm" oncomplete="ColaboradorCarreiraXEditDialog.show()" disabled="#{empty colaboradorCarreiraXController.selected}"/>
+                        <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{colaboradorCarreiraXController.delete}" update=":growl,datalist" disabled="#{empty colaboradorCarreiraXController.selected}">
+                            <p:confirm header="#{bundle.ConfirmationHeader}" message="#{bundle.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
+                        </p:commandButton>
+                    </div>
+                </f:facet>
+
+            </p:dataTable>
+
+        </p:panel>
+        <ui:include src="/WEB-INF/include/confirmation.xhtml"/>
+    </h:form>
+
+</ui:composition>

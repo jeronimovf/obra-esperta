@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="BancoCreateDlg" widgetVar="BancoCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateBancoTitle}" closeOnEscape="true">
+
+            <h:form id="BancoCreateForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2">
+                        <p:outputLabel value="#{bundle.CreateBancoLabel_codigo}" for="codigo" />
+                        <h:panelGroup>
+                            <p:inputText id="codigo" value="#{bancoController.selected.codigo}" title="#{bundle.CreateBancoTitle_codigo}" size="255" maxlength="255"/>
+                            <p:tooltip for="codigo" value="#{bancoController.getComponentMessages('codigo', bundle.CreateBancoHelpText_codigo)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.CreateBancoLabel_nome}" for="nome" />
+                        <h:panelGroup>
+                            <p:inputText id="nome" value="#{bancoController.selected.nome}" title="#{bundle.CreateBancoTitle_nome}" required="true" requiredMessage="#{bundle.CreateBancoRequiredMessage_nome}" size="255" maxlength="255"/>
+                            <p:tooltip for="nome" value="#{bancoController.getComponentMessages('nome', bundle.CreateBancoHelpText_nome)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.CreateBancoLabel_site}" for="site" />
+                        <h:panelGroup>
+                            <p:inputText id="site" value="#{bancoController.selected.site}" title="#{bundle.CreateBancoTitle_site}" size="255" maxlength="255"/>
+                            <p:tooltip for="site" value="#{bancoController.getComponentMessages('site', bundle.CreateBancoHelpText_site)}"/>
+                        </h:panelGroup>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{bancoController.saveNew}" value="#{bundle.Save}" update="display,:BancoListForm:datalistBanco,:growl" oncomplete="handleSubmit(xhr,status,args,BancoCreateDialog);">
+                        <p:confirm header="#{bundle.ConfirmationHeader}" message="#{bundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="#{bundle.Cancel}" onclick="BancoCreateDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="BancoListForm">
+
+        <p:panel header="#{bundle.ListBancoTitle}">
+            <p:dataTable id="datalistBanco" value="#{bancoController.items}" var="item"
+                         selectionMode="single" selection="#{bancoController.selected}"
+                         rowKey="#{item.id}"
+                         paginator="true"
+                         paginatorPosition="top"
+                         rows="5"
+                         rowsPerPageTemplate="5,10,15"
+                         sortBy="#{item.codigo}">
+
+                <p:ajax event="rowSelect"   update="createButtonBanco viewButtonBanco editButtonBanco deleteButtonBanco :BancoListForm:datalistAgencia"/>
+                <p:ajax event="rowUnselect" update="createButtonBanco viewButtonBanco editButtonBanco deleteButtonBanco :BancoListForm:datalistAgencia"/>
+
+                <p:column width="10%" sortBy="#{item.codigo}" filterBy="#{item.codigo}" filterMatchMode="contains">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListBancoTitle_codigo}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.codigo}"/>
+                </p:column>
+                <p:column width="45%" sortBy="#{item.nome}" filterBy="#{item.nome}" filterMatchMode="contains">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListBancoTitle_nome}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.nome}"/>
+                </p:column>
+                <p:column width="45%" sortBy="#{item.site}" filterBy="#{item.site}" filterMatchMode="contains">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListBancoTitle_site}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.site}"/>
+                </p:column>
+                <f:facet name="footer">
+                    <div class="footer-section">
+                        <p:commandButton id="createButtonBanco" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{bancoController.prepareCreate}" update=":BancoCreateForm" oncomplete="BancoCreateDialog.show()"/>
+                        <p:commandButton id="viewButtonBanco"   icon="ui-icon-search" value="#{bundle.View}" update=":BancoViewForm" oncomplete="BancoViewDialog.show()" disabled="#{empty bancoController.selected}"/>
+                        <p:commandButton id="editButtonBanco"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":BancoEditForm" oncomplete="BancoEditDialog.show()" disabled="#{empty bancoController.selected}"/>
+                        <p:commandButton id="deleteButtonBanco" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{bancoController.delete}" update=":growl,datalistBanco" disabled="#{empty bancoController.selected}">
+                            <p:confirm header="#{bundle.ConfirmationHeader}" message="#{bundle.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
+                        </p:commandButton>
+                    </div>
+                </f:facet>
+            </p:dataTable>
+        </p:panel>
+        <p:panel header="#{bundle.ListBancoAgenciaTitle}">
+            <p:dataTable id="datalistAgencia" value="#{bancoController.selected.agencias}" var="item"
+                         selectionMode="single" selection="#{bancoController.agenciaSelected}"
+                         rowKey="#{item.id}"
+                         paginator="true"
+                         paginatorPosition="top"
+                         rows="5"
+                         rowsPerPageTemplate="5,10,15"
+                         >
+
+                <p:ajax event="rowSelect"   update="createButtonAgencia viewButtonAgencia editButtonAgencia deleteButtonAgencia"/>
+                <p:ajax event="rowUnselect" update="createButtonAgencia viewButtonAgencia editButtonAgencia deleteButtonAgencia"/>
+
+                <p:column sortBy="#{item.banco.nome}" filterBy="#{item.banco.nome}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListBancoAgenciaTitle_banco}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.banco}"/>
+                </p:column>
+                <p:column sortBy="#{item.numero}" filterBy="#{item.numero}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListBancoAgenciaTitle_numero}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.numero}"/>
+                </p:column>
+                <p:column sortBy="#{item.nome}" filterBy="#{item.nome}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListBancoAgenciaTitle_nome}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.nome}"/>
+                </p:column>
+
+                <f:facet name="footer">
+                    <div class="footer-section">
+                        <p:commandButton id="createButtonAgencia" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{bancoAgenciaController.prepareCreate}" update=":BancoAgenciaCreateForm" oncomplete="BancoAgenciaCreateDialog.show()"/>
+                        <p:commandButton id="viewButtonAgencia"   icon="ui-icon-search" value="#{bundle.View}" update=":BancoAgenciaViewForm" oncomplete="BancoAgenciaViewDialog.show()" disabled="#{empty bancoAgenciaController.selected}"/>
+                        <p:commandButton id="editButtonAgencia"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":BancoAgenciaEditForm" oncomplete="BancoAgenciaEditDialog.show()" disabled="#{empty bancoAgenciaController.selected}"/>
+                        <p:commandButton id="deleteButtonAgencia" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{bancoAgenciaController.delete}" update=":growl,datalistAgencia" disabled="#{empty bancoAgenciaController.selected}">
+                            <p:confirm header="#{bundle.ConfirmationHeader}" message="#{bundle.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
+                        </p:commandButton>
+                    </div>
+                </f:facet>
+
+            </p:dataTable>
+
+        </p:panel>
+        
+        <ui:include src="/WEB-INF/include/confirmation.xhtml"/>
+    </h:form>
+
+</ui:composition>

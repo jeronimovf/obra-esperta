@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="UnidadeConversaoServicoEditDlg" widgetVar="UnidadeConversaoServicoEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{bundle.EditUnidadeConversaoServicoTitle}" closeOnEscape="true">
+
+            <h:form id="UnidadeConversaoServicoEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" rendered="#{unidadeConversaoServicoController.selected != null}">
+
+                        <h:outputLabel value="#{bundle.EditUnidadeConversaoServicoLabel_id}" for="id" />
+                        <h:panelGroup>
+                            <h:outputText id="id" value="#{unidadeConversaoServicoController.selected.id}" />
+                            <p:tooltip for="id" value="#{unidadeConversaoServicoController.getComponentMessages('id', bundle.EditUnidadeConversaoServicoHelpText_id)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.EditUnidadeConversaoServicoLabel_unidade}" for="unidade" />
+                        <h:panelGroup>
+                            <p:inputText id="unidade" value="#{unidadeConversaoServicoController.selected.unidade}" title="#{bundle.EditUnidadeConversaoServicoTitle_unidade}"/>
+                            <p:tooltip for="unidade" value="#{unidadeConversaoServicoController.getComponentMessages('unidade', bundle.EditUnidadeConversaoServicoHelpText_unidade)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.EditUnidadeConversaoServicoLabel_orseSERVUNIDADE}" for="orseSERVUNIDADE" />
+                        <h:panelGroup>
+                            <p:inputText id="orseSERVUNIDADE" value="#{unidadeConversaoServicoController.selected.orseSERVUNIDADE}" title="#{bundle.EditUnidadeConversaoServicoTitle_orseSERVUNIDADE}" size="255" maxlength="255"/>
+                            <p:tooltip for="orseSERVUNIDADE" value="#{unidadeConversaoServicoController.getComponentMessages('orseSERVUNIDADE', bundle.EditUnidadeConversaoServicoHelpText_orseSERVUNIDADE)}"/>
+                        </h:panelGroup>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{unidadeConversaoServicoController.save}" value="#{bundle.Save}" update="display,:UnidadeConversaoServicoListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,UnidadeConversaoServicoEditDialog);">
+                        <p:confirm header="#{bundle.ConfirmationHeader}" message="#{bundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="UnidadeConversaoServicoEditDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

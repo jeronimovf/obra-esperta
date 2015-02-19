@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="CarreiraSalarioEditDlg" widgetVar="CarreiraSalarioEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{bundle.EditCarreiraSalarioTitle}" closeOnEscape="true">
+
+            <h:form id="CarreiraSalarioEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" rendered="#{carreiraSalarioController.selected != null}">
+
+                        <h:outputLabel value="#{bundle.EditCarreiraSalarioLabel_id}" for="id" />
+                        <h:panelGroup>
+                            <h:outputText id="id" value="#{carreiraSalarioController.selected.id}" />
+                            <p:tooltip for="id" value="#{carreiraSalarioController.getComponentMessages('id', bundle.EditCarreiraSalarioHelpText_id)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.EditCarreiraSalarioLabel_nome}" for="nome" />
+                        <h:panelGroup>
+                            <p:inputText id="nome" value="#{carreiraSalarioController.selected.nome}" title="#{bundle.EditCarreiraSalarioTitle_nome}"/>
+                            <p:tooltip for="nome" value="#{carreiraSalarioController.getComponentMessages('nome', bundle.EditCarreiraSalarioHelpText_nome)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.EditCarreiraSalarioLabel_vigenteDesde}" for="vigenteDesde" />
+                        <h:panelGroup>
+                            <p:calendar id="vigenteDesde" pattern="MM/dd/yyyy" value="#{carreiraSalarioController.selected.vigenteDesde}" title="#{bundle.EditCarreiraSalarioTitle_vigenteDesde}"  showOn="button"/>
+                            <p:tooltip for="vigenteDesde" value="#{carreiraSalarioController.getComponentMessages('vigenteDesde', bundle.EditCarreiraSalarioHelpText_vigenteDesde)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.EditCarreiraSalarioLabel_vigenteAte}" for="vigenteAte" />
+                        <h:panelGroup>
+                            <p:calendar id="vigenteAte" pattern="MM/dd/yyyy" value="#{carreiraSalarioController.selected.vigenteAte}" title="#{bundle.EditCarreiraSalarioTitle_vigenteAte}"  showOn="button"/>
+                            <p:tooltip for="vigenteAte" value="#{carreiraSalarioController.getComponentMessages('vigenteAte', bundle.EditCarreiraSalarioHelpText_vigenteAte)}"/>
+                        </h:panelGroup>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{carreiraSalarioController.save}" value="#{bundle.Save}" update="display,:CarreiraSalarioListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,CarreiraSalarioEditDialog);">
+                        <p:confirm header="#{bundle.ConfirmationHeader}" message="#{bundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="CarreiraSalarioEditDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

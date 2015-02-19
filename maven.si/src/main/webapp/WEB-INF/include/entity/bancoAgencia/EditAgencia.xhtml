@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="BancoAgenciaEditDlg" widgetVar="BancoAgenciaEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{bundle.EditBancoAgenciaTitle}" closeOnEscape="true">
+
+            <h:form id="BancoAgenciaEditForm">
+
+                <h:panelGroup id="display">
+                        <p:outputLabel value="#{bundle.EditBancoAgenciaLabel_banco}" for="banco" />
+                        <h:panelGroup>
+                            <p:selectOneMenu id="banco" value="#{bancoAgenciaController.selected.banco}" required="true" requiredMessage="#{bundle.EditBancoAgenciaRequiredMessage_banco}" converter="bancoConverter">
+                                <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                                <f:selectItems value="#{bancoController.items}"
+                                               var="bancoItem"
+                                               itemValue="#{bancoItem}"
+                                               itemLabel="#{bancoItem}"
+                                               />
+
+                            </p:selectOneMenu>
+                            <p:tooltip for="banco" value="#{bancoAgenciaController.getComponentMessages('banco', bundle.EditBancoAgenciaHelpText_banco)}"/>
+                        </h:panelGroup>                    
+                    <p:panelGrid  columns="2" rendered="#{bancoAgenciaController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditBancoAgenciaLabel_numero}" for="numero" />
+                        <h:panelGroup>
+                            <p:inputText id="numero" value="#{bancoAgenciaController.selected.numero}" title="#{bundle.EditBancoAgenciaTitle_numero}" required="true" requiredMessage="#{bundle.EditBancoAgenciaRequiredMessage_numero}" size="255" maxlength="255"/>
+                            <p:tooltip for="numero" value="#{bancoAgenciaController.getComponentMessages('numero', bundle.EditBancoAgenciaHelpText_numero)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.EditBancoAgenciaLabel_nome}" for="nome" />
+                        <h:panelGroup>
+                            <p:inputText id="nome" value="#{bancoAgenciaController.selected.nome}" title="#{bundle.EditBancoAgenciaTitle_nome}" required="true" requiredMessage="#{bundle.EditBancoAgenciaRequiredMessage_nome}" size="255" maxlength="255"/>
+                            <p:tooltip for="nome" value="#{bancoAgenciaController.getComponentMessages('nome', bundle.EditBancoAgenciaHelpText_nome)}"/>
+                        </h:panelGroup>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{bancoAgenciaController.save}" value="#{bundle.Save}" update="display,:BancoListForm:datalistAgencia,:growl" oncomplete="handleSubmit(xhr,status,args,BancoAgenciaEditDialog);">
+                        <p:confirm header="#{bundle.ConfirmationHeader}" message="#{bundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="BancoAgenciaEditDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="UfEditDlg" widgetVar="UfEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{bundle.EditUfTitle}" closeOnEscape="true">
+
+            <h:form id="UfEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" rendered="#{ufController.selected != null}">
+
+                        <p:outputLabel value="#{bundle.EditUfLabel_nome}" for="nome" />
+                        <h:panelGroup>
+                            <p:inputText id="nome" value="#{ufController.selected.nome}" title="#{bundle.EditUfTitle_nome}" required="true" requiredMessage="#{bundle.EditUfRequiredMessage_nome}" size="255" maxlength="255"/>
+                            <p:tooltip for="nome" value="#{ufController.getComponentMessages('nome', bundle.EditUfHelpText_nome)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.EditUfLabel_sigla}" for="sigla" />
+                        <h:panelGroup>
+                            <p:inputText id="sigla" value="#{ufController.selected.sigla}" title="#{bundle.EditUfTitle_sigla}" size="255" maxlength="255"/>
+                            <p:tooltip for="sigla" value="#{ufController.getComponentMessages('sigla', bundle.EditUfHelpText_sigla)}"/>
+                        </h:panelGroup>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{ufController.save}" value="#{bundle.Save}" update="display,:UfListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,UfEditDialog);">
+                        <p:confirm header="#{bundle.ConfirmationHeader}" message="#{bundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="UfEditDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

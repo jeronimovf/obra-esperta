@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CampanhaMidiaCreateDlg" widgetVar="CampanhaMidiaCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateCampanhaMidiaTitle}" closeOnEscape="true">
+
+            <h:form id="CampanhaMidiaCreateForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2">
+
+
+                        <p:outputLabel value="#{bundle.CreateCampanhaMidiaLabel_nome}" for="nome" />
+                        <h:panelGroup>
+                            <p:inputText id="nome" value="#{campanhaMidiaController.selected.nome}" title="#{bundle.CreateCampanhaMidiaTitle_nome}" required="true" requiredMessage="#{bundle.CreateCampanhaMidiaRequiredMessage_nome}" size="255" maxlength="255"/>
+                            <p:tooltip for="nome" value="#{campanhaMidiaController.getComponentMessages('nome', bundle.CreateCampanhaMidiaHelpText_nome)}"/>
+                        </h:panelGroup>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{campanhaMidiaController.saveNew}" value="#{bundle.Save}" update="display,:CampanhaMidiaListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,CampanhaMidiaCreateDialog);">
+                        <p:confirm header="#{bundle.ConfirmationHeader}" message="#{bundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="#{bundle.Cancel}" onclick="CampanhaMidiaCreateDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

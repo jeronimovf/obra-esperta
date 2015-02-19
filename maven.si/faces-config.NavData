@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene Scope="Project" version="2">
+    <Scope Scope="Faces Configuration Only"/>
+    <Scope Scope="Project">
+        <Node id="uf/index.xhtml" x="150" y="150" zoom="true"/>
+        <Node id="colaboradorCarreiraX/index.xhtml" x="1150" y="600" zoom="true"/>
+        <Node id="documento/index.xhtml" x="1400" y="300" zoom="true"/>
+        <Node id="endereco/index.xhtml" x="1150" y="300" zoom="true"/>
+        <Node id="colaboradorFuncao/index.xhtml" x="400" y="600" zoom="true"/>
+        <Node id="configuracao/index.xhtml" x="650" y="300" zoom="true"/>
+        <Node id="solicitacaoHistorico/index.xhtml" x="650" y="450" zoom="true"/>
+        <Node id="colaborador/index.xhtml" x="400" y="150" zoom="true"/>
+        <Node id="colaboradorBeneficioX/index.xhtml" x="1400" y="150" zoom="true"/>
+        <Node id="email/index.xhtml" x="1150" y="450" zoom="true"/>
+        <Node id="solicitacaoFase/index.xhtml" x="400" y="300" zoom="true"/>
+        <Node id="carreiraSalario/index.xhtml" x="650" y="750" zoom="true"/>
+        <Node id="municipio/index.xhtml" x="150" y="300" zoom="true"/>
+        <Node id="bancoAgencia/index.xhtml" x="1650" y="300" zoom="true"/>
+        <Node id="campanhaMidiaX/index.xhtml" x="1650" y="150" zoom="true"/>
+        <Node id="solicitacao/index.xhtml" x="400" y="450" zoom="true"/>
+        <Node id="pessoaJuridica/index.xhtml" x="900" y="750" zoom="true"/>
+        <Node id="colaboradorBeneficio/index.xhtml" x="150" y="600" zoom="true"/>
+        <Node id="telefone/index.xhtml" x="150" y="450" zoom="true"/>
+        <Node id="campanhaMidia/index.xhtml" x="150" y="750" zoom="true"/>
+        <Node id="solicitacaoItem/index.xhtml" x="650" y="900" zoom="true"/>
+        <Node id="unidadeConversaoServico/index.xhtml" x="1400" y="450" zoom="true"/>
+        <Node id="grandeza/index.xhtml" x="150" y="1200" zoom="true"/>
+        <Node id="pessoaFisica/index.xhtml" x="1900" y="150" zoom="true"/>
+        <Node id="workflow/index.xhtml" x="150" y="900" zoom="true"/>
+        <Node id="bancoConta/index.xhtml" x="1150" y="150" zoom="true"/>
+        <Node id="solicitacaoMaterial/index.xhtml" x="900" y="150" zoom="true"/>
+        <Node id="carreiraSalarioItem/index.xhtml" x="900" y="450" zoom="true"/>
+        <Node id="index.html" x="400" y="1050" zoom="true"/>
+        <Node id="colaboradorCarreira/index.xhtml" x="150" y="1050" zoom="true"/>
+        <Node id="index.xhtml" x="400" y="750" zoom="true"/>
+        <Node id="banco/index.xhtml" x="650" y="150" zoom="true"/>
+        <Node id="pessoa/index.xhtml" x="400" y="900" zoom="true"/>
+        <Node id="unidade/index.xhtml" x="650" y="600" zoom="true"/>
+        <Node id="campanha/index.xhtml" x="900" y="300" zoom="true"/>
+        <Node id="cliente/index.xhtml" x="900" y="600" zoom="true"/>
+    </Scope>
+    <Scope Scope="All Faces Configurations"/>
+</Scene>

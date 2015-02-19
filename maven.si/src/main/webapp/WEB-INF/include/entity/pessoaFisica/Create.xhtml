@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:stella="http://stella.caelum.com.br/faces2">
+
+    <ui:composition>
+
+        <p:dialog id="PessoaFisicaCreateDlg" widgetVar="PessoaFisicaCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreatePessoaFisicaTitle}" closeOnEscape="true">
+
+            <h:form id="PessoaFisicaCreateForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2">
+
+                        <p:outputLabel value="#{bundle.CreatePessoaFisicaLabel_sexo}" for="sexo" />
+                        <h:panelGroup>
+                            <p:autoComplete var="sexo" itemLabel="#{sexo}" itemValue="#{sexo}" minQueryLength="3" 
+                                            completeMethod="#{sexoController.completeItemsFromText}" converter="sexoConverter" id="sexo" 
+                                            forceSelection="true" maxResults="5" value="#{pessoaFisicaController.selected.sexo}" queryDelay="250" dropdown="true"/>
+                            <p:tooltip for="sexo" value="#{pessoaFisicaController.getComponentMessages('sexo', bundle.CreatePessoaFisicaHelpText_sexo)}"/>
+                        </h:panelGroup>                        
+
+                        <p:outputLabel value="#{bundle.CreatePessoaFisicaLabel_estadoCivil}" for="estadoCivil" />
+                        <h:panelGroup>
+                            <p:autoComplete var="estadoCivil" itemLabel="#{estadoCivil}" itemValue="#{estadoCivil}" minQueryLength="3" 
+                                            completeMethod="#{estadoCivilController.completeItemsFromText}" converter="estadoCivilConverter" id="estadoCivil" 
+                                            forceSelection="true" maxResults="5" value="#{pessoaFisicaController.selected.estadoCivil}" queryDelay="250" dropdown="true"/>
+                            <p:tooltip for="estadoCivil" value="#{estadoCivilController.getComponentMessages('estadoCivil', bundle.CreatePessoaFisicaHelpText_naturalDe)}"/>
+                        </h:panelGroup>
+                        <p:outputLabel value="#{bundle.CreatePessoaFisicaLabel_naturalDe}" for="naturalDe" />
+                        <h:panelGroup>
+                            <p:autoComplete var="municipio" itemLabel="#{municipio}" itemValue="#{municipio}" minQueryLength="3" 
+                                            completeMethod="#{municipioController.completeItemsFromText}" converter="municipioConverter" id="naturalDe" forceSelection="true"
+                                            maxResults="5" value="#{pessoaFisicaController.selected.naturalDe}" queryDelay="250" dropdown="true"/>
+                            <p:tooltip for="naturalDe" value="#{pessoaFisicaController.getComponentMessages('naturalDe', bundle.CreatePessoaFisicaHelpText_naturalDe)}"/>
+                        </h:panelGroup>
+                        
+                        <p:outputLabel value="#{bundle.CreatePessoaFisicaLabel_cpf}" for="cpf" />
+                        <h:panelGroup>
+                            <p:inputMask id="cpf" mask="999.999.999-99" value="#{pessoaFisicaController.selected.cpf}" title="#{bundle.CreatePessoaFisicaTitle_cpf}" size="14" maxlength="14">
+                                <stella:validateCPF formatted="true" />
+                            </p:inputMask>
+                            <p:tooltip for="cpf" value="#{pessoaFisicaController.getComponentMessages('cpf', bundle.CreatePessoaFisicaHelpText_cpf)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.CreatePessoaFisicaLabel_dataNascimento}" for="dataNascimento" />
+                        <h:panelGroup>
+                            <p:calendar id="dataNascimento" locale="pt_BR" value="#{pessoaFisicaController.selected.dataNascimento}" title="#{bundle.CreatePessoaFisicaTitle_dataNascimento}"  showOn="button"/>
+                            <p:tooltip for="dataNascimento" value="#{pessoaFisicaController.getComponentMessages('dataNascimento', bundle.CreatePessoaFisicaHelpText_dataNascimento)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.CreatePessoaFisicaLabel_rgNumero}" for="rgNumero" />
+                        <h:panelGroup>
+                            <p:inputText id="rgNumero" value="#{pessoaFisicaController.selected.rgNumero}" title="#{bundle.CreatePessoaFisicaTitle_rgNumero}" size="255" maxlength="255"/>
+                            <p:tooltip for="rgNumero" value="#{pessoaFisicaController.getComponentMessages('rgNumero', bundle.CreatePessoaFisicaHelpText_rgNumero)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.CreatePessoaFisicaLabel_rgOrgaoExpedidor}" for="rgOrgaoExpedidor" />
+                        <h:panelGroup>
+                            <p:inputText id="rgOrgaoExpedidor" value="#{pessoaFisicaController.selected.rgOrgaoExpedidor}" title="#{bundle.CreatePessoaFisicaTitle_rgOrgaoExpedidor}" size="255" maxlength="255"/>
+                            <p:tooltip for="rgOrgaoExpedidor" value="#{pessoaFisicaController.getComponentMessages('rgOrgaoExpedidor', bundle.CreatePessoaFisicaHelpText_rgOrgaoExpedidor)}"/>
+                        </h:panelGroup>
+
+                        <p:outputLabel value="#{bundle.CreatePessoaFisicaLabel_rgUF}" for="rgUF" />
+                        <h:panelGroup>
+                            <p:autoComplete var="rgUf" itemLabel="#{rgUf}" itemValue="#{rgUf}" minQueryLength="2" 
+                                            completeMethod="#{ufController.completeItemsFromText}" converter="ufConverter" id="rgUF" forceSelection="true"
+                                            maxResults="1" value="#{pessoaFisicaController.selected.rgUF}" queryDelay="250" dropdown="true"/>
+                            <p:tooltip for="rgUF" value="#{pessoaFisicaController.getComponentMessages('rgUF', bundle.CreatePessoaFisicaHelpText_rgUF)}"/>
+                        </h:panelGroup>                        
+
+
+                        <p:outputLabel value="#{bundle.CreatePessoaFisicaLabel_nome}" for="nome" />
+                        <h:panelGroup>
+                            <p:inputText id="nome" value="#{pessoaFisicaController.selected.nome}" title="#{bundle.CreatePessoaFisicaTitle_nome}" size="255" maxlength="255"/>
+                            <p:tooltip for="nome" value="#{pessoaFisicaController.getComponentMessages('nome', bundle.CreatePessoaFisicaHelpText_nome)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.CreatePessoaFisicaLabel_cnhCategoria}" for="cnhCategoria" />
+                        <h:panelGroup>
+                            <p:inputText id="cnhCategoria" value="#{pessoaFisicaController.selected.cnhCategoria}" title="#{bundle.CreatePessoaFisicaTitle_cnhCategoria}" size="255" maxlength="255"/>
+                            <p:tooltip for="cnhCategoria" value="#{pessoaFisicaController.getComponentMessages('cnhCategoria', bundle.CreatePessoaFisicaHelpText_cnhCategoria)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.CreatePessoaFisicaLabel_cnhNumero}" for="cnhNumero" />
+                        <h:panelGroup>
+                            <p:inputText id="cnhNumero" value="#{pessoaFisicaController.selected.cnhNumero}" title="#{bundle.CreatePessoaFisicaTitle_cnhNumero}" size="255" maxlength="255"/>
+                            <p:tooltip for="cnhNumero" value="#{pessoaFisicaController.getComponentMessages('cnhNumero', bundle.CreatePessoaFisicaHelpText_cnhNumero)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.CreatePessoaFisicaLabel_cnhValidade}" for="cnhValidade" />
+                        <h:panelGroup>
+                            <p:calendar id="cnhValidade" locale="pt_BR" value="#{pessoaFisicaController.selected.cnhValidade}" title="#{bundle.CreatePessoaFisicaTitle_cnhValidade}"  showOn="button"/>
+                            <p:tooltip for="cnhValidade" value="#{pessoaFisicaController.getComponentMessages('cnhValidade', bundle.CreatePessoaFisicaHelpText_cnhValidade)}"/>
+                        </h:panelGroup>
+
+                    </p:panelGrid>
+                    
+                    <p:commandButton actionListener="#{pessoaFisicaController.saveNew}" value="#{bundle.Save}" update="display,:PessoaFisicaListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PessoaFisicaCreateDialog);" onerror="PF('growl').show('Fudeu');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="PessoaFisicaCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+    </ui:composition>
+</html>

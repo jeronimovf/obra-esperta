@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <h:form id="menuForm">
+            <p:menubar>
+                <p:submenu label="#{bundle.MenuAcesso}">
+                    <p:menuitem value="#{bundle.MenuAcessoDadosColaborador}" outcome="/index"/>
+                    <p:menuitem value="#{bundle.MenuAcessoTrocarSenha}" outcome="/index"/>
+                    <p:menuitem value="#{bundle.MenuAcessoSair}" outcome="/index"/>                    
+                    <p:menuitem value="#{bundle.MenuAcessoConsultasERelatorios}" outcome="/index"/>                         
+                </p:submenu>
+                <p:submenu label="#{bundle.MenuFinanceiro}">
+                    <p:menuitem value="#{bundle.MenuFinanceiroContasAPagar}" outcome="/index"/>
+                    <p:menuitem value="#{bundle.MenuFinanceiroContasAReceber}" outcome="/index"/>
+                    <p:menuitem value="#{bundle.MenuFinanceiroGerarBoletos}" outcome="/index"/>                    
+                    <p:menuitem value="#{bundle.MenuFinanceiroConsultasERelatorios}" outcome="/index"/>                                        
+                </p:submenu>                
+                <p:submenu label="#{bundle.MenuComercial}">
+                    <p:menuitem value="#{bundle.MenuComercialClientes}" outcome="/cliente/index"/>
+                    <p:menuitem value="#{bundle.MenuComercialOrcamentos}" outcome="/index"/>
+                    <p:menuitem value="#{bundle.MenuComercialOrdensDeServico}" outcome="/index"/>                                        
+                    <p:menuitem value="#{bundle.MenuComercialPacotesDeManutencao}" outcome="/index"/>                                        
+                    <p:menuitem value="#{bundle.MenuComercialConsultasERelatorios}" outcome="/index"/>                                                            
+                </p:submenu>                
+                <p:submenu label="#{bundle.MenuAdministrativo}">
+                    <p:menuitem value="#{bundle.MenuAdministrativoColaboradores}" outcome="/index"/>
+                    <p:menuitem value="#{bundle.MenuAdministrativoFolhaDePagamento}" outcome="/index"/>
+                    <p:menuitem value="#{bundle.MenuAdministrativoComposicoes}" outcome="/index"/>                    
+                    <p:menuitem value="#{bundle.MenuAdministrativoPacotesDeManutencao}" outcome="/index"/>                                        
+                    <p:menuitem value="#{bundle.MenuAdministrativoTabelasDePrecos}" outcome="/index"/>                                        
+                    <p:menuitem value="#{bundle.MenuAdministrativoCalendarios}" outcome="/index"/>                                        
+                    <p:menuitem value="#{bundle.MenuAdministrativoConsultasERelatorios}" outcome="/index"/>   
+                    <p:menuitem value="#{bundle.MenuAdministrativoFornecedores}" outcome="/index"/>                       
+                </p:submenu>     
+                <p:submenu label="#{bundle.MenuOperacional}">
+                    <p:menuitem value="#{bundle.MenuOperacionalGerenciarAgendamento}" outcome="/index"/>
+                    <p:menuitem value="#{bundle.MenuOperacionalFerramentas}" outcome="/index"/>                    
+                    <p:menuitem value="#{bundle.MenuOperacionalEstoque}" outcome="/index"/>                                        
+                    <p:menuitem value="#{bundle.MenuOperacionalEPI}" outcome="/index"/>                                        
+                </p:submenu>                   
+                <p:submenu label="#{bundle.Maintenance}">
+                    <p:menuitem value="Banco" outcome="/banco/index" />
+                    <p:menuitem value="BancoAgencia" outcome="/bancoAgencia/index" />
+                    <p:menuitem value="BancoConta" outcome="/bancoConta/index" />
+                    <p:menuitem value="Campanha" outcome="/campanha/index" />
+                    <p:menuitem value="CampanhaMidia" outcome="/campanhaMidia/index" />
+                    <p:menuitem value="CampanhaMidiaX" outcome="/campanhaMidiaX/index" />
+                    <p:menuitem value="CarreiraSalario" outcome="/carreiraSalario/index" />
+                    <p:menuitem value="CarreiraSalarioItem" outcome="/carreiraSalarioItem/index" />
+                    <p:menuitem value="Colaborador" outcome="/colaborador/index" />
+                    <p:menuitem value="ColaboradorBeneficio" outcome="/colaboradorBeneficio/index" />
+                    <p:menuitem value="ColaboradorBeneficioX" outcome="/colaboradorBeneficioX/index" />
+                    <p:menuitem value="ColaboradorCarreira" outcome="/colaboradorCarreira/index" />
+                    <p:menuitem value="ColaboradorCarreiraX" outcome="/colaboradorCarreiraX/index" />
+                    <p:menuitem value="ColaboradorFuncao" outcome="/colaboradorFuncao/index" />
+                    <p:menuitem value="Configuracao" outcome="/configuracao/index" />
+                    <p:menuitem value="Documento" outcome="/documento/index" />
+                    <p:menuitem value="Email" outcome="/email/index" />
+                    <p:menuitem value="Endereco" outcome="/endereco/index" />
+                    <p:menuitem value="Grandeza" outcome="/grandeza/index" />
+                    <p:menuitem value="Municipio" outcome="/municipio/index" />
+                    <p:menuitem value="Pessoa" outcome="/pessoa/index" />
+                    <p:menuitem value="PessoaFisica" outcome="/pessoaFisica/index" />
+                    <p:menuitem value="PessoaJuridica" outcome="/pessoaJuridica/index" />
+                    <p:menuitem value="Solicitacao" outcome="/solicitacao/index" />
+                    <p:menuitem value="SolicitacaoFase" outcome="/solicitacaoFase/index" />
+                    <p:menuitem value="SolicitacaoHistorico" outcome="/solicitacaoHistorico/index" />
+                    <p:menuitem value="SolicitacaoItem" outcome="/solicitacaoItem/index" />
+                    <p:menuitem value="SolicitacaoMaterial" outcome="/solicitacaoMaterial/index" />
+                    <p:menuitem value="Telefone" outcome="/telefone/index" />
+                    <p:menuitem value="Uf" outcome="/uf/index" />
+                    <p:menuitem value="Unidade" outcome="/unidade/index" />
+                    <p:menuitem value="UnidadeConversaoServico" outcome="/unidadeConversaoServico/index" />
+                    <p:menuitem value="Workflow" outcome="/workflow/index" />
+                </p:submenu>
+            </p:menubar>
+        </h:form>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="SolicitacaoMaterialListForm">
+
+        <p:panel header="#{bundle.ListSolicitacaoMaterialTitle}">
+            <p:dataTable id="datalist" value="#{solicitacaoMaterialController.items}" var="item"
+                         selectionMode="single" selection="#{solicitacaoMaterialController.selected}"
+                         rowKey="#{item.id}"
+                         paginator="true"
+                         rows="10"
+                         rowsPerPageTemplate="10,20,30"
+                         >
+
+                <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+
+                <p:column sortBy="#{item.id}" filterBy="#{item.id}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListSolicitacaoMaterialTitle_id}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.id}"/>
+                </p:column>
+                <p:column sortBy="#{item.solicitacao}" filterBy="#{item.solicitacao}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListSolicitacaoMaterialTitle_solicitacao}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.solicitacao}"/>
+                </p:column>
+                <p:column sortBy="#{item.grupo}" filterBy="#{item.grupo}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListSolicitacaoMaterialTitle_grupo}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.grupo}"/>
+                </p:column>
+                <p:column sortBy="#{item.material}" filterBy="#{item.material}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListSolicitacaoMaterialTitle_material}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.material}"/>
+                </p:column>
+                <p:column sortBy="#{item.quantidade}" filterBy="#{item.quantidade}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListSolicitacaoMaterialTitle_quantidade}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.quantidade}"/>
+                </p:column>
+                <p:column sortBy="#{item.custasDe}" filterBy="#{item.custasDe}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListSolicitacaoMaterialTitle_custasDe}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.custasDe}"/>
+                </p:column>
+                <p:column sortBy="#{item.valorUnitario}" filterBy="#{item.valorUnitario}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListSolicitacaoMaterialTitle_valorUnitario}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.valorUnitario}"/>
+                </p:column>
+                <f:facet name="footer">
+                    <div class="footer-section">
+                        <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{solicitacaoMaterialController.prepareCreate}" update=":SolicitacaoMaterialCreateForm" oncomplete="SolicitacaoMaterialCreateDialog.show()"/>
+                        <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":SolicitacaoMaterialViewForm" oncomplete="SolicitacaoMaterialViewDialog.show()" disabled="#{empty solicitacaoMaterialController.selected}"/>
+                        <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":SolicitacaoMaterialEditForm" oncomplete="SolicitacaoMaterialEditDialog.show()" disabled="#{empty solicitacaoMaterialController.selected}"/>
+                        <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{solicitacaoMaterialController.delete}" update=":growl,datalist" disabled="#{empty solicitacaoMaterialController.selected}">
+                            <p:confirm header="#{bundle.ConfirmationHeader}" message="#{bundle.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
+                        </p:commandButton>
+                    </div>
+                </f:facet>
+
+            </p:dataTable>
+
+        </p:panel>
+        <ui:include src="/WEB-INF/include/confirmation.xhtml"/>
+    </h:form>
+
+</ui:composition>

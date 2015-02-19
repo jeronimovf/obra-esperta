@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ColaboradorCarreiraXViewDlg" widgetVar="ColaboradorCarreiraXViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{bundle.ViewColaboradorCarreiraXTitle}" closeOnEscape="true">
+
+            <h:form id="ColaboradorCarreiraXViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{colaboradorCarreiraXController.selected != null}">
+
+                        <h:outputText value="#{bundle.ViewColaboradorCarreiraXLabel_id}"/>
+                        <h:outputText value="#{colaboradorCarreiraXController.selected.id}" title="#{bundle.ViewColaboradorCarreiraXTitle_id}"/>
+
+                        <h:outputText value="#{bundle.ViewColaboradorCarreiraXLabel_ingressoDesde}"/>
+                        <h:outputText value="#{colaboradorCarreiraXController.selected.ingressoDesde}" title="#{bundle.ViewColaboradorCarreiraXTitle_ingressoDesde}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+
+                        <h:outputText value="#{bundle.ViewColaboradorCarreiraXLabel_ingressoAte}"/>
+                        <h:outputText value="#{colaboradorCarreiraXController.selected.ingressoAte}" title="#{bundle.ViewColaboradorCarreiraXTitle_ingressoAte}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+
+                        <h:outputText value="#{bundle.ViewColaboradorCarreiraXLabel_carreira}"/>
+                        <h:outputText value="#{colaboradorCarreiraXController.selected.carreira.id}"/>
+
+                        <h:outputText value="#{bundle.ViewColaboradorCarreiraXLabel_colaborador}"/>
+                        <h:outputText value="#{colaboradorCarreiraXController.selected.colaborador.id}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="ColaboradorCarreiraXViewDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="CarreiraSalarioItemEditDlg" widgetVar="CarreiraSalarioItemEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{bundle.EditCarreiraSalarioItemTitle}" closeOnEscape="true">
+
+            <h:form id="CarreiraSalarioItemEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" rendered="#{carreiraSalarioItemController.selected != null}">
+
+                        <h:outputLabel value="#{bundle.EditCarreiraSalarioItemLabel_id}" for="id" />
+                        <h:panelGroup>
+                            <h:outputText id="id" value="#{carreiraSalarioItemController.selected.id}" />
+                            <p:tooltip for="id" value="#{carreiraSalarioItemController.getComponentMessages('id', bundle.EditCarreiraSalarioItemHelpText_id)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.EditCarreiraSalarioItemLabel_carreira}" for="carreira" />
+                        <h:panelGroup>
+                            <p:selectOneMenu id="carreira" value="#{carreiraSalarioItemController.selected.carreira}"  converter="colaboradorCarreiraConverter">
+                                <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                                <f:selectItems value="#{colaboradorCarreiraController.items}"
+                                               var="carreiraItem"
+                                               itemValue="#{carreiraItem}"
+                                               itemLabel="#{carreiraItem.id.toString()}"
+                                               />
+
+                            </p:selectOneMenu>
+                            <p:tooltip for="carreira" value="#{carreiraSalarioItemController.getComponentMessages('carreira', bundle.EditCarreiraSalarioItemHelpText_carreira)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.EditCarreiraSalarioItemLabel_salario}" for="salario" />
+                        <h:panelGroup>
+                            <p:inputText id="salario" value="#{carreiraSalarioItemController.selected.salario}" title="#{bundle.EditCarreiraSalarioItemTitle_salario}"/>
+                            <p:tooltip for="salario" value="#{carreiraSalarioItemController.getComponentMessages('salario', bundle.EditCarreiraSalarioItemHelpText_salario)}"/>
+                        </h:panelGroup>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{carreiraSalarioItemController.save}" value="#{bundle.Save}" update="display,:CarreiraSalarioItemListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,CarreiraSalarioItemEditDialog);">
+                        <p:confirm header="#{bundle.ConfirmationHeader}" message="#{bundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="CarreiraSalarioItemEditDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>
