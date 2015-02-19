@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="BancoContaEditDlg" widgetVar="BancoContaEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{bundle.EditBancoContaTitle}" closeOnEscape="true">
+
+            <h:form id="BancoContaEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" rendered="#{bancoContaController.selected != null}">
+
+                        <h:outputLabel value="#{bundle.EditBancoContaLabel_id}" for="id" />
+                        <h:panelGroup>
+                            <h:outputText id="id" value="#{bancoContaController.selected.id}" />
+                            <p:tooltip for="id" value="#{bancoContaController.getComponentMessages('id', bundle.EditBancoContaHelpText_id)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.EditBancoContaLabel_conta}" for="conta" />
+                        <h:panelGroup>
+                            <p:inputText id="conta" value="#{bancoContaController.selected.conta}" title="#{bundle.EditBancoContaTitle_conta}" required="true" requiredMessage="#{bundle.EditBancoContaRequiredMessage_conta}" size="255" maxlength="255"/>
+                            <p:tooltip for="conta" value="#{bancoContaController.getComponentMessages('conta', bundle.EditBancoContaHelpText_conta)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.EditBancoContaLabel_tipo}" for="tipo" />
+                        <h:panelGroup>
+                            <p:inputText id="tipo" value="#{bancoContaController.selected.tipo}" title="#{bundle.EditBancoContaTitle_tipo}" required="true" requiredMessage="#{bundle.EditBancoContaRequiredMessage_tipo}"/>
+                            <p:tooltip for="tipo" value="#{bancoContaController.getComponentMessages('tipo', bundle.EditBancoContaHelpText_tipo)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.EditBancoContaLabel_variacao}" for="variacao" />
+                        <h:panelGroup>
+                            <p:inputText id="variacao" value="#{bancoContaController.selected.variacao}" title="#{bundle.EditBancoContaTitle_variacao}" size="255" maxlength="255"/>
+                            <p:tooltip for="variacao" value="#{bancoContaController.getComponentMessages('variacao', bundle.EditBancoContaHelpText_variacao)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.EditBancoContaLabel_agencia}" for="agencia" />
+                        <h:panelGroup>
+                            <p:selectOneMenu id="agencia" value="#{bancoContaController.selected.agencia}" required="true" requiredMessage="#{bundle.EditBancoContaRequiredMessage_agencia}" converter="bancoAgenciaConverter">
+                                <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                                <f:selectItems value="#{bancoAgenciaController.items}"
+                                               var="agenciaItem"
+                                               itemValue="#{agenciaItem}"
+                                               itemLabel="#{agenciaItem.id.toString()}"
+                                               />
+
+                            </p:selectOneMenu>
+                            <p:tooltip for="agencia" value="#{bancoContaController.getComponentMessages('agencia', bundle.EditBancoContaHelpText_agencia)}"/>
+                        </h:panelGroup>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{bancoContaController.save}" value="#{bundle.Save}" update="display,:BancoContaListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,BancoContaEditDialog);">
+                        <p:confirm header="#{bundle.ConfirmationHeader}" message="#{bundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="BancoContaEditDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CampanhaCreateDlg" widgetVar="CampanhaCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateCampanhaTitle}" closeOnEscape="true">
+
+            <h:form id="CampanhaCreateForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2">
+
+
+                        <p:outputLabel value="#{bundle.CreateCampanhaLabel_nome}" for="nome" />
+                        <h:panelGroup>
+                            <p:inputText id="nome" value="#{campanhaController.selected.nome}" title="#{bundle.CreateCampanhaTitle_nome}" required="true" requiredMessage="#{bundle.CreateCampanhaRequiredMessage_nome}" size="255" maxlength="255"/>
+                            <p:tooltip for="nome" value="#{campanhaController.getComponentMessages('nome', bundle.CreateCampanhaHelpText_nome)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.CreateCampanhaLabel_vigenteDesde}" for="vigenteDesde" />
+                        <h:panelGroup>
+                            <p:calendar id="vigenteDesde" pattern="MM/dd/yyyy HH:mm:ss" value="#{campanhaController.selected.vigenteDesde}" title="#{bundle.CreateCampanhaTitle_vigenteDesde}" required="true" requiredMessage="#{bundle.CreateCampanhaRequiredMessage_vigenteDesde}" showOn="button"/>
+                            <p:tooltip for="vigenteDesde" value="#{campanhaController.getComponentMessages('vigenteDesde', bundle.CreateCampanhaHelpText_vigenteDesde)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.CreateCampanhaLabel_vigenteAte}" for="vigenteAte" />
+                        <h:panelGroup>
+                            <p:calendar id="vigenteAte" pattern="MM/dd/yyyy HH:mm:ss" value="#{campanhaController.selected.vigenteAte}" title="#{bundle.CreateCampanhaTitle_vigenteAte}"  showOn="button"/>
+                            <p:tooltip for="vigenteAte" value="#{campanhaController.getComponentMessages('vigenteAte', bundle.CreateCampanhaHelpText_vigenteAte)}"/>
+                        </h:panelGroup>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{campanhaController.saveNew}" value="#{bundle.Save}" update="display,:CampanhaListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,CampanhaCreateDialog);">
+                        <p:confirm header="#{bundle.ConfirmationHeader}" message="#{bundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="#{bundle.Cancel}" onclick="CampanhaCreateDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

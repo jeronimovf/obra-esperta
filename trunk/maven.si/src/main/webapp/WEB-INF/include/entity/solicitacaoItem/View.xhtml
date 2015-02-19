@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="SolicitacaoItemViewDlg" widgetVar="SolicitacaoItemViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{bundle.ViewSolicitacaoItemTitle}" closeOnEscape="true">
+
+            <h:form id="SolicitacaoItemViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{solicitacaoItemController.selected != null}">
+
+                        <h:outputText value="#{bundle.ViewSolicitacaoItemLabel_id}"/>
+                        <h:outputText value="#{solicitacaoItemController.selected.id}" title="#{bundle.ViewSolicitacaoItemTitle_id}"/>
+
+                        <h:outputText value="#{bundle.ViewSolicitacaoItemLabel_ambiente}"/>
+                        <h:outputText value="#{solicitacaoItemController.selected.ambiente}" title="#{bundle.ViewSolicitacaoItemTitle_ambiente}"/>
+
+                        <h:outputText value="#{bundle.ViewSolicitacaoItemLabel_servico}"/>
+                        <h:outputText value="#{solicitacaoItemController.selected.servico}" title="#{bundle.ViewSolicitacaoItemTitle_servico}"/>
+
+                        <h:outputText value="#{bundle.ViewSolicitacaoItemLabel_quantidade}"/>
+                        <h:outputText value="#{solicitacaoItemController.selected.quantidade}" title="#{bundle.ViewSolicitacaoItemTitle_quantidade}"/>
+
+                        <h:outputText value="#{bundle.ViewSolicitacaoItemLabel_observacao}"/>
+                        <h:outputText value="#{solicitacaoItemController.selected.observacao}" title="#{bundle.ViewSolicitacaoItemTitle_observacao}"/>
+
+                        <h:outputText value="#{bundle.ViewSolicitacaoItemLabel_solicitacao}"/>
+                        <h:outputText value="#{solicitacaoItemController.selected.solicitacao.descricao}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="SolicitacaoItemViewDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

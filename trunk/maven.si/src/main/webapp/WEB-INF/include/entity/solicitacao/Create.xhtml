@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="SolicitacaoCreateDlg" widgetVar="SolicitacaoCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateSolicitacaoTitle}" closeOnEscape="true">
+
+            <h:form id="SolicitacaoCreateForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2">
+
+
+                        <p:outputLabel value="#{bundle.CreateSolicitacaoLabel_data}" for="data" />
+                        <h:panelGroup>
+                            <p:calendar id="data" pattern="MM/dd/yyyy HH:mm:ss" value="#{solicitacaoController.selected.data}" title="#{bundle.CreateSolicitacaoTitle_data}" required="true" requiredMessage="#{bundle.CreateSolicitacaoRequiredMessage_data}" showOn="button"/>
+                            <p:tooltip for="data" value="#{solicitacaoController.getComponentMessages('data', bundle.CreateSolicitacaoHelpText_data)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.CreateSolicitacaoLabel_descricao}" for="descricao" />
+                        <h:panelGroup>
+                            <p:inputTextarea rows="4" cols="30" id="descricao" value="#{solicitacaoController.selected.descricao}" title="#{bundle.CreateSolicitacaoTitle_descricao}" required="true" requiredMessage="#{bundle.CreateSolicitacaoRequiredMessage_descricao}"/>
+                            <p:tooltip for="descricao" value="#{solicitacaoController.getComponentMessages('descricao', bundle.CreateSolicitacaoHelpText_descricao)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.CreateSolicitacaoLabel_melhoresDiasHorariosParaRealizarServico}" for="melhoresDiasHorariosParaRealizarServico" />
+                        <h:panelGroup>
+                            <p:inputText id="melhoresDiasHorariosParaRealizarServico" value="#{solicitacaoController.selected.melhoresDiasHorariosParaRealizarServico}" title="#{bundle.CreateSolicitacaoTitle_melhoresDiasHorariosParaRealizarServico}" size="255" maxlength="255"/>
+                            <p:tooltip for="melhoresDiasHorariosParaRealizarServico" value="#{solicitacaoController.getComponentMessages('melhoresDiasHorariosParaRealizarServico', bundle.CreateSolicitacaoHelpText_melhoresDiasHorariosParaRealizarServico)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.CreateSolicitacaoLabel_solicitacaoAnterior}" for="solicitacaoAnterior" />
+                        <h:panelGroup>
+                            <p:inputText id="solicitacaoAnterior" value="#{solicitacaoController.selected.solicitacaoAnterior}" title="#{bundle.CreateSolicitacaoTitle_solicitacaoAnterior}"/>
+                            <p:tooltip for="solicitacaoAnterior" value="#{solicitacaoController.getComponentMessages('solicitacaoAnterior', bundle.CreateSolicitacaoHelpText_solicitacaoAnterior)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.CreateSolicitacaoLabel_solicitacaoPosterior}" for="solicitacaoPosterior" />
+                        <h:panelGroup>
+                            <p:inputText id="solicitacaoPosterior" value="#{solicitacaoController.selected.solicitacaoPosterior}" title="#{bundle.CreateSolicitacaoTitle_solicitacaoPosterior}"/>
+                            <p:tooltip for="solicitacaoPosterior" value="#{solicitacaoController.getComponentMessages('solicitacaoPosterior', bundle.CreateSolicitacaoHelpText_solicitacaoPosterior)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.CreateSolicitacaoLabel_cliente}" for="cliente" />
+                        <h:panelGroup>
+                            <p:selectOneMenu id="cliente" value="#{solicitacaoController.selected.cliente}" required="true" requiredMessage="#{bundle.CreateSolicitacaoRequiredMessage_cliente}" converter="clienteConverter">
+                                <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                                <f:selectItems value="#{clienteController.items}"
+                                               var="clienteItem"
+                                               itemValue="#{clienteItem}"
+                                               itemLabel="#{clienteItem.id.toString()}"
+                                               />
+
+                            </p:selectOneMenu>
+                            <p:tooltip for="cliente" value="#{solicitacaoController.getComponentMessages('cliente', bundle.CreateSolicitacaoHelpText_cliente)}"/>
+                        </h:panelGroup>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{solicitacaoController.saveNew}" value="#{bundle.Save}" update="display,:SolicitacaoListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,SolicitacaoCreateDialog);">
+                        <p:confirm header="#{bundle.ConfirmationHeader}" message="#{bundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="#{bundle.Cancel}" onclick="SolicitacaoCreateDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

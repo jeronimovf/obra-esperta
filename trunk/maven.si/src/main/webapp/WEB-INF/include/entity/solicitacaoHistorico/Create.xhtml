@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="SolicitacaoHistoricoCreateDlg" widgetVar="SolicitacaoHistoricoCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateSolicitacaoHistoricoTitle}" closeOnEscape="true">
+
+            <h:form id="SolicitacaoHistoricoCreateForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2">
+
+
+                        <p:outputLabel value="#{bundle.CreateSolicitacaoHistoricoLabel_dataHora}" for="dataHora" />
+                        <h:panelGroup>
+                            <p:calendar id="dataHora" pattern="MM/dd/yyyy HH:mm:ss" value="#{solicitacaoHistoricoController.selected.dataHora}" title="#{bundle.CreateSolicitacaoHistoricoTitle_dataHora}" required="true" requiredMessage="#{bundle.CreateSolicitacaoHistoricoRequiredMessage_dataHora}" showOn="button"/>
+                            <p:tooltip for="dataHora" value="#{solicitacaoHistoricoController.getComponentMessages('dataHora', bundle.CreateSolicitacaoHistoricoHelpText_dataHora)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.CreateSolicitacaoHistoricoLabel_observacao}" for="observacao" />
+                        <h:panelGroup>
+                            <p:inputText id="observacao" value="#{solicitacaoHistoricoController.selected.observacao}" title="#{bundle.CreateSolicitacaoHistoricoTitle_observacao}" size="255" maxlength="255"/>
+                            <p:tooltip for="observacao" value="#{solicitacaoHistoricoController.getComponentMessages('observacao', bundle.CreateSolicitacaoHistoricoHelpText_observacao)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.CreateSolicitacaoHistoricoLabel_fase}" for="fase" />
+                        <h:panelGroup>
+                            <p:selectOneMenu id="fase" value="#{solicitacaoHistoricoController.selected.fase}" required="true" requiredMessage="#{bundle.CreateSolicitacaoHistoricoRequiredMessage_fase}" converter="solicitacaoFaseConverter">
+                                <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                                <f:selectItems value="#{solicitacaoFaseController.items}"
+                                               var="faseItem"
+                                               itemValue="#{faseItem}"
+                                               itemLabel="#{faseItem.id.toString()}"
+                                               />
+
+                            </p:selectOneMenu>
+                            <p:tooltip for="fase" value="#{solicitacaoHistoricoController.getComponentMessages('fase', bundle.CreateSolicitacaoHistoricoHelpText_fase)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.CreateSolicitacaoHistoricoLabel_solicitacao}" for="solicitacao" />
+                        <h:panelGroup>
+                            <p:selectOneMenu id="solicitacao" value="#{solicitacaoHistoricoController.selected.solicitacao}" required="true" requiredMessage="#{bundle.CreateSolicitacaoHistoricoRequiredMessage_solicitacao}" converter="solicitacaoConverter">
+                                <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                                <f:selectItems value="#{solicitacaoController.items}"
+                                               var="solicitacaoItem"
+                                               itemValue="#{solicitacaoItem}"
+                                               itemLabel="#{solicitacaoItem.descricao.toString()}"
+                                               />
+
+                            </p:selectOneMenu>
+                            <p:tooltip for="solicitacao" value="#{solicitacaoHistoricoController.getComponentMessages('solicitacao', bundle.CreateSolicitacaoHistoricoHelpText_solicitacao)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.CreateSolicitacaoHistoricoLabel_responsavel}" for="responsavel" />
+                        <h:panelGroup>
+                            <p:selectOneMenu id="responsavel" value="#{solicitacaoHistoricoController.selected.responsavel}"  converter="colaboradorConverter">
+                                <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                                <f:selectItems value="#{colaboradorController.items}"
+                                               var="responsavelItem"
+                                               itemValue="#{responsavelItem}"
+                                               itemLabel="#{responsavelItem.id.toString()}"
+                                               />
+
+                            </p:selectOneMenu>
+                            <p:tooltip for="responsavel" value="#{solicitacaoHistoricoController.getComponentMessages('responsavel', bundle.CreateSolicitacaoHistoricoHelpText_responsavel)}"/>
+                        </h:panelGroup>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{solicitacaoHistoricoController.saveNew}" value="#{bundle.Save}" update="display,:SolicitacaoHistoricoListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,SolicitacaoHistoricoCreateDialog);">
+                        <p:confirm header="#{bundle.ConfirmationHeader}" message="#{bundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="#{bundle.Cancel}" onclick="SolicitacaoHistoricoCreateDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

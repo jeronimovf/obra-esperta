@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="DocumentoEditDlg" widgetVar="DocumentoEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{bundle.EditDocumentoTitle}" closeOnEscape="true">
+
+            <h:form id="DocumentoEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" rendered="#{documentoController.selected != null}">
+
+                        <h:outputLabel value="#{bundle.EditDocumentoLabel_id}" for="id" />
+                        <h:panelGroup>
+                            <h:outputText id="id" value="#{documentoController.selected.id}" />
+                            <p:tooltip for="id" value="#{documentoController.getComponentMessages('id', bundle.EditDocumentoHelpText_id)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.EditDocumentoLabel_assunto}" for="assunto" />
+                        <h:panelGroup>
+                            <p:inputText id="assunto" value="#{documentoController.selected.assunto}" title="#{bundle.EditDocumentoTitle_assunto}" size="255" maxlength="255"/>
+                            <p:tooltip for="assunto" value="#{documentoController.getComponentMessages('assunto', bundle.EditDocumentoHelpText_assunto)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.EditDocumentoLabel_dataEmissao}" for="dataEmissao" />
+                        <h:panelGroup>
+                            <p:calendar id="dataEmissao" pattern="MM/dd/yyyy HH:mm:ss" value="#{documentoController.selected.dataEmissao}" title="#{bundle.EditDocumentoTitle_dataEmissao}"  showOn="button"/>
+                            <p:tooltip for="dataEmissao" value="#{documentoController.getComponentMessages('dataEmissao', bundle.EditDocumentoHelpText_dataEmissao)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.EditDocumentoLabel_dataCriacao}" for="dataCriacao" />
+                        <h:panelGroup>
+                            <p:calendar id="dataCriacao" pattern="MM/dd/yyyy HH:mm:ss" value="#{documentoController.selected.dataCriacao}" title="#{bundle.EditDocumentoTitle_dataCriacao}" required="true" requiredMessage="#{bundle.EditDocumentoRequiredMessage_dataCriacao}" showOn="button"/>
+                            <p:tooltip for="dataCriacao" value="#{documentoController.getComponentMessages('dataCriacao', bundle.EditDocumentoHelpText_dataCriacao)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.EditDocumentoLabel_criadoPor}" for="criadoPor" />
+                        <h:panelGroup>
+                            <p:inputText id="criadoPor" value="#{documentoController.selected.criadoPor}" title="#{bundle.EditDocumentoTitle_criadoPor}" required="true" requiredMessage="#{bundle.EditDocumentoRequiredMessage_criadoPor}"/>
+                            <p:tooltip for="criadoPor" value="#{documentoController.getComponentMessages('criadoPor', bundle.EditDocumentoHelpText_criadoPor)}"/>
+                        </h:panelGroup>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{documentoController.save}" value="#{bundle.Save}" update="display,:DocumentoListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,DocumentoEditDialog);">
+                        <p:confirm header="#{bundle.ConfirmationHeader}" message="#{bundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="DocumentoEditDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

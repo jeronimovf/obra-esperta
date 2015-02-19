@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="ColaboradorFuncaoEditDlg" widgetVar="ColaboradorFuncaoEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{bundle.EditColaboradorFuncaoTitle}" closeOnEscape="true">
+
+            <h:form id="ColaboradorFuncaoEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" rendered="#{colaboradorFuncaoController.selected != null}">
+
+                        <h:outputLabel value="#{bundle.EditColaboradorFuncaoLabel_id}" for="id" />
+                        <h:panelGroup>
+                            <h:outputText id="id" value="#{colaboradorFuncaoController.selected.id}" />
+                            <p:tooltip for="id" value="#{colaboradorFuncaoController.getComponentMessages('id', bundle.EditColaboradorFuncaoHelpText_id)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.EditColaboradorFuncaoLabel_nome}" for="nome" />
+                        <h:panelGroup>
+                            <p:inputText id="nome" value="#{colaboradorFuncaoController.selected.nome}" title="#{bundle.EditColaboradorFuncaoTitle_nome}" required="true" requiredMessage="#{bundle.EditColaboradorFuncaoRequiredMessage_nome}" size="255" maxlength="255"/>
+                            <p:tooltip for="nome" value="#{colaboradorFuncaoController.getComponentMessages('nome', bundle.EditColaboradorFuncaoHelpText_nome)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.EditColaboradorFuncaoLabel_descricao}" for="descricao" />
+                        <h:panelGroup>
+                            <p:inputText id="descricao" value="#{colaboradorFuncaoController.selected.descricao}" title="#{bundle.EditColaboradorFuncaoTitle_descricao}" size="255" maxlength="255"/>
+                            <p:tooltip for="descricao" value="#{colaboradorFuncaoController.getComponentMessages('descricao', bundle.EditColaboradorFuncaoHelpText_descricao)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.EditColaboradorFuncaoLabel_ativaDesde}" for="ativaDesde" />
+                        <h:panelGroup>
+                            <p:calendar id="ativaDesde" pattern="MM/dd/yyyy HH:mm:ss" value="#{colaboradorFuncaoController.selected.ativaDesde}" title="#{bundle.EditColaboradorFuncaoTitle_ativaDesde}" required="true" requiredMessage="#{bundle.EditColaboradorFuncaoRequiredMessage_ativaDesde}" showOn="button"/>
+                            <p:tooltip for="ativaDesde" value="#{colaboradorFuncaoController.getComponentMessages('ativaDesde', bundle.EditColaboradorFuncaoHelpText_ativaDesde)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.EditColaboradorFuncaoLabel_ativaAte}" for="ativaAte" />
+                        <h:panelGroup>
+                            <p:calendar id="ativaAte" pattern="MM/dd/yyyy HH:mm:ss" value="#{colaboradorFuncaoController.selected.ativaAte}" title="#{bundle.EditColaboradorFuncaoTitle_ativaAte}"  showOn="button"/>
+                            <p:tooltip for="ativaAte" value="#{colaboradorFuncaoController.getComponentMessages('ativaAte', bundle.EditColaboradorFuncaoHelpText_ativaAte)}"/>
+                        </h:panelGroup>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{colaboradorFuncaoController.save}" value="#{bundle.Save}" update="display,:ColaboradorFuncaoListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,ColaboradorFuncaoEditDialog);">
+                        <p:confirm header="#{bundle.ConfirmationHeader}" message="#{bundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ColaboradorFuncaoEditDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

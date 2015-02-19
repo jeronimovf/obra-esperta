@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CampanhaViewDlg" widgetVar="CampanhaViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{bundle.ViewCampanhaTitle}" closeOnEscape="true">
+
+            <h:form id="CampanhaViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{campanhaController.selected != null}">
+
+                        <h:outputText value="#{bundle.ViewCampanhaLabel_id}"/>
+                        <h:outputText value="#{campanhaController.selected.id}" title="#{bundle.ViewCampanhaTitle_id}"/>
+
+                        <h:outputText value="#{bundle.ViewCampanhaLabel_nome}"/>
+                        <h:outputText value="#{campanhaController.selected.nome}" title="#{bundle.ViewCampanhaTitle_nome}"/>
+
+                        <h:outputText value="#{bundle.ViewCampanhaLabel_vigenteDesde}"/>
+                        <h:outputText value="#{campanhaController.selected.vigenteDesde}" title="#{bundle.ViewCampanhaTitle_vigenteDesde}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+
+                        <h:outputText value="#{bundle.ViewCampanhaLabel_vigenteAte}"/>
+                        <h:outputText value="#{campanhaController.selected.vigenteAte}" title="#{bundle.ViewCampanhaTitle_vigenteAte}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="CampanhaViewDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

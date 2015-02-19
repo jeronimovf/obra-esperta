@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="EmailViewDlg" widgetVar="EmailViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{bundle.ViewEmailTitle}" closeOnEscape="true">
+
+            <h:form id="EmailViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{emailController.selected != null}">
+
+                        <h:outputText value="#{bundle.ViewEmailLabel_id}"/>
+                        <h:outputText value="#{emailController.selected.id}" title="#{bundle.ViewEmailTitle_id}"/>
+
+                        <h:outputText value="#{bundle.ViewEmailLabel_email}"/>
+                        <h:outputText value="#{emailController.selected.email}" title="#{bundle.ViewEmailTitle_email}"/>
+
+                        <h:outputText value="#{bundle.ViewEmailLabel_pessoa}"/>
+                        <h:outputText value="#{emailController.selected.pessoa.id}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="EmailViewDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="SolicitacaoMaterialCreateDlg" widgetVar="SolicitacaoMaterialCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateSolicitacaoMaterialTitle}" closeOnEscape="true">
+
+            <h:form id="SolicitacaoMaterialCreateForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2">
+
+
+                        <p:outputLabel value="#{bundle.CreateSolicitacaoMaterialLabel_solicitacao}" for="solicitacao" />
+                        <h:panelGroup>
+                            <p:inputText id="solicitacao" value="#{solicitacaoMaterialController.selected.solicitacao}" title="#{bundle.CreateSolicitacaoMaterialTitle_solicitacao}" required="true" requiredMessage="#{bundle.CreateSolicitacaoMaterialRequiredMessage_solicitacao}"/>
+                            <p:tooltip for="solicitacao" value="#{solicitacaoMaterialController.getComponentMessages('solicitacao', bundle.CreateSolicitacaoMaterialHelpText_solicitacao)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.CreateSolicitacaoMaterialLabel_grupo}" for="grupo" />
+                        <h:panelGroup>
+                            <p:inputText id="grupo" value="#{solicitacaoMaterialController.selected.grupo}" title="#{bundle.CreateSolicitacaoMaterialTitle_grupo}" required="true" requiredMessage="#{bundle.CreateSolicitacaoMaterialRequiredMessage_grupo}" size="255" maxlength="255"/>
+                            <p:tooltip for="grupo" value="#{solicitacaoMaterialController.getComponentMessages('grupo', bundle.CreateSolicitacaoMaterialHelpText_grupo)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.CreateSolicitacaoMaterialLabel_material}" for="material" />
+                        <h:panelGroup>
+                            <p:inputText id="material" value="#{solicitacaoMaterialController.selected.material}" title="#{bundle.CreateSolicitacaoMaterialTitle_material}" required="true" requiredMessage="#{bundle.CreateSolicitacaoMaterialRequiredMessage_material}"/>
+                            <p:tooltip for="material" value="#{solicitacaoMaterialController.getComponentMessages('material', bundle.CreateSolicitacaoMaterialHelpText_material)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.CreateSolicitacaoMaterialLabel_quantidade}" for="quantidade" />
+                        <h:panelGroup>
+                            <p:inputText id="quantidade" value="#{solicitacaoMaterialController.selected.quantidade}" title="#{bundle.CreateSolicitacaoMaterialTitle_quantidade}"/>
+                            <p:tooltip for="quantidade" value="#{solicitacaoMaterialController.getComponentMessages('quantidade', bundle.CreateSolicitacaoMaterialHelpText_quantidade)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.CreateSolicitacaoMaterialLabel_custasDe}" for="custasDe" />
+                        <h:panelGroup>
+                            <p:inputText id="custasDe" value="#{solicitacaoMaterialController.selected.custasDe}" title="#{bundle.CreateSolicitacaoMaterialTitle_custasDe}" required="true" requiredMessage="#{bundle.CreateSolicitacaoMaterialRequiredMessage_custasDe}"/>
+                            <p:tooltip for="custasDe" value="#{solicitacaoMaterialController.getComponentMessages('custasDe', bundle.CreateSolicitacaoMaterialHelpText_custasDe)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.CreateSolicitacaoMaterialLabel_valorUnitario}" for="valorUnitario" />
+                        <h:panelGroup>
+                            <p:inputText id="valorUnitario" value="#{solicitacaoMaterialController.selected.valorUnitario}" title="#{bundle.CreateSolicitacaoMaterialTitle_valorUnitario}"/>
+                            <p:tooltip for="valorUnitario" value="#{solicitacaoMaterialController.getComponentMessages('valorUnitario', bundle.CreateSolicitacaoMaterialHelpText_valorUnitario)}"/>
+                        </h:panelGroup>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{solicitacaoMaterialController.saveNew}" value="#{bundle.Save}" update="display,:SolicitacaoMaterialListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,SolicitacaoMaterialCreateDialog);">
+                        <p:confirm header="#{bundle.ConfirmationHeader}" message="#{bundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="#{bundle.Cancel}" onclick="SolicitacaoMaterialCreateDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

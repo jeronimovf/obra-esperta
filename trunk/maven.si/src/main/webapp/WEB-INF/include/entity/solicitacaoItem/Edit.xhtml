@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="SolicitacaoItemEditDlg" widgetVar="SolicitacaoItemEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{bundle.EditSolicitacaoItemTitle}" closeOnEscape="true">
+
+            <h:form id="SolicitacaoItemEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" rendered="#{solicitacaoItemController.selected != null}">
+
+                        <h:outputLabel value="#{bundle.EditSolicitacaoItemLabel_id}" for="id" />
+                        <h:panelGroup>
+                            <h:outputText id="id" value="#{solicitacaoItemController.selected.id}" />
+                            <p:tooltip for="id" value="#{solicitacaoItemController.getComponentMessages('id', bundle.EditSolicitacaoItemHelpText_id)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.EditSolicitacaoItemLabel_ambiente}" for="ambiente" />
+                        <h:panelGroup>
+                            <p:inputText id="ambiente" value="#{solicitacaoItemController.selected.ambiente}" title="#{bundle.EditSolicitacaoItemTitle_ambiente}" size="255" maxlength="255"/>
+                            <p:tooltip for="ambiente" value="#{solicitacaoItemController.getComponentMessages('ambiente', bundle.EditSolicitacaoItemHelpText_ambiente)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.EditSolicitacaoItemLabel_servico}" for="servico" />
+                        <h:panelGroup>
+                            <p:inputText id="servico" value="#{solicitacaoItemController.selected.servico}" title="#{bundle.EditSolicitacaoItemTitle_servico}"/>
+                            <p:tooltip for="servico" value="#{solicitacaoItemController.getComponentMessages('servico', bundle.EditSolicitacaoItemHelpText_servico)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.EditSolicitacaoItemLabel_quantidade}" for="quantidade" />
+                        <h:panelGroup>
+                            <p:inputText id="quantidade" value="#{solicitacaoItemController.selected.quantidade}" title="#{bundle.EditSolicitacaoItemTitle_quantidade}" required="true" requiredMessage="#{bundle.EditSolicitacaoItemRequiredMessage_quantidade}"/>
+                            <p:tooltip for="quantidade" value="#{solicitacaoItemController.getComponentMessages('quantidade', bundle.EditSolicitacaoItemHelpText_quantidade)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.EditSolicitacaoItemLabel_observacao}" for="observacao" />
+                        <h:panelGroup>
+                            <p:inputText id="observacao" value="#{solicitacaoItemController.selected.observacao}" title="#{bundle.EditSolicitacaoItemTitle_observacao}" size="255" maxlength="255"/>
+                            <p:tooltip for="observacao" value="#{solicitacaoItemController.getComponentMessages('observacao', bundle.EditSolicitacaoItemHelpText_observacao)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.EditSolicitacaoItemLabel_solicitacao}" for="solicitacao" />
+                        <h:panelGroup>
+                            <p:selectOneMenu id="solicitacao" value="#{solicitacaoItemController.selected.solicitacao}"  converter="solicitacaoConverter">
+                                <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                                <f:selectItems value="#{solicitacaoController.items}"
+                                               var="solicitacaoItem"
+                                               itemValue="#{solicitacaoItem}"
+                                               itemLabel="#{solicitacaoItem.descricao.toString()}"
+                                               />
+
+                            </p:selectOneMenu>
+                            <p:tooltip for="solicitacao" value="#{solicitacaoItemController.getComponentMessages('solicitacao', bundle.EditSolicitacaoItemHelpText_solicitacao)}"/>
+                        </h:panelGroup>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{solicitacaoItemController.save}" value="#{bundle.Save}" update="display,:SolicitacaoItemListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,SolicitacaoItemEditDialog);">
+                        <p:confirm header="#{bundle.ConfirmationHeader}" message="#{bundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="SolicitacaoItemEditDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="ColaboradorCarreiraEditDlg" widgetVar="ColaboradorCarreiraEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{bundle.EditColaboradorCarreiraTitle}" closeOnEscape="true">
+
+            <h:form id="ColaboradorCarreiraEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" rendered="#{colaboradorCarreiraController.selected != null}">
+
+                        <h:outputLabel value="#{bundle.EditColaboradorCarreiraLabel_id}" for="id" />
+                        <h:panelGroup>
+                            <h:outputText id="id" value="#{colaboradorCarreiraController.selected.id}" />
+                            <p:tooltip for="id" value="#{colaboradorCarreiraController.getComponentMessages('id', bundle.EditColaboradorCarreiraHelpText_id)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.EditColaboradorCarreiraLabel_nivel}" for="nivel" />
+                        <h:panelGroup>
+                            <p:inputText id="nivel" value="#{colaboradorCarreiraController.selected.nivel}" title="#{bundle.EditColaboradorCarreiraTitle_nivel}" required="true" requiredMessage="#{bundle.EditColaboradorCarreiraRequiredMessage_nivel}"/>
+                            <p:tooltip for="nivel" value="#{colaboradorCarreiraController.getComponentMessages('nivel', bundle.EditColaboradorCarreiraHelpText_nivel)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.EditColaboradorCarreiraLabel_ativoDesde}" for="ativoDesde" />
+                        <h:panelGroup>
+                            <p:calendar id="ativoDesde" pattern="MM/dd/yyyy HH:mm:ss" value="#{colaboradorCarreiraController.selected.ativoDesde}" title="#{bundle.EditColaboradorCarreiraTitle_ativoDesde}" required="true" requiredMessage="#{bundle.EditColaboradorCarreiraRequiredMessage_ativoDesde}" showOn="button"/>
+                            <p:tooltip for="ativoDesde" value="#{colaboradorCarreiraController.getComponentMessages('ativoDesde', bundle.EditColaboradorCarreiraHelpText_ativoDesde)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.EditColaboradorCarreiraLabel_ativoAte}" for="ativoAte" />
+                        <h:panelGroup>
+                            <p:calendar id="ativoAte" pattern="MM/dd/yyyy HH:mm:ss" value="#{colaboradorCarreiraController.selected.ativoAte}" title="#{bundle.EditColaboradorCarreiraTitle_ativoAte}"  showOn="button"/>
+                            <p:tooltip for="ativoAte" value="#{colaboradorCarreiraController.getComponentMessages('ativoAte', bundle.EditColaboradorCarreiraHelpText_ativoAte)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.EditColaboradorCarreiraLabel_funcao}" for="funcao" />
+                        <h:panelGroup>
+                            <p:selectOneMenu id="funcao" value="#{colaboradorCarreiraController.selected.funcao}" required="true" requiredMessage="#{bundle.EditColaboradorCarreiraRequiredMessage_funcao}" converter="colaboradorFuncaoConverter">
+                                <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                                <f:selectItems value="#{colaboradorFuncaoController.items}"
+                                               var="funcaoItem"
+                                               itemValue="#{funcaoItem}"
+                                               itemLabel="#{funcaoItem.descricao.toString()}"
+                                               />
+
+                            </p:selectOneMenu>
+                            <p:tooltip for="funcao" value="#{colaboradorCarreiraController.getComponentMessages('funcao', bundle.EditColaboradorCarreiraHelpText_funcao)}"/>
+                        </h:panelGroup>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{colaboradorCarreiraController.save}" value="#{bundle.Save}" update="display,:ColaboradorCarreiraListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,ColaboradorCarreiraEditDialog);">
+                        <p:confirm header="#{bundle.ConfirmationHeader}" message="#{bundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ColaboradorCarreiraEditDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

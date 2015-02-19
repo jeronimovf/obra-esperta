@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="WorkflowViewDlg" widgetVar="WorkflowViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{bundle.ViewWorkflowTitle}" closeOnEscape="true">
+
+            <h:form id="WorkflowViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{workflowController.selected != null}">
+
+                        <h:outputText value="#{bundle.ViewWorkflowLabel_id}"/>
+                        <h:outputText value="#{workflowController.selected.id}" title="#{bundle.ViewWorkflowTitle_id}"/>
+
+                        <h:outputText value="#{bundle.ViewWorkflowLabel_documento}"/>
+                        <h:outputText value="#{workflowController.selected.documento}" title="#{bundle.ViewWorkflowTitle_documento}"/>
+
+                        <h:outputText value="#{bundle.ViewWorkflowLabel_faseAtual}"/>
+                        <h:outputText value="#{workflowController.selected.faseAtual}" title="#{bundle.ViewWorkflowTitle_faseAtual}"/>
+
+                        <h:outputText value="#{bundle.ViewWorkflowLabel_gatilho}"/>
+                        <h:outputText value="#{workflowController.selected.gatilho}" title="#{bundle.ViewWorkflowTitle_gatilho}"/>
+
+                        <h:outputText value="#{bundle.ViewWorkflowLabel_faseDestino}"/>
+                        <h:outputText value="#{workflowController.selected.faseDestino}" title="#{bundle.ViewWorkflowTitle_faseDestino}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="WorkflowViewDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

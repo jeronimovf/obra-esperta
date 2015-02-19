@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="ColaboradorBeneficioXListForm">
+
+        <p:panel header="#{bundle.ListColaboradorBeneficioXTitle}">
+            <p:dataTable id="datalist" value="#{colaboradorBeneficioXController.items}" var="item"
+                         selectionMode="single" selection="#{colaboradorBeneficioXController.selected}"
+                         rowKey="#{item.id}"
+                         paginator="true"
+                         rows="10"
+                         rowsPerPageTemplate="10,20,30"
+                         >
+
+                <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+
+                <p:column sortBy="#{item.id}" filterBy="#{item.id}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListColaboradorBeneficioXTitle_id}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.id}"/>
+                </p:column>
+                <p:column sortBy="#{item.opcaoDataConcessao}" filterBy="#{item.opcaoDataConcessao}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListColaboradorBeneficioXTitle_opcaoDataConcessao}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.opcaoDataConcessao}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                </p:column>
+                <p:column sortBy="#{item.opcaoDataRevogacao}" filterBy="#{item.opcaoDataRevogacao}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListColaboradorBeneficioXTitle_opcaoDataRevogacao}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.opcaoDataRevogacao}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                </p:column>
+                <p:column sortBy="#{item.beneficio.id}" filterBy="#{item.beneficio.id}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListColaboradorBeneficioXTitle_beneficio}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.beneficio.id}"/>
+                </p:column>
+                <p:column sortBy="#{item.colaborador.id}" filterBy="#{item.colaborador.id}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListColaboradorBeneficioXTitle_colaborador}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.colaborador.id}"/>
+                </p:column>
+                <f:facet name="footer">
+                    <div class="footer-section">
+                        <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{colaboradorBeneficioXController.prepareCreate}" update=":ColaboradorBeneficioXCreateForm" oncomplete="ColaboradorBeneficioXCreateDialog.show()"/>
+                        <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":ColaboradorBeneficioXViewForm" oncomplete="ColaboradorBeneficioXViewDialog.show()" disabled="#{empty colaboradorBeneficioXController.selected}"/>
+                        <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":ColaboradorBeneficioXEditForm" oncomplete="ColaboradorBeneficioXEditDialog.show()" disabled="#{empty colaboradorBeneficioXController.selected}"/>
+                        <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{colaboradorBeneficioXController.delete}" update=":growl,datalist" disabled="#{empty colaboradorBeneficioXController.selected}">
+                            <p:confirm header="#{bundle.ConfirmationHeader}" message="#{bundle.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
+                        </p:commandButton>
+                    </div>
+                </f:facet>
+
+            </p:dataTable>
+
+        </p:panel>
+        <ui:include src="/WEB-INF/include/confirmation.xhtml"/>
+    </h:form>
+
+</ui:composition>

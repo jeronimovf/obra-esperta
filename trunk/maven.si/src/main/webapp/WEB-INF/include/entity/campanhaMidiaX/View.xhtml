@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="CampanhaMidiaXViewDlg" widgetVar="CampanhaMidiaXViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{bundle.ViewCampanhaMidiaXTitle}" closeOnEscape="true">
+
+            <h:form id="CampanhaMidiaXViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{campanhaMidiaXController.selected != null}">
+
+                        <h:outputText value="#{bundle.ViewCampanhaMidiaXLabel_id}"/>
+                        <h:outputText value="#{campanhaMidiaXController.selected.id}" title="#{bundle.ViewCampanhaMidiaXTitle_id}"/>
+
+                        <h:outputText value="#{bundle.ViewCampanhaMidiaXLabel_fornecedor}"/>
+                        <h:outputText value="#{campanhaMidiaXController.selected.fornecedor}" title="#{bundle.ViewCampanhaMidiaXTitle_fornecedor}"/>
+
+                        <h:outputText value="#{bundle.ViewCampanhaMidiaXLabel_tiragemOuVeiculacao}"/>
+                        <h:outputText value="#{campanhaMidiaXController.selected.tiragemOuVeiculacao}" title="#{bundle.ViewCampanhaMidiaXTitle_tiragemOuVeiculacao}"/>
+
+                        <h:outputText value="#{bundle.ViewCampanhaMidiaXLabel_midia}"/>
+                        <h:outputText value="#{campanhaMidiaXController.selected.midia.id}"/>
+
+                        <h:outputText value="#{bundle.ViewCampanhaMidiaXLabel_campanha}"/>
+                        <h:outputText value="#{campanhaMidiaXController.selected.campanha.id}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="CampanhaMidiaXViewDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

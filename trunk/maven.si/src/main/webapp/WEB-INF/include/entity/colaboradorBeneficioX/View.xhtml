@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ColaboradorBeneficioXViewDlg" widgetVar="ColaboradorBeneficioXViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{bundle.ViewColaboradorBeneficioXTitle}" closeOnEscape="true">
+
+            <h:form id="ColaboradorBeneficioXViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{colaboradorBeneficioXController.selected != null}">
+
+                        <h:outputText value="#{bundle.ViewColaboradorBeneficioXLabel_id}"/>
+                        <h:outputText value="#{colaboradorBeneficioXController.selected.id}" title="#{bundle.ViewColaboradorBeneficioXTitle_id}"/>
+
+                        <h:outputText value="#{bundle.ViewColaboradorBeneficioXLabel_opcaoDataConcessao}"/>
+                        <h:outputText value="#{colaboradorBeneficioXController.selected.opcaoDataConcessao}" title="#{bundle.ViewColaboradorBeneficioXTitle_opcaoDataConcessao}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+
+                        <h:outputText value="#{bundle.ViewColaboradorBeneficioXLabel_opcaoDataRevogacao}"/>
+                        <h:outputText value="#{colaboradorBeneficioXController.selected.opcaoDataRevogacao}" title="#{bundle.ViewColaboradorBeneficioXTitle_opcaoDataRevogacao}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+
+                        <h:outputText value="#{bundle.ViewColaboradorBeneficioXLabel_beneficio}"/>
+                        <h:outputText value="#{colaboradorBeneficioXController.selected.beneficio.id}"/>
+
+                        <h:outputText value="#{bundle.ViewColaboradorBeneficioXLabel_colaborador}"/>
+                        <h:outputText value="#{colaboradorBeneficioXController.selected.colaborador.id}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="ColaboradorBeneficioXViewDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

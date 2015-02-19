@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="DocumentoCreateDlg" widgetVar="DocumentoCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateDocumentoTitle}" closeOnEscape="true">
+
+            <h:form id="DocumentoCreateForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2">
+
+
+                        <p:outputLabel value="#{bundle.CreateDocumentoLabel_assunto}" for="assunto" />
+                        <h:panelGroup>
+                            <p:inputText id="assunto" value="#{documentoController.selected.assunto}" title="#{bundle.CreateDocumentoTitle_assunto}" size="255" maxlength="255"/>
+                            <p:tooltip for="assunto" value="#{documentoController.getComponentMessages('assunto', bundle.CreateDocumentoHelpText_assunto)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.CreateDocumentoLabel_dataEmissao}" for="dataEmissao" />
+                        <h:panelGroup>
+                            <p:calendar id="dataEmissao" pattern="MM/dd/yyyy HH:mm:ss" value="#{documentoController.selected.dataEmissao}" title="#{bundle.CreateDocumentoTitle_dataEmissao}"  showOn="button"/>
+                            <p:tooltip for="dataEmissao" value="#{documentoController.getComponentMessages('dataEmissao', bundle.CreateDocumentoHelpText_dataEmissao)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.CreateDocumentoLabel_dataCriacao}" for="dataCriacao" />
+                        <h:panelGroup>
+                            <p:calendar id="dataCriacao" pattern="MM/dd/yyyy HH:mm:ss" value="#{documentoController.selected.dataCriacao}" title="#{bundle.CreateDocumentoTitle_dataCriacao}" required="true" requiredMessage="#{bundle.CreateDocumentoRequiredMessage_dataCriacao}" showOn="button"/>
+                            <p:tooltip for="dataCriacao" value="#{documentoController.getComponentMessages('dataCriacao', bundle.CreateDocumentoHelpText_dataCriacao)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.CreateDocumentoLabel_criadoPor}" for="criadoPor" />
+                        <h:panelGroup>
+                            <p:inputText id="criadoPor" value="#{documentoController.selected.criadoPor}" title="#{bundle.CreateDocumentoTitle_criadoPor}" required="true" requiredMessage="#{bundle.CreateDocumentoRequiredMessage_criadoPor}"/>
+                            <p:tooltip for="criadoPor" value="#{documentoController.getComponentMessages('criadoPor', bundle.CreateDocumentoHelpText_criadoPor)}"/>
+                        </h:panelGroup>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{documentoController.saveNew}" value="#{bundle.Save}" update="display,:DocumentoListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,DocumentoCreateDialog);">
+                        <p:confirm header="#{bundle.ConfirmationHeader}" message="#{bundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="#{bundle.Cancel}" onclick="DocumentoCreateDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

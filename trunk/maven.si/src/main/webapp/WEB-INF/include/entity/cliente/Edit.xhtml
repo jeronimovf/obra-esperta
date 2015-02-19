@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="ClienteEditDlg" widgetVar="ClienteEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{bundle.EditClienteTitle}" closeOnEscape="true">
+
+            <h:form id="ClienteEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" rendered="#{clienteController.selected != null}">
+
+                        <h:outputLabel value="#{bundle.EditClienteLabel_id}" for="id" />
+                        <h:panelGroup>
+                            <h:outputText id="id" value="#{clienteController.selected.id}" />
+                            <p:tooltip for="id" value="#{clienteController.getComponentMessages('id', bundle.EditClienteHelpText_id)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.EditClienteLabel_desde}" for="desde" />
+                        <h:panelGroup>
+                            <p:calendar id="desde" pattern="MM/dd/yyyy HH:mm:ss" value="#{clienteController.selected.desde}" title="#{bundle.EditClienteTitle_desde}" required="true" requiredMessage="#{bundle.EditClienteRequiredMessage_desde}" showOn="button"/>
+                            <p:tooltip for="desde" value="#{clienteController.getComponentMessages('desde', bundle.EditClienteHelpText_desde)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.EditClienteLabel_pessoa}" for="pessoa" />
+                        <h:panelGroup>
+                            <p:selectOneMenu id="pessoa" value="#{clienteController.selected.pessoa}" required="true" requiredMessage="#{bundle.EditClienteRequiredMessage_pessoa}" converter="pessoaConverter">
+                                <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                                <f:selectItems value="#{pessoaController.items}"
+                                               var="pessoaItem"
+                                               itemValue="#{pessoaItem}"
+                                               itemLabel="#{pessoaItem.id.toString()}"
+                                               />
+
+                            </p:selectOneMenu>
+                            <p:tooltip for="pessoa" value="#{clienteController.getComponentMessages('pessoa', bundle.EditClienteHelpText_pessoa)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.EditClienteLabel_conheceuPor}" for="conheceuPor" />
+                        <h:panelGroup>
+                            <p:selectOneMenu id="conheceuPor" value="#{clienteController.selected.conheceuPor}" required="true" requiredMessage="#{bundle.EditClienteRequiredMessage_conheceuPor}" converter="campanhaMidiaXConverter">
+                                <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                                <f:selectItems value="#{campanhaMidiaXController.items}"
+                                               var="conheceuPorItem"
+                                               itemValue="#{conheceuPorItem}"
+                                               itemLabel="#{conheceuPorItem.id.toString()}"
+                                               />
+
+                            </p:selectOneMenu>
+                            <p:tooltip for="conheceuPor" value="#{clienteController.getComponentMessages('conheceuPor', bundle.EditClienteHelpText_conheceuPor)}"/>
+                        </h:panelGroup>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{clienteController.save}" value="#{bundle.Save}" update="display,:ClienteListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,ClienteEditDialog);">
+                        <p:confirm header="#{bundle.ConfirmationHeader}" message="#{bundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ClienteEditDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

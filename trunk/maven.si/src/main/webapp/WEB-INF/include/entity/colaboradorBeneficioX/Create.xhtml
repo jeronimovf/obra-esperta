@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ColaboradorBeneficioXCreateDlg" widgetVar="ColaboradorBeneficioXCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateColaboradorBeneficioXTitle}" closeOnEscape="true">
+
+            <h:form id="ColaboradorBeneficioXCreateForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2">
+
+
+                        <p:outputLabel value="#{bundle.CreateColaboradorBeneficioXLabel_opcaoDataConcessao}" for="opcaoDataConcessao" />
+                        <h:panelGroup>
+                            <p:calendar id="opcaoDataConcessao" pattern="MM/dd/yyyy HH:mm:ss" value="#{colaboradorBeneficioXController.selected.opcaoDataConcessao}" title="#{bundle.CreateColaboradorBeneficioXTitle_opcaoDataConcessao}" required="true" requiredMessage="#{bundle.CreateColaboradorBeneficioXRequiredMessage_opcaoDataConcessao}" showOn="button"/>
+                            <p:tooltip for="opcaoDataConcessao" value="#{colaboradorBeneficioXController.getComponentMessages('opcaoDataConcessao', bundle.CreateColaboradorBeneficioXHelpText_opcaoDataConcessao)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.CreateColaboradorBeneficioXLabel_opcaoDataRevogacao}" for="opcaoDataRevogacao" />
+                        <h:panelGroup>
+                            <p:calendar id="opcaoDataRevogacao" pattern="MM/dd/yyyy HH:mm:ss" value="#{colaboradorBeneficioXController.selected.opcaoDataRevogacao}" title="#{bundle.CreateColaboradorBeneficioXTitle_opcaoDataRevogacao}"  showOn="button"/>
+                            <p:tooltip for="opcaoDataRevogacao" value="#{colaboradorBeneficioXController.getComponentMessages('opcaoDataRevogacao', bundle.CreateColaboradorBeneficioXHelpText_opcaoDataRevogacao)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.CreateColaboradorBeneficioXLabel_beneficio}" for="beneficio" />
+                        <h:panelGroup>
+                            <p:selectOneMenu id="beneficio" value="#{colaboradorBeneficioXController.selected.beneficio}"  converter="colaboradorBeneficioConverter">
+                                <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                                <f:selectItems value="#{colaboradorBeneficioController.items}"
+                                               var="beneficioItem"
+                                               itemValue="#{beneficioItem}"
+                                               itemLabel="#{beneficioItem.id.toString()}"
+                                               />
+
+                            </p:selectOneMenu>
+                            <p:tooltip for="beneficio" value="#{colaboradorBeneficioXController.getComponentMessages('beneficio', bundle.CreateColaboradorBeneficioXHelpText_beneficio)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.CreateColaboradorBeneficioXLabel_colaborador}" for="colaborador" />
+                        <h:panelGroup>
+                            <p:selectOneMenu id="colaborador" value="#{colaboradorBeneficioXController.selected.colaborador}"  converter="colaboradorConverter">
+                                <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                                <f:selectItems value="#{colaboradorController.items}"
+                                               var="colaboradorItem"
+                                               itemValue="#{colaboradorItem}"
+                                               itemLabel="#{colaboradorItem.id.toString()}"
+                                               />
+
+                            </p:selectOneMenu>
+                            <p:tooltip for="colaborador" value="#{colaboradorBeneficioXController.getComponentMessages('colaborador', bundle.CreateColaboradorBeneficioXHelpText_colaborador)}"/>
+                        </h:panelGroup>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{colaboradorBeneficioXController.saveNew}" value="#{bundle.Save}" update="display,:ColaboradorBeneficioXListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,ColaboradorBeneficioXCreateDialog);">
+                        <p:confirm header="#{bundle.ConfirmationHeader}" message="#{bundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ColaboradorBeneficioXCreateDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

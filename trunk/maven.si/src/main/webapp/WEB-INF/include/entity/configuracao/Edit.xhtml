@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="ConfiguracaoEditDlg" widgetVar="ConfiguracaoEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{bundle.EditConfiguracaoTitle}" closeOnEscape="true">
+
+            <h:form id="ConfiguracaoEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" rendered="#{configuracaoController.selected != null}">
+
+                        <h:outputLabel value="#{bundle.EditConfiguracaoLabel_id}" for="id" />
+                        <h:panelGroup>
+                            <h:outputText id="id" value="#{configuracaoController.selected.id}" />
+                            <p:tooltip for="id" value="#{configuracaoController.getComponentMessages('id', bundle.EditConfiguracaoHelpText_id)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.EditConfiguracaoLabel_chave}" for="chave" />
+                        <h:panelGroup>
+                            <p:inputText id="chave" value="#{configuracaoController.selected.chave}" title="#{bundle.EditConfiguracaoTitle_chave}" required="true" requiredMessage="#{bundle.EditConfiguracaoRequiredMessage_chave}" size="255" maxlength="255"/>
+                            <p:tooltip for="chave" value="#{configuracaoController.getComponentMessages('chave', bundle.EditConfiguracaoHelpText_chave)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.EditConfiguracaoLabel_valor}" for="valor" />
+                        <h:panelGroup>
+                            <p:inputText id="valor" value="#{configuracaoController.selected.valor}" title="#{bundle.EditConfiguracaoTitle_valor}" required="true" requiredMessage="#{bundle.EditConfiguracaoRequiredMessage_valor}" size="255" maxlength="255"/>
+                            <p:tooltip for="valor" value="#{configuracaoController.getComponentMessages('valor', bundle.EditConfiguracaoHelpText_valor)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.EditConfiguracaoLabel_ativoDesde}" for="ativoDesde" />
+                        <h:panelGroup>
+                            <p:calendar id="ativoDesde" pattern="MM/dd/yyyy HH:mm:ss" value="#{configuracaoController.selected.ativoDesde}" title="#{bundle.EditConfiguracaoTitle_ativoDesde}" required="true" requiredMessage="#{bundle.EditConfiguracaoRequiredMessage_ativoDesde}" showOn="button"/>
+                            <p:tooltip for="ativoDesde" value="#{configuracaoController.getComponentMessages('ativoDesde', bundle.EditConfiguracaoHelpText_ativoDesde)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.EditConfiguracaoLabel_ativoAte}" for="ativoAte" />
+                        <h:panelGroup>
+                            <p:calendar id="ativoAte" pattern="MM/dd/yyyy HH:mm:ss" value="#{configuracaoController.selected.ativoAte}" title="#{bundle.EditConfiguracaoTitle_ativoAte}"  showOn="button"/>
+                            <p:tooltip for="ativoAte" value="#{configuracaoController.getComponentMessages('ativoAte', bundle.EditConfiguracaoHelpText_ativoAte)}"/>
+                        </h:panelGroup>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{configuracaoController.save}" value="#{bundle.Save}" update="display,:ConfiguracaoListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,ConfiguracaoEditDialog);">
+                        <p:confirm header="#{bundle.ConfirmationHeader}" message="#{bundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ConfiguracaoEditDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

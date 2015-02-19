@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="DocumentoViewDlg" widgetVar="DocumentoViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{bundle.ViewDocumentoTitle}" closeOnEscape="true">
+
+            <h:form id="DocumentoViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{documentoController.selected != null}">
+
+                        <h:outputText value="#{bundle.ViewDocumentoLabel_id}"/>
+                        <h:outputText value="#{documentoController.selected.id}" title="#{bundle.ViewDocumentoTitle_id}"/>
+
+                        <h:outputText value="#{bundle.ViewDocumentoLabel_assunto}"/>
+                        <h:outputText value="#{documentoController.selected.assunto}" title="#{bundle.ViewDocumentoTitle_assunto}"/>
+
+                        <h:outputText value="#{bundle.ViewDocumentoLabel_dataEmissao}"/>
+                        <h:outputText value="#{documentoController.selected.dataEmissao}" title="#{bundle.ViewDocumentoTitle_dataEmissao}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+
+                        <h:outputText value="#{bundle.ViewDocumentoLabel_dataCriacao}"/>
+                        <h:outputText value="#{documentoController.selected.dataCriacao}" title="#{bundle.ViewDocumentoTitle_dataCriacao}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+
+                        <h:outputText value="#{bundle.ViewDocumentoLabel_criadoPor}"/>
+                        <h:outputText value="#{documentoController.selected.criadoPor}" title="#{bundle.ViewDocumentoTitle_criadoPor}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="DocumentoViewDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

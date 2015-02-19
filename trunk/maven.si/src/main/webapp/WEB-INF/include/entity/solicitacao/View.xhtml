@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="SolicitacaoViewDlg" widgetVar="SolicitacaoViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{bundle.ViewSolicitacaoTitle}" closeOnEscape="true">
+
+            <h:form id="SolicitacaoViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{solicitacaoController.selected != null}">
+
+                        <h:outputText value="#{bundle.ViewSolicitacaoLabel_id}"/>
+                        <h:outputText value="#{solicitacaoController.selected.id}" title="#{bundle.ViewSolicitacaoTitle_id}"/>
+
+                        <h:outputText value="#{bundle.ViewSolicitacaoLabel_data}"/>
+                        <h:outputText value="#{solicitacaoController.selected.data}" title="#{bundle.ViewSolicitacaoTitle_data}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+
+                        <h:outputText value="#{bundle.ViewSolicitacaoLabel_descricao}"/>
+                        <h:outputText value="#{solicitacaoController.selected.descricao}" title="#{bundle.ViewSolicitacaoTitle_descricao}"/>
+
+                        <h:outputText value="#{bundle.ViewSolicitacaoLabel_melhoresDiasHorariosParaRealizarServico}"/>
+                        <h:outputText value="#{solicitacaoController.selected.melhoresDiasHorariosParaRealizarServico}" title="#{bundle.ViewSolicitacaoTitle_melhoresDiasHorariosParaRealizarServico}"/>
+
+                        <h:outputText value="#{bundle.ViewSolicitacaoLabel_solicitacaoAnterior}"/>
+                        <h:outputText value="#{solicitacaoController.selected.solicitacaoAnterior}" title="#{bundle.ViewSolicitacaoTitle_solicitacaoAnterior}"/>
+
+                        <h:outputText value="#{bundle.ViewSolicitacaoLabel_solicitacaoPosterior}"/>
+                        <h:outputText value="#{solicitacaoController.selected.solicitacaoPosterior}" title="#{bundle.ViewSolicitacaoTitle_solicitacaoPosterior}"/>
+
+                        <h:outputText value="#{bundle.ViewSolicitacaoLabel_cliente}"/>
+                        <h:outputText value="#{solicitacaoController.selected.cliente.id}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="SolicitacaoViewDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

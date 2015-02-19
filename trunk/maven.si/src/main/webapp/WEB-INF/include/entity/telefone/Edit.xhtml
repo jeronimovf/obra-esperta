@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="TelefoneEditDlg" widgetVar="TelefoneEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{bundle.EditTelefoneTitle}" closeOnEscape="true">
+
+            <h:form id="TelefoneEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" rendered="#{telefoneController.selected != null}">
+
+                        <h:outputLabel value="#{bundle.EditTelefoneLabel_id}" for="id" />
+                        <h:panelGroup>
+                            <h:outputText id="id" value="#{telefoneController.selected.id}" />
+                            <p:tooltip for="id" value="#{telefoneController.getComponentMessages('id', bundle.EditTelefoneHelpText_id)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.EditTelefoneLabel_telefone}" for="telefone" />
+                        <h:panelGroup>
+                            <p:inputText id="telefone" value="#{telefoneController.selected.telefone}" title="#{bundle.EditTelefoneTitle_telefone}" required="true" requiredMessage="#{bundle.EditTelefoneRequiredMessage_telefone}" size="15" maxlength="15"/>
+                            <p:tooltip for="telefone" value="#{telefoneController.getComponentMessages('telefone', bundle.EditTelefoneHelpText_telefone)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.EditTelefoneLabel_nome}" for="nome" />
+                        <h:panelGroup>
+                            <p:inputText id="nome" value="#{telefoneController.selected.nome}" title="#{bundle.EditTelefoneTitle_nome}" required="true" requiredMessage="#{bundle.EditTelefoneRequiredMessage_nome}" size="255" maxlength="255"/>
+                            <p:tooltip for="nome" value="#{telefoneController.getComponentMessages('nome', bundle.EditTelefoneHelpText_nome)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.EditTelefoneLabel_tipo}" for="tipo" />
+                        <h:panelGroup>
+                            <p:inputText id="tipo" value="#{telefoneController.selected.tipo}" title="#{bundle.EditTelefoneTitle_tipo}" required="true" requiredMessage="#{bundle.EditTelefoneRequiredMessage_tipo}"/>
+                            <p:tooltip for="tipo" value="#{telefoneController.getComponentMessages('tipo', bundle.EditTelefoneHelpText_tipo)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.EditTelefoneLabel_pessoa}" for="pessoa" />
+                        <h:panelGroup>
+                            <p:selectOneMenu id="pessoa" value="#{telefoneController.selected.pessoa}" required="true" requiredMessage="#{bundle.EditTelefoneRequiredMessage_pessoa}" converter="pessoaConverter">
+                                <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                                <f:selectItems value="#{pessoaController.items}"
+                                               var="pessoaItem"
+                                               itemValue="#{pessoaItem}"
+                                               itemLabel="#{pessoaItem.id.toString()}"
+                                               />
+
+                            </p:selectOneMenu>
+                            <p:tooltip for="pessoa" value="#{telefoneController.getComponentMessages('pessoa', bundle.EditTelefoneHelpText_pessoa)}"/>
+                        </h:panelGroup>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{telefoneController.save}" value="#{bundle.Save}" update="display,:TelefoneListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,TelefoneEditDialog);">
+                        <p:confirm header="#{bundle.ConfirmationHeader}" message="#{bundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="TelefoneEditDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

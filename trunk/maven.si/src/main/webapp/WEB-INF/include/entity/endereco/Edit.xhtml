@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="EnderecoEditDlg" widgetVar="EnderecoEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{bundle.EditEnderecoTitle}" closeOnEscape="true">
+
+            <h:form id="EnderecoEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" rendered="#{enderecoController.selected != null}">
+
+                        <h:outputLabel value="#{bundle.EditEnderecoLabel_id}" for="id" />
+                        <h:panelGroup>
+                            <h:outputText id="id" value="#{enderecoController.selected.id}" />
+                            <p:tooltip for="id" value="#{enderecoController.getComponentMessages('id', bundle.EditEnderecoHelpText_id)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.EditEnderecoLabel_nome}" for="nome" />
+                        <h:panelGroup>
+                            <p:inputText id="nome" value="#{enderecoController.selected.nome}" title="#{bundle.EditEnderecoTitle_nome}" required="true" requiredMessage="#{bundle.EditEnderecoRequiredMessage_nome}" size="255" maxlength="255"/>
+                            <p:tooltip for="nome" value="#{enderecoController.getComponentMessages('nome', bundle.EditEnderecoHelpText_nome)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.EditEnderecoLabel_logradouro}" for="logradouro" />
+                        <h:panelGroup>
+                            <p:inputText id="logradouro" value="#{enderecoController.selected.logradouro}" title="#{bundle.EditEnderecoTitle_logradouro}" required="true" requiredMessage="#{bundle.EditEnderecoRequiredMessage_logradouro}" size="255" maxlength="255"/>
+                            <p:tooltip for="logradouro" value="#{enderecoController.getComponentMessages('logradouro', bundle.EditEnderecoHelpText_logradouro)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.EditEnderecoLabel_numero}" for="numero" />
+                        <h:panelGroup>
+                            <p:inputText id="numero" value="#{enderecoController.selected.numero}" title="#{bundle.EditEnderecoTitle_numero}" size="255" maxlength="255"/>
+                            <p:tooltip for="numero" value="#{enderecoController.getComponentMessages('numero', bundle.EditEnderecoHelpText_numero)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.EditEnderecoLabel_bairro}" for="bairro" />
+                        <h:panelGroup>
+                            <p:inputText id="bairro" value="#{enderecoController.selected.bairro}" title="#{bundle.EditEnderecoTitle_bairro}" required="true" requiredMessage="#{bundle.EditEnderecoRequiredMessage_bairro}" size="255" maxlength="255"/>
+                            <p:tooltip for="bairro" value="#{enderecoController.getComponentMessages('bairro', bundle.EditEnderecoHelpText_bairro)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.EditEnderecoLabel_municipio}" for="municipio" />
+                        <h:panelGroup>
+                            <p:selectOneMenu id="municipio" value="#{enderecoController.selected.municipio}"  converter="municipioConverter">
+                                <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                                <f:selectItems value="#{municipioController.items}"
+                                               var="municipioItem"
+                                               itemValue="#{municipioItem}"
+                                               itemLabel="#{municipioItem.id.toString()}"
+                                               />
+
+                            </p:selectOneMenu>
+                            <p:tooltip for="municipio" value="#{enderecoController.getComponentMessages('municipio', bundle.EditEnderecoHelpText_municipio)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.EditEnderecoLabel_cep}" for="cep" />
+                        <h:panelGroup>
+                            <p:inputText id="cep" value="#{enderecoController.selected.cep}" title="#{bundle.EditEnderecoTitle_cep}"/>
+                            <p:tooltip for="cep" value="#{enderecoController.getComponentMessages('cep', bundle.EditEnderecoHelpText_cep)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.EditEnderecoLabel_complemento}" for="complemento" />
+                        <h:panelGroup>
+                            <p:inputText id="complemento" value="#{enderecoController.selected.complemento}" title="#{bundle.EditEnderecoTitle_complemento}" size="255" maxlength="255"/>
+                            <p:tooltip for="complemento" value="#{enderecoController.getComponentMessages('complemento', bundle.EditEnderecoHelpText_complemento)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.EditEnderecoLabel_pessoa}" for="pessoa" />
+                        <h:panelGroup>
+                            <p:selectOneMenu id="pessoa" value="#{enderecoController.selected.pessoa}" required="true" requiredMessage="#{bundle.EditEnderecoRequiredMessage_pessoa}" converter="pessoaConverter">
+                                <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                                <f:selectItems value="#{pessoaController.items}"
+                                               var="pessoaItem"
+                                               itemValue="#{pessoaItem}"
+                                               itemLabel="#{pessoaItem.id.toString()}"
+                                               />
+
+                            </p:selectOneMenu>
+                            <p:tooltip for="pessoa" value="#{enderecoController.getComponentMessages('pessoa', bundle.EditEnderecoHelpText_pessoa)}"/>
+                        </h:panelGroup>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{enderecoController.save}" value="#{bundle.Save}" update="display,:EnderecoListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,EnderecoEditDialog);">
+                        <p:confirm header="#{bundle.ConfirmationHeader}" message="#{bundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="EnderecoEditDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

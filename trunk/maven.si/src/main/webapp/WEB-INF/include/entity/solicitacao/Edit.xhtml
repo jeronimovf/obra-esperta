@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="SolicitacaoEditDlg" widgetVar="SolicitacaoEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{bundle.EditSolicitacaoTitle}" closeOnEscape="true">
+
+            <h:form id="SolicitacaoEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" rendered="#{solicitacaoController.selected != null}">
+
+                        <h:outputLabel value="#{bundle.EditSolicitacaoLabel_id}" for="id" />
+                        <h:panelGroup>
+                            <h:outputText id="id" value="#{solicitacaoController.selected.id}" />
+                            <p:tooltip for="id" value="#{solicitacaoController.getComponentMessages('id', bundle.EditSolicitacaoHelpText_id)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.EditSolicitacaoLabel_data}" for="data" />
+                        <h:panelGroup>
+                            <p:calendar id="data" pattern="MM/dd/yyyy HH:mm:ss" value="#{solicitacaoController.selected.data}" title="#{bundle.EditSolicitacaoTitle_data}" required="true" requiredMessage="#{bundle.EditSolicitacaoRequiredMessage_data}" showOn="button"/>
+                            <p:tooltip for="data" value="#{solicitacaoController.getComponentMessages('data', bundle.EditSolicitacaoHelpText_data)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.EditSolicitacaoLabel_descricao}" for="descricao" />
+                        <h:panelGroup>
+                            <p:inputTextarea rows="4" cols="30" id="descricao" value="#{solicitacaoController.selected.descricao}" title="#{bundle.EditSolicitacaoTitle_descricao}" required="true" requiredMessage="#{bundle.EditSolicitacaoRequiredMessage_descricao}"/>
+                            <p:tooltip for="descricao" value="#{solicitacaoController.getComponentMessages('descricao', bundle.EditSolicitacaoHelpText_descricao)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.EditSolicitacaoLabel_melhoresDiasHorariosParaRealizarServico}" for="melhoresDiasHorariosParaRealizarServico" />
+                        <h:panelGroup>
+                            <p:inputText id="melhoresDiasHorariosParaRealizarServico" value="#{solicitacaoController.selected.melhoresDiasHorariosParaRealizarServico}" title="#{bundle.EditSolicitacaoTitle_melhoresDiasHorariosParaRealizarServico}" size="255" maxlength="255"/>
+                            <p:tooltip for="melhoresDiasHorariosParaRealizarServico" value="#{solicitacaoController.getComponentMessages('melhoresDiasHorariosParaRealizarServico', bundle.EditSolicitacaoHelpText_melhoresDiasHorariosParaRealizarServico)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.EditSolicitacaoLabel_solicitacaoAnterior}" for="solicitacaoAnterior" />
+                        <h:panelGroup>
+                            <p:inputText id="solicitacaoAnterior" value="#{solicitacaoController.selected.solicitacaoAnterior}" title="#{bundle.EditSolicitacaoTitle_solicitacaoAnterior}"/>
+                            <p:tooltip for="solicitacaoAnterior" value="#{solicitacaoController.getComponentMessages('solicitacaoAnterior', bundle.EditSolicitacaoHelpText_solicitacaoAnterior)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.EditSolicitacaoLabel_solicitacaoPosterior}" for="solicitacaoPosterior" />
+                        <h:panelGroup>
+                            <p:inputText id="solicitacaoPosterior" value="#{solicitacaoController.selected.solicitacaoPosterior}" title="#{bundle.EditSolicitacaoTitle_solicitacaoPosterior}"/>
+                            <p:tooltip for="solicitacaoPosterior" value="#{solicitacaoController.getComponentMessages('solicitacaoPosterior', bundle.EditSolicitacaoHelpText_solicitacaoPosterior)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.EditSolicitacaoLabel_cliente}" for="cliente" />
+                        <h:panelGroup>
+                            <p:selectOneMenu id="cliente" value="#{solicitacaoController.selected.cliente}" required="true" requiredMessage="#{bundle.EditSolicitacaoRequiredMessage_cliente}" converter="clienteConverter">
+                                <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                                <f:selectItems value="#{clienteController.items}"
+                                               var="clienteItem"
+                                               itemValue="#{clienteItem}"
+                                               itemLabel="#{clienteItem.id.toString()}"
+                                               />
+
+                            </p:selectOneMenu>
+                            <p:tooltip for="cliente" value="#{solicitacaoController.getComponentMessages('cliente', bundle.EditSolicitacaoHelpText_cliente)}"/>
+                        </h:panelGroup>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{solicitacaoController.save}" value="#{bundle.Save}" update="display,:SolicitacaoListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,SolicitacaoEditDialog);">
+                        <p:confirm header="#{bundle.ConfirmationHeader}" message="#{bundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="SolicitacaoEditDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

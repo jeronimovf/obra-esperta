@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="UfCreateDlg" widgetVar="UfCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateUfTitle}" closeOnEscape="true">
+
+            <h:form id="UfCreateForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2">
+
+
+                        <p:outputLabel value="#{bundle.CreateUfLabel_nome}" for="nome" />
+                        <h:panelGroup>
+                            <p:inputText id="nome" value="#{ufController.selected.nome}" title="#{bundle.CreateUfTitle_nome}" required="true" requiredMessage="#{bundle.CreateUfRequiredMessage_nome}" size="255" maxlength="255"/>
+                            <p:tooltip for="nome" value="#{ufController.getComponentMessages('nome', bundle.CreateUfHelpText_nome)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.CreateUfLabel_sigla}" for="sigla" />
+                        <h:panelGroup>
+                            <p:inputText id="sigla" value="#{ufController.selected.sigla}" title="#{bundle.CreateUfTitle_sigla}" size="255" maxlength="255"/>
+                            <p:tooltip for="sigla" value="#{ufController.getComponentMessages('sigla', bundle.CreateUfHelpText_sigla)}"/>
+                        </h:panelGroup>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{ufController.saveNew}" value="#{bundle.Save}" update="display,:UfListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,UfCreateDialog);">
+                        <p:confirm header="#{bundle.ConfirmationHeader}" message="#{bundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="#{bundle.Cancel}" onclick="UfCreateDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

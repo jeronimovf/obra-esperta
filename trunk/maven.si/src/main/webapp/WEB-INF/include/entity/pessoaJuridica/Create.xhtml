@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:stella="http://stella.caelum.com.br/faces2">
+
+    <ui:composition>
+
+        <p:dialog id="PessoaJuridicaCreateDlg" widgetVar="PessoaJuridicaCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreatePessoaJuridicaTitle}" closeOnEscape="true">
+
+            <h:form id="PessoaJuridicaCreateForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2">
+
+
+                        <p:outputLabel value="#{bundle.CreatePessoaJuridicaLabel_tipo}" for="tipo" />
+                        <h:panelGroup>
+                            <p:inputText id="tipo" value="#{pessoaJuridicaController.selected.tipo}" title="#{bundle.CreatePessoaJuridicaTitle_tipo}"/>
+                            <p:tooltip for="tipo" value="#{pessoaJuridicaController.getComponentMessages('tipo', bundle.CreatePessoaJuridicaHelpText_tipo)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.CreatePessoaJuridicaLabel_cnpj}" for="cnpj" />
+                        <h:panelGroup>
+                            <p:inputText id="cnpj" value="#{pessoaJuridicaController.selected.cnpj}" title="#{bundle.CreatePessoaJuridicaTitle_cnpj}"  size="18" maxlength="18">
+                                <stella:validateCNPJ formatted="true" />
+                            </p:inputText>
+                            <p:tooltip for="cnpj" value="#{pessoaJuridicaController.getComponentMessages('cnpj', bundle.CreatePessoaJuridicaHelpText_cnpj)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.CreatePessoaJuridicaLabel_razaoSocial}" for="razaoSocial" />
+                        <h:panelGroup>
+                            <p:inputText id="razaoSocial" value="#{pessoaJuridicaController.selected.razaoSocial}" title="#{bundle.CreatePessoaJuridicaTitle_razaoSocial}"/>
+                            <p:tooltip for="razaoSocial" value="#{pessoaJuridicaController.getComponentMessages('razaoSocial', bundle.CreatePessoaJuridicaHelpText_razaoSocial)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.CreatePessoaJuridicaLabel_nomeFantasia}" for="nomeFantasia" />
+                        <h:panelGroup>
+                            <p:inputText id="nomeFantasia" value="#{pessoaJuridicaController.selected.nomeFantasia}" title="#{bundle.CreatePessoaJuridicaTitle_nomeFantasia}"/>
+                            <p:tooltip for="nomeFantasia" value="#{pessoaJuridicaController.getComponentMessages('nomeFantasia', bundle.CreatePessoaJuridicaHelpText_nomeFantasia)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.CreatePessoaJuridicaLabel_inscricaoEstadualNumero}" for="inscricaoEstadualNumero" />
+                        <h:panelGroup>
+                            <p:inputText id="inscricaoEstadualNumero" value="#{pessoaJuridicaController.selected.inscricaoEstadualNumero}" title="#{bundle.CreatePessoaJuridicaTitle_inscricaoEstadualNumero}"/>
+                            <p:tooltip for="inscricaoEstadualNumero" value="#{pessoaJuridicaController.getComponentMessages('inscricaoEstadualNumero', bundle.CreatePessoaJuridicaHelpText_inscricaoEstadualNumero)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.CreatePessoaJuridicaLabel_inscricaoEstadualUF}" for="inscricaoEstadualUF" />
+                        <h:panelGroup>
+                            <p:inputText id="inscricaoEstadualUF" value="#{pessoaJuridicaController.selected.inscricaoEstadualUF}" title="#{bundle.CreatePessoaJuridicaTitle_inscricaoEstadualUF}"/>
+                            <p:tooltip for="inscricaoEstadualUF" value="#{pessoaJuridicaController.getComponentMessages('inscricaoEstadualUF', bundle.CreatePessoaJuridicaHelpText_inscricaoEstadualUF)}"/>
+                        </h:panelGroup>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{pessoaJuridicaController.saveNew}" value="#{bundle.Save}" update="display,:PessoaJuridicaListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PessoaJuridicaCreateDialog);">
+                        <p:confirm header="#{bundle.ConfirmationHeader}" message="#{bundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="#{bundle.Cancel}" onclick="PessoaJuridicaCreateDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

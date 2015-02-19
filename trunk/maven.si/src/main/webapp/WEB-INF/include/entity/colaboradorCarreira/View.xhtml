@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ColaboradorCarreiraViewDlg" widgetVar="ColaboradorCarreiraViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{bundle.ViewColaboradorCarreiraTitle}" closeOnEscape="true">
+
+            <h:form id="ColaboradorCarreiraViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{colaboradorCarreiraController.selected != null}">
+
+                        <h:outputText value="#{bundle.ViewColaboradorCarreiraLabel_id}"/>
+                        <h:outputText value="#{colaboradorCarreiraController.selected.id}" title="#{bundle.ViewColaboradorCarreiraTitle_id}"/>
+
+                        <h:outputText value="#{bundle.ViewColaboradorCarreiraLabel_nivel}"/>
+                        <h:outputText value="#{colaboradorCarreiraController.selected.nivel}" title="#{bundle.ViewColaboradorCarreiraTitle_nivel}"/>
+
+                        <h:outputText value="#{bundle.ViewColaboradorCarreiraLabel_ativoDesde}"/>
+                        <h:outputText value="#{colaboradorCarreiraController.selected.ativoDesde}" title="#{bundle.ViewColaboradorCarreiraTitle_ativoDesde}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+
+                        <h:outputText value="#{bundle.ViewColaboradorCarreiraLabel_ativoAte}"/>
+                        <h:outputText value="#{colaboradorCarreiraController.selected.ativoAte}" title="#{bundle.ViewColaboradorCarreiraTitle_ativoAte}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+
+                        <h:outputText value="#{bundle.ViewColaboradorCarreiraLabel_funcao}"/>
+                        <h:outputText value="#{colaboradorCarreiraController.selected.funcao.descricao}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="ColaboradorCarreiraViewDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

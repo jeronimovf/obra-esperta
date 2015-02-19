@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ColaboradorCarreiraCreateDlg" widgetVar="ColaboradorCarreiraCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateColaboradorCarreiraTitle}" closeOnEscape="true">
+
+            <h:form id="ColaboradorCarreiraCreateForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2">
+
+
+                        <p:outputLabel value="#{bundle.CreateColaboradorCarreiraLabel_nivel}" for="nivel" />
+                        <h:panelGroup>
+                            <p:inputText id="nivel" value="#{colaboradorCarreiraController.selected.nivel}" title="#{bundle.CreateColaboradorCarreiraTitle_nivel}" required="true" requiredMessage="#{bundle.CreateColaboradorCarreiraRequiredMessage_nivel}"/>
+                            <p:tooltip for="nivel" value="#{colaboradorCarreiraController.getComponentMessages('nivel', bundle.CreateColaboradorCarreiraHelpText_nivel)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.CreateColaboradorCarreiraLabel_ativoDesde}" for="ativoDesde" />
+                        <h:panelGroup>
+                            <p:calendar id="ativoDesde" pattern="MM/dd/yyyy HH:mm:ss" value="#{colaboradorCarreiraController.selected.ativoDesde}" title="#{bundle.CreateColaboradorCarreiraTitle_ativoDesde}" required="true" requiredMessage="#{bundle.CreateColaboradorCarreiraRequiredMessage_ativoDesde}" showOn="button"/>
+                            <p:tooltip for="ativoDesde" value="#{colaboradorCarreiraController.getComponentMessages('ativoDesde', bundle.CreateColaboradorCarreiraHelpText_ativoDesde)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.CreateColaboradorCarreiraLabel_ativoAte}" for="ativoAte" />
+                        <h:panelGroup>
+                            <p:calendar id="ativoAte" pattern="MM/dd/yyyy HH:mm:ss" value="#{colaboradorCarreiraController.selected.ativoAte}" title="#{bundle.CreateColaboradorCarreiraTitle_ativoAte}"  showOn="button"/>
+                            <p:tooltip for="ativoAte" value="#{colaboradorCarreiraController.getComponentMessages('ativoAte', bundle.CreateColaboradorCarreiraHelpText_ativoAte)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.CreateColaboradorCarreiraLabel_funcao}" for="funcao" />
+                        <h:panelGroup>
+                            <p:selectOneMenu id="funcao" value="#{colaboradorCarreiraController.selected.funcao}" required="true" requiredMessage="#{bundle.CreateColaboradorCarreiraRequiredMessage_funcao}" converter="colaboradorFuncaoConverter">
+                                <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                                <f:selectItems value="#{colaboradorFuncaoController.items}"
+                                               var="funcaoItem"
+                                               itemValue="#{funcaoItem}"
+                                               itemLabel="#{funcaoItem.descricao.toString()}"
+                                               />
+
+                            </p:selectOneMenu>
+                            <p:tooltip for="funcao" value="#{colaboradorCarreiraController.getComponentMessages('funcao', bundle.CreateColaboradorCarreiraHelpText_funcao)}"/>
+                        </h:panelGroup>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{colaboradorCarreiraController.saveNew}" value="#{bundle.Save}" update="display,:ColaboradorCarreiraListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,ColaboradorCarreiraCreateDialog);">
+                        <p:confirm header="#{bundle.ConfirmationHeader}" message="#{bundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ColaboradorCarreiraCreateDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

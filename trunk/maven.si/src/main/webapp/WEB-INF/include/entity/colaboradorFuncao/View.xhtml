@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ColaboradorFuncaoViewDlg" widgetVar="ColaboradorFuncaoViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{bundle.ViewColaboradorFuncaoTitle}" closeOnEscape="true">
+
+            <h:form id="ColaboradorFuncaoViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{colaboradorFuncaoController.selected != null}">
+
+                        <h:outputText value="#{bundle.ViewColaboradorFuncaoLabel_id}"/>
+                        <h:outputText value="#{colaboradorFuncaoController.selected.id}" title="#{bundle.ViewColaboradorFuncaoTitle_id}"/>
+
+                        <h:outputText value="#{bundle.ViewColaboradorFuncaoLabel_nome}"/>
+                        <h:outputText value="#{colaboradorFuncaoController.selected.nome}" title="#{bundle.ViewColaboradorFuncaoTitle_nome}"/>
+
+                        <h:outputText value="#{bundle.ViewColaboradorFuncaoLabel_descricao}"/>
+                        <h:outputText value="#{colaboradorFuncaoController.selected.descricao}" title="#{bundle.ViewColaboradorFuncaoTitle_descricao}"/>
+
+                        <h:outputText value="#{bundle.ViewColaboradorFuncaoLabel_ativaDesde}"/>
+                        <h:outputText value="#{colaboradorFuncaoController.selected.ativaDesde}" title="#{bundle.ViewColaboradorFuncaoTitle_ativaDesde}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+
+                        <h:outputText value="#{bundle.ViewColaboradorFuncaoLabel_ativaAte}"/>
+                        <h:outputText value="#{colaboradorFuncaoController.selected.ativaAte}" title="#{bundle.ViewColaboradorFuncaoTitle_ativaAte}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="ColaboradorFuncaoViewDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

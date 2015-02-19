@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="MunicipioEditDlg" widgetVar="MunicipioEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{bundle.EditMunicipioTitle}" closeOnEscape="true">
+
+            <h:form id="MunicipioEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" rendered="#{municipioController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditMunicipioLabel_uf}" for="uf" />
+                        <h:panelGroup>
+                            <p:selectOneMenu id="uf" value="#{municipioController.selected.uf}"  converter="ufConverter">
+                                <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                                <f:selectItems value="#{ufController.items}"
+                                               var="ufItem"
+                                               itemValue="#{ufItem}"
+                                               itemLabel="#{ufItem.sigla}"
+                                               />
+
+                            </p:selectOneMenu>
+                            <p:tooltip for="uf" value="#{municipioController.getComponentMessages('uf', bundle.EditMunicipioHelpText_uf)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.EditMunicipioLabel_nome}" for="nome" />
+                        <h:panelGroup>
+                            <p:inputText id="nome" value="#{municipioController.selected.nome}" title="#{bundle.EditMunicipioTitle_nome}" size="255" maxlength="255"/>
+                            <p:tooltip for="nome" value="#{municipioController.getComponentMessages('nome', bundle.EditMunicipioHelpText_nome)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.EditMunicipioLabel_codigoibge}" for="codigoibge" />
+                        <h:panelGroup>
+                            <p:inputText id="codigoibge" value="#{municipioController.selected.codigoibge}" title="#{bundle.EditMunicipioTitle_codigoibge}" size="255" maxlength="255"/>
+                            <p:tooltip for="codigoibge" value="#{municipioController.getComponentMessages('codigoibge', bundle.EditMunicipioHelpText_codigoibge)}"/>
+                        </h:panelGroup>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{municipioController.save}" value="#{bundle.Save}" update="display,:MunicipioListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,MunicipioEditDialog);">
+                        <p:confirm header="#{bundle.ConfirmationHeader}" message="#{bundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="MunicipioEditDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

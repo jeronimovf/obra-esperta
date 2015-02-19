@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="BancoContaViewDlg" widgetVar="BancoContaViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{bundle.ViewBancoContaTitle}" closeOnEscape="true">
+
+            <h:form id="BancoContaViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{bancoContaController.selected != null}">
+
+                        <h:outputText value="#{bundle.ViewBancoContaLabel_id}"/>
+                        <h:outputText value="#{bancoContaController.selected.id}" title="#{bundle.ViewBancoContaTitle_id}"/>
+
+                        <h:outputText value="#{bundle.ViewBancoContaLabel_conta}"/>
+                        <h:outputText value="#{bancoContaController.selected.conta}" title="#{bundle.ViewBancoContaTitle_conta}"/>
+
+                        <h:outputText value="#{bundle.ViewBancoContaLabel_tipo}"/>
+                        <h:outputText value="#{bancoContaController.selected.tipo}" title="#{bundle.ViewBancoContaTitle_tipo}"/>
+
+                        <h:outputText value="#{bundle.ViewBancoContaLabel_variacao}"/>
+                        <h:outputText value="#{bancoContaController.selected.variacao}" title="#{bundle.ViewBancoContaTitle_variacao}"/>
+
+                        <h:outputText value="#{bundle.ViewBancoContaLabel_agencia}"/>
+                        <h:outputText value="#{bancoContaController.selected.agencia.id}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="BancoContaViewDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

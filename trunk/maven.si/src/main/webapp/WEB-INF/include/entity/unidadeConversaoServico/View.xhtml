@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="UnidadeConversaoServicoViewDlg" widgetVar="UnidadeConversaoServicoViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{bundle.ViewUnidadeConversaoServicoTitle}" closeOnEscape="true">
+
+            <h:form id="UnidadeConversaoServicoViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{unidadeConversaoServicoController.selected != null}">
+
+                        <h:outputText value="#{bundle.ViewUnidadeConversaoServicoLabel_id}"/>
+                        <h:outputText value="#{unidadeConversaoServicoController.selected.id}" title="#{bundle.ViewUnidadeConversaoServicoTitle_id}"/>
+
+                        <h:outputText value="#{bundle.ViewUnidadeConversaoServicoLabel_unidade}"/>
+                        <h:outputText value="#{unidadeConversaoServicoController.selected.unidade}" title="#{bundle.ViewUnidadeConversaoServicoTitle_unidade}"/>
+
+                        <h:outputText value="#{bundle.ViewUnidadeConversaoServicoLabel_orseSERVUNIDADE}"/>
+                        <h:outputText value="#{unidadeConversaoServicoController.selected.orseSERVUNIDADE}" title="#{bundle.ViewUnidadeConversaoServicoTitle_orseSERVUNIDADE}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="UnidadeConversaoServicoViewDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

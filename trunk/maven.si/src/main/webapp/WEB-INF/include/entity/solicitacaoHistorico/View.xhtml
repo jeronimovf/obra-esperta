@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="SolicitacaoHistoricoViewDlg" widgetVar="SolicitacaoHistoricoViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{bundle.ViewSolicitacaoHistoricoTitle}" closeOnEscape="true">
+
+            <h:form id="SolicitacaoHistoricoViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{solicitacaoHistoricoController.selected != null}">
+
+                        <h:outputText value="#{bundle.ViewSolicitacaoHistoricoLabel_id}"/>
+                        <h:outputText value="#{solicitacaoHistoricoController.selected.id}" title="#{bundle.ViewSolicitacaoHistoricoTitle_id}"/>
+
+                        <h:outputText value="#{bundle.ViewSolicitacaoHistoricoLabel_dataHora}"/>
+                        <h:outputText value="#{solicitacaoHistoricoController.selected.dataHora}" title="#{bundle.ViewSolicitacaoHistoricoTitle_dataHora}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+
+                        <h:outputText value="#{bundle.ViewSolicitacaoHistoricoLabel_observacao}"/>
+                        <h:outputText value="#{solicitacaoHistoricoController.selected.observacao}" title="#{bundle.ViewSolicitacaoHistoricoTitle_observacao}"/>
+
+                        <h:outputText value="#{bundle.ViewSolicitacaoHistoricoLabel_fase}"/>
+                        <h:outputText value="#{solicitacaoHistoricoController.selected.fase.id}"/>
+
+                        <h:outputText value="#{bundle.ViewSolicitacaoHistoricoLabel_solicitacao}"/>
+                        <h:outputText value="#{solicitacaoHistoricoController.selected.solicitacao.descricao}"/>
+
+                        <h:outputText value="#{bundle.ViewSolicitacaoHistoricoLabel_responsavel}"/>
+                        <h:outputText value="#{solicitacaoHistoricoController.selected.responsavel.id}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="SolicitacaoHistoricoViewDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

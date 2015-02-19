@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="GrandezaCreateDlg" widgetVar="GrandezaCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateGrandezaTitle}" closeOnEscape="true">
+
+            <h:form id="GrandezaCreateForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2">
+
+
+                        <p:outputLabel value="#{bundle.CreateGrandezaLabel_nome}" for="nome" />
+                        <h:panelGroup>
+                            <p:inputText id="nome" value="#{grandezaController.selected.nome}" title="#{bundle.CreateGrandezaTitle_nome}" required="true" requiredMessage="#{bundle.CreateGrandezaRequiredMessage_nome}" size="255" maxlength="255"/>
+                            <p:tooltip for="nome" value="#{grandezaController.getComponentMessages('nome', bundle.CreateGrandezaHelpText_nome)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.CreateGrandezaLabel_unidadeBasica}" for="unidadeBasica" />
+                        <h:panelGroup>
+                            <p:selectOneMenu id="unidadeBasica" value="#{grandezaController.selected.unidadeBasica}"  converter="unidadeConverter">
+                                <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                                <f:selectItems value="#{unidadeController.items}"
+                                               var="unidadeBasicaItem"
+                                               itemValue="#{unidadeBasicaItem}"
+                                               itemLabel="#{unidadeBasicaItem.id.toString()}"
+                                               />
+
+                            </p:selectOneMenu>
+                            <p:tooltip for="unidadeBasica" value="#{grandezaController.getComponentMessages('unidadeBasica', bundle.CreateGrandezaHelpText_unidadeBasica)}"/>
+                        </h:panelGroup>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{grandezaController.saveNew}" value="#{bundle.Save}" update="display,:GrandezaListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,GrandezaCreateDialog);">
+                        <p:confirm header="#{bundle.ConfirmationHeader}" message="#{bundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="#{bundle.Cancel}" onclick="GrandezaCreateDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

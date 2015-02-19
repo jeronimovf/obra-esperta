@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <h:form id="BancoContaListForm">
+
+        <p:panel header="#{bundle.ListBancoContaTitle}">
+            <p:dataTable id="datalist" value="#{bancoContaController.items}" var="item"
+                         selectionMode="single" selection="#{bancoContaController.selected}"
+                         rowKey="#{item.id}"
+                         paginator="true"
+                         rows="10"
+                         rowsPerPageTemplate="10,20,30"
+                         >
+
+                <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+
+                <p:column sortBy="#{item.id}" filterBy="#{item.id}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListBancoContaTitle_id}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.id}"/>
+                </p:column>
+                <p:column sortBy="#{item.conta}" filterBy="#{item.conta}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListBancoContaTitle_conta}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.conta}"/>
+                </p:column>
+                <p:column sortBy="#{item.tipo}" filterBy="#{item.tipo}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListBancoContaTitle_tipo}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.tipo}"/>
+                </p:column>
+                <p:column sortBy="#{item.variacao}" filterBy="#{item.variacao}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListBancoContaTitle_variacao}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.variacao}"/>
+                </p:column>
+                <p:column sortBy="#{item.agencia.id}" filterBy="#{item.agencia.id}">
+                    <f:facet name="header">
+                        <h:outputText value="#{bundle.ListBancoContaTitle_agencia}"/>
+                    </f:facet>
+                    <h:outputText value="#{item.agencia.id}"/>
+                </p:column>
+                <f:facet name="footer">
+                    <div class="footer-section">
+                        <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{bancoContaController.prepareCreate}" update=":BancoContaCreateForm" oncomplete="BancoContaCreateDialog.show()"/>
+                        <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":BancoContaViewForm" oncomplete="BancoContaViewDialog.show()" disabled="#{empty bancoContaController.selected}"/>
+                        <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":BancoContaEditForm" oncomplete="BancoContaEditDialog.show()" disabled="#{empty bancoContaController.selected}"/>
+                        <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{bancoContaController.delete}" update=":growl,datalist" disabled="#{empty bancoContaController.selected}">
+                            <p:confirm header="#{bundle.ConfirmationHeader}" message="#{bundle.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
+                        </p:commandButton>
+                    </div>
+                </f:facet>
+
+            </p:dataTable>
+
+        </p:panel>
+        <ui:include src="/WEB-INF/include/confirmation.xhtml"/>
+    </h:form>
+
+</ui:composition>

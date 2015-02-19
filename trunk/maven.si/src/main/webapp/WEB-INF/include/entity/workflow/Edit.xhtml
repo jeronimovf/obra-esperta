@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="WorkflowEditDlg" widgetVar="WorkflowEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{bundle.EditWorkflowTitle}" closeOnEscape="true">
+
+            <h:form id="WorkflowEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" rendered="#{workflowController.selected != null}">
+
+                        <h:outputLabel value="#{bundle.EditWorkflowLabel_id}" for="id" />
+                        <h:panelGroup>
+                            <h:outputText id="id" value="#{workflowController.selected.id}" />
+                            <p:tooltip for="id" value="#{workflowController.getComponentMessages('id', bundle.EditWorkflowHelpText_id)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.EditWorkflowLabel_documento}" for="documento" />
+                        <h:panelGroup>
+                            <p:inputText id="documento" value="#{workflowController.selected.documento}" title="#{bundle.EditWorkflowTitle_documento}" required="true" requiredMessage="#{bundle.EditWorkflowRequiredMessage_documento}"/>
+                            <p:tooltip for="documento" value="#{workflowController.getComponentMessages('documento', bundle.EditWorkflowHelpText_documento)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.EditWorkflowLabel_faseAtual}" for="faseAtual" />
+                        <h:panelGroup>
+                            <p:inputText id="faseAtual" value="#{workflowController.selected.faseAtual}" title="#{bundle.EditWorkflowTitle_faseAtual}"/>
+                            <p:tooltip for="faseAtual" value="#{workflowController.getComponentMessages('faseAtual', bundle.EditWorkflowHelpText_faseAtual)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.EditWorkflowLabel_gatilho}" for="gatilho" />
+                        <h:panelGroup>
+                            <p:inputText id="gatilho" value="#{workflowController.selected.gatilho}" title="#{bundle.EditWorkflowTitle_gatilho}"/>
+                            <p:tooltip for="gatilho" value="#{workflowController.getComponentMessages('gatilho', bundle.EditWorkflowHelpText_gatilho)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.EditWorkflowLabel_faseDestino}" for="faseDestino" />
+                        <h:panelGroup>
+                            <p:inputText id="faseDestino" value="#{workflowController.selected.faseDestino}" title="#{bundle.EditWorkflowTitle_faseDestino}"/>
+                            <p:tooltip for="faseDestino" value="#{workflowController.getComponentMessages('faseDestino', bundle.EditWorkflowHelpText_faseDestino)}"/>
+                        </h:panelGroup>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{workflowController.save}" value="#{bundle.Save}" update="display,:WorkflowListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,WorkflowEditDialog);">
+                        <p:confirm header="#{bundle.ConfirmationHeader}" message="#{bundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="WorkflowEditDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

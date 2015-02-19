@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="UnidadeCreateDlg" widgetVar="UnidadeCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateUnidadeTitle}" closeOnEscape="true">
+
+            <h:form id="UnidadeCreateForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2">
+
+
+                        <p:outputLabel value="#{bundle.CreateUnidadeLabel_unidade}" for="unidade" />
+                        <h:panelGroup>
+                            <p:inputText id="unidade" value="#{unidadeController.selected.unidade}" title="#{bundle.CreateUnidadeTitle_unidade}" required="true" requiredMessage="#{bundle.CreateUnidadeRequiredMessage_unidade}" size="255" maxlength="255"/>
+                            <p:tooltip for="unidade" value="#{unidadeController.getComponentMessages('unidade', bundle.CreateUnidadeHelpText_unidade)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.CreateUnidadeLabel_sigla}" for="sigla" />
+                        <h:panelGroup>
+                            <p:inputText id="sigla" value="#{unidadeController.selected.sigla}" title="#{bundle.CreateUnidadeTitle_sigla}" required="true" requiredMessage="#{bundle.CreateUnidadeRequiredMessage_sigla}" size="255" maxlength="255"/>
+                            <p:tooltip for="sigla" value="#{unidadeController.getComponentMessages('sigla', bundle.CreateUnidadeHelpText_sigla)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.CreateUnidadeLabel_grandeza}" for="grandeza" />
+                        <h:panelGroup>
+                            <p:inputText id="grandeza" value="#{unidadeController.selected.grandeza}" title="#{bundle.CreateUnidadeTitle_grandeza}" required="true" requiredMessage="#{bundle.CreateUnidadeRequiredMessage_grandeza}"/>
+                            <p:tooltip for="grandeza" value="#{unidadeController.getComponentMessages('grandeza', bundle.CreateUnidadeHelpText_grandeza)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.CreateUnidadeLabel_fatorConversao}" for="fatorConversao" />
+                        <h:panelGroup>
+                            <p:inputText id="fatorConversao" value="#{unidadeController.selected.fatorConversao}" title="#{bundle.CreateUnidadeTitle_fatorConversao}"/>
+                            <p:tooltip for="fatorConversao" value="#{unidadeController.getComponentMessages('fatorConversao', bundle.CreateUnidadeHelpText_fatorConversao)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.CreateUnidadeLabel_destaque}" for="destaque" />
+                        <h:panelGroup>
+                            <p:inputText id="destaque" value="#{unidadeController.selected.destaque}" title="#{bundle.CreateUnidadeTitle_destaque}"/>
+                            <p:tooltip for="destaque" value="#{unidadeController.getComponentMessages('destaque', bundle.CreateUnidadeHelpText_destaque)}"/>
+                        </h:panelGroup>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{unidadeController.saveNew}" value="#{bundle.Save}" update="display,:UnidadeListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,UnidadeCreateDialog);">
+                        <p:confirm header="#{bundle.ConfirmationHeader}" message="#{bundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="#{bundle.Cancel}" onclick="UnidadeCreateDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

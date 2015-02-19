@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="UnidadeViewDlg" widgetVar="UnidadeViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{bundle.ViewUnidadeTitle}" closeOnEscape="true">
+
+            <h:form id="UnidadeViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{unidadeController.selected != null}">
+
+                        <h:outputText value="#{bundle.ViewUnidadeLabel_id}"/>
+                        <h:outputText value="#{unidadeController.selected.id}" title="#{bundle.ViewUnidadeTitle_id}"/>
+
+                        <h:outputText value="#{bundle.ViewUnidadeLabel_unidade}"/>
+                        <h:outputText value="#{unidadeController.selected.unidade}" title="#{bundle.ViewUnidadeTitle_unidade}"/>
+
+                        <h:outputText value="#{bundle.ViewUnidadeLabel_sigla}"/>
+                        <h:outputText value="#{unidadeController.selected.sigla}" title="#{bundle.ViewUnidadeTitle_sigla}"/>
+
+                        <h:outputText value="#{bundle.ViewUnidadeLabel_grandeza}"/>
+                        <h:outputText value="#{unidadeController.selected.grandeza}" title="#{bundle.ViewUnidadeTitle_grandeza}"/>
+
+                        <h:outputText value="#{bundle.ViewUnidadeLabel_fatorConversao}"/>
+                        <h:outputText value="#{unidadeController.selected.fatorConversao}" title="#{bundle.ViewUnidadeTitle_fatorConversao}"/>
+
+                        <h:outputText value="#{bundle.ViewUnidadeLabel_destaque}"/>
+                        <h:outputText value="#{unidadeController.selected.destaque}" title="#{bundle.ViewUnidadeTitle_destaque}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="UnidadeViewDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

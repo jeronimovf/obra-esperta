@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="CampanhaMidiaXEditDlg" widgetVar="CampanhaMidiaXEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{bundle.EditCampanhaMidiaXTitle}" closeOnEscape="true">
+
+            <h:form id="CampanhaMidiaXEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" rendered="#{campanhaMidiaXController.selected != null}">
+
+                        <h:outputLabel value="#{bundle.EditCampanhaMidiaXLabel_id}" for="id" />
+                        <h:panelGroup>
+                            <h:outputText id="id" value="#{campanhaMidiaXController.selected.id}" />
+                            <p:tooltip for="id" value="#{campanhaMidiaXController.getComponentMessages('id', bundle.EditCampanhaMidiaXHelpText_id)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.EditCampanhaMidiaXLabel_fornecedor}" for="fornecedor" />
+                        <h:panelGroup>
+                            <p:inputText id="fornecedor" value="#{campanhaMidiaXController.selected.fornecedor}" title="#{bundle.EditCampanhaMidiaXTitle_fornecedor}" required="true" requiredMessage="#{bundle.EditCampanhaMidiaXRequiredMessage_fornecedor}" size="255" maxlength="255"/>
+                            <p:tooltip for="fornecedor" value="#{campanhaMidiaXController.getComponentMessages('fornecedor', bundle.EditCampanhaMidiaXHelpText_fornecedor)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.EditCampanhaMidiaXLabel_tiragemOuVeiculacao}" for="tiragemOuVeiculacao" />
+                        <h:panelGroup>
+                            <p:inputText id="tiragemOuVeiculacao" value="#{campanhaMidiaXController.selected.tiragemOuVeiculacao}" title="#{bundle.EditCampanhaMidiaXTitle_tiragemOuVeiculacao}" size="255" maxlength="255"/>
+                            <p:tooltip for="tiragemOuVeiculacao" value="#{campanhaMidiaXController.getComponentMessages('tiragemOuVeiculacao', bundle.EditCampanhaMidiaXHelpText_tiragemOuVeiculacao)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.EditCampanhaMidiaXLabel_midia}" for="midia" />
+                        <h:panelGroup>
+                            <p:selectOneMenu id="midia" value="#{campanhaMidiaXController.selected.midia}" required="true" requiredMessage="#{bundle.EditCampanhaMidiaXRequiredMessage_midia}" converter="campanhaMidiaConverter">
+                                <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                                <f:selectItems value="#{campanhaMidiaController.items}"
+                                               var="midiaItem"
+                                               itemValue="#{midiaItem}"
+                                               itemLabel="#{midiaItem.id.toString()}"
+                                               />
+
+                            </p:selectOneMenu>
+                            <p:tooltip for="midia" value="#{campanhaMidiaXController.getComponentMessages('midia', bundle.EditCampanhaMidiaXHelpText_midia)}"/>
+                        </h:panelGroup>
+
+
+                        <p:outputLabel value="#{bundle.EditCampanhaMidiaXLabel_campanha}" for="campanha" />
+                        <h:panelGroup>
+                            <p:selectOneMenu id="campanha" value="#{campanhaMidiaXController.selected.campanha}" required="true" requiredMessage="#{bundle.EditCampanhaMidiaXRequiredMessage_campanha}" converter="campanhaConverter">
+                                <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                                <f:selectItems value="#{campanhaController.items}"
+                                               var="campanhaItem"
+                                               itemValue="#{campanhaItem}"
+                                               itemLabel="#{campanhaItem.id.toString()}"
+                                               />
+
+                            </p:selectOneMenu>
+                            <p:tooltip for="campanha" value="#{campanhaMidiaXController.getComponentMessages('campanha', bundle.EditCampanhaMidiaXHelpText_campanha)}"/>
+                        </h:panelGroup>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{campanhaMidiaXController.save}" value="#{bundle.Save}" update="display,:CampanhaMidiaXListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,CampanhaMidiaXEditDialog);">
+                        <p:confirm header="#{bundle.ConfirmationHeader}" message="#{bundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="CampanhaMidiaXEditDialog.hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>
