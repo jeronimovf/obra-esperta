@@ -1,0 +1,1 @@
+O sistema é todo baseado em JAVA 6 e plataforma WEB multinavegador.
